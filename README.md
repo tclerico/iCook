@@ -17,3 +17,37 @@ are completed at the same time.
 
 This app is targeted towards people who enjoy cooking but want to improve, as well as people who may struggle to eat regularly due to not knowing what/how to cook.
 iCook will help these users discover the foods they enjoy.
+
+## Starting Scenarios
+Use Case: A user can add items to their inventory
+
+In order to keep track of ingredients 
+As a hungry person/ chef person 
+I want to be able to save an inventory of my ingredients 
+
+Scenario one: 
+Chefs are able to input the counts for their ingredients 
+
+Given that the chef wants to add an ingredient 
+When the chef adds the ingredient and the count 
+Then the inventory  is updated 
+ 
+Scenario Two:
+Chefs  are able to get a count of how much of an item they have 
+
+Given the chefs wants to get a count
+When the chefs request a count for an ingredient
+Then the chef gets a count for the ingredient
+
+Scenario three: 
+Chefs are able to add a list of ingredients
+Given that a chef wants to add a batch of ingredients 
+When the chef gives a list of ingredients and counts 
+Then the inventory is updated  
+
+Scenario four: 
+Chefs are able to remove an ingredient 
+Given that the chef wants to remove an ingredient 
+When the chef selects the ingredient they want to remove 
+Then the ingredient is removed and the inventory is updated 
+
