@@ -21,7 +21,7 @@ iCook will help these users discover the foods they enjoy.
 ## Starting Scenarios
 Use Case: A user can add items to their inventory
 
-In order to keep track of ingredients 
+In order to keep track of ingredients
 As a hungry person/ chef person 
 I want to be able to save an inventory of my ingredients 
 
