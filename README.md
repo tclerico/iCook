@@ -53,5 +53,6 @@ Given that the chef wants to remove an ingredient
 When the chef selects the ingredient they want to remove 
 Then the ingredient is removed and the inventory is updated 
 
-## First Sprint Goal
-For this sprint we want to be able to generate one tray meals and create or view recipes.
+## Sprint 1
+### Sprint Goal
+For this sprint we want to be able to get recipe recommendations and generate one tray meals.
