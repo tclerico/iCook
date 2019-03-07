@@ -4,7 +4,7 @@
 
 ## [Use Case Diagram](https://drive.google.com/file/d/1LZBEcqS1bdyG6T2xV3ET5O-zk6aS5TkT/view?usp=sharing)
 
-## [Class Diagram](https://www.draw.io/#G1xZrD_i0tI43p2xnsMDsNeT6hNzWfNDYk)
+## [Class Diagram](https://drive.google.com/file/d/1xZrD_i0tI43p2xnsMDsNeT6hNzWfNDYk/view?usp=sharing)
 
 ## [Sequence Diagram](https://drive.google.com/open?id=1xxWUaln-3PHPR8UdziEnuUuOg_W2Z2Jf)
 
