@@ -38,7 +38,7 @@ public class RecipeTest {
         List<Ingredient> test1 = rec.getIngredients();
         assertEquals(3, test1.size());
 
-        List<String> test2 = rec.getSteps();
+        List<String> test2 = rec.getInstructions();
         assertEquals(5, test2.size());
 
         assertEquals(45, rec.getCookTime());
@@ -77,11 +77,11 @@ public class RecipeTest {
         List<String> instruct = new ArrayList<>();
         steps.add("Preheat oven to 350 degrees");
 
-        descript = "This is the meal description";
+        String description = "This is the meal description";
 
-        cooktime = 45;
+        int ct = 45;
 
-        assertThrows(IllegalArgumentException.class, ()-> new Recipe(req, instruct, descript, cooktime));
+        assertThrows(IllegalArgumentException.class, ()-> new Recipe(req, instruct, description, ct));
 
     }
 
@@ -137,7 +137,7 @@ public class RecipeTest {
 
         Recipe rec = new Recipe(needed,steps, descript, 10);
 
-        List<String> test = rec.getSteps();
+        List<String> test = rec.getInstructions();
         assertEquals(3, test.size());
 
 
