@@ -1,4 +1,4 @@
-package edu.ithaca.goosewillis.iCook;
+package edu.ithaca.icook;
 
 public class Recipe {
 }
