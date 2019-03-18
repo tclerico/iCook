@@ -12,10 +12,15 @@ public class Recipe {
     public Recipe(){}
 
     public Recipe(List<Ingredient> needed, List<String> steps, String description, int cooktime){
-        this.ingredients = needed;
-        this.instructions = steps;
-        this.description = description;
-        this.cookTime = cooktime;
+        if(needed.size() > 2 && steps.size() > 2){
+            this.ingredients = needed;
+            this.instructions = steps;
+            this.description = description;
+            this.cookTime = cooktime;
+        }else{
+            throw new IllegalArgumentException("Not enough information to constitute a recipe");
+        }
+
     }
 
     public List<Ingredient> getIngredients(){ return ingredients; }
