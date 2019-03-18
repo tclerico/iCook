@@ -1,4 +1,4 @@
-package edu.ithaca.goosewillis.iCook;
+package edu.ithaca.icook;
 
 import java.util.List;
 import java.util.ArrayList;
