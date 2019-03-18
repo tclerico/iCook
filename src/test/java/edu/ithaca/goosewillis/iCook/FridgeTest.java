@@ -1,12 +1,13 @@
 package edu.ithaca.goosewillis.iCook;
 
-import org.junit.Assert;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FridgeTest {
+class FridgeTest {
 
     @Test
     void getIngredientsTest() {
@@ -21,7 +22,7 @@ public class FridgeTest {
 
         Fridge testFridge = new Fridge(testIngredients);
 
-        Assert.assertEquals(testIngredients, testFridge.getIngredients());
+        assertEquals(testIngredients, testFridge.getIngredients());
     }
 
 }

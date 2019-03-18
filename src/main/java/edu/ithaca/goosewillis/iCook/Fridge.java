@@ -16,7 +16,7 @@ public class Fridge {
     }
 
     public List<Ingredient> getIngredients() {
-        return null;
+        return this.ingredients;
     }
 
 }
