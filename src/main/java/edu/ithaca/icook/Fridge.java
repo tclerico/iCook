@@ -5,18 +5,20 @@ import java.util.ArrayList;
 
 
 public class Fridge {
-    private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
-    Fridge() {
+    private List<Ingredient> ingredients;
 
+    public Fridge() {
+        this.ingredients = new ArrayList<>();
     }
 
-    Fridge(List<Ingredient> ingredients) {
+    public Fridge(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
     public List<Ingredient> getIngredients() {
         return this.ingredients;
     }
+
 
 }

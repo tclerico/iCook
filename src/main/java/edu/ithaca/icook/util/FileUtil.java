@@ -1,21 +1,26 @@
 package edu.ithaca.icook.util;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 
 public class FileUtil {
 
-    public boolean createFile(String name) throws IOException {
+    public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    public static File createFile(String name) throws IOException {
         File file = new File(name);
         if (file.exists()) {
-            return false;
+            return null;
         }
-        return file.createNewFile();
+        return file;
     }
 
-    public boolean fileExists(String name) {
+    public static boolean fileExists(String name) {
         File file = new File(name);
         if (!file.exists()) {
             return false;
@@ -23,14 +28,14 @@ public class FileUtil {
         return true;
     }
 
-    public void deleteFile(String name) {
+    public static void deleteFile(String name) {
         if (fileExists(name)) {
             File file = new File(name);
             file.delete();
         }
     }
 
-    public JsonObject readFromJson(String name) throws Exception {
+    public static JsonObject readFromJson(String name) throws Exception {
         if (!fileExists(name)) throw new Exception("File to read from does not exist");
         File file = new File(name);
         Reader reader = new InputStreamReader(new FileInputStream(file));
