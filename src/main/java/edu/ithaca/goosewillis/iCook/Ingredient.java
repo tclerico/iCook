@@ -3,13 +3,13 @@ package edu.ithaca.goosewillis.iCook;
 public class Ingredient {
 
     public String name;
-    public int count;
+    public double count;
     // will add appropriate tags (Vegan, Vegetarian, etc.) after API stuff
     // need to discuss with client about ovenTime
 
     public Ingredient(){}
 
-    public Ingredient(String name, int count){
+    public Ingredient(String name, double count){
         if(count>0){
             this.name=name;
             this.count=count;
@@ -20,7 +20,7 @@ public class Ingredient {
 
     public String getName(){return name;}
 
-    public int getCount(){return count;}
+    public double getCount(){return count;}
 
     public void setName(String name){this.name=name;}
 
