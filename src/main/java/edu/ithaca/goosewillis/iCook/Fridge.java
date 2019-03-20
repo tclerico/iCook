@@ -19,4 +19,8 @@ public class Fridge {
         return this.ingredients;
     }
 
+    public Ingredient searchIngredient(String name) {
+        return null;
+    }
+
 }
