@@ -1,4 +1,4 @@
-package edu.ithaca.icook.util;
+package edu.ithaca.goosewillis.icook.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

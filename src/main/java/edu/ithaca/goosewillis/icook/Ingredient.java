@@ -1,4 +1,4 @@
-package edu.ithaca.icook;
+package edu.ithaca.goosewillis.icook;
 
 public class Ingredient {
 

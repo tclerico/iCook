@@ -1,12 +1,12 @@
-package edu.ithaca.icook.cookbook;
+package edu.ithaca.goosewillis.icook.cookbook;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.ithaca.icook.Recipe;
-import edu.ithaca.icook.util.FileUtil;
-import edu.ithaca.icook.util.JsonDeserializer;
-import edu.ithaca.icook.util.JsonSerializer;
+import edu.ithaca.goosewillis.icook.Recipe;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
+import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
+import edu.ithaca.goosewillis.icook.util.JsonSerializer;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CookBook implements JsonDeserializer<CookBook>, JsonSerializer<CookBook> {
+public class CookBook {
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -28,13 +28,8 @@ public class CookBook implements JsonDeserializer<CookBook>, JsonSerializer<Cook
 
 
     public CookBook(JsonObject root) {
-        JsonArray array = root.get("recipes").getAsJsonArray();
-        for (JsonElement element : array) {
-            JsonObject recipe = element.getAsJsonObject();
-            String id = recipe.get("id").getAsString();
-            //Recipe r = deserialize(recipe.get("recipe").getAsJsonObject())
-            //put into the hashmap
-        }
+        this.recipes = new CookbookSerializer().deserialize(root).recipes;
+        logger.log(Level.INFO, "Recipes loaded into cookbook!");
     }
 
     public void saveToFile() {
@@ -53,14 +48,8 @@ public class CookBook implements JsonDeserializer<CookBook>, JsonSerializer<Cook
         }
     }
 
-
-    @Override
-    public CookBook deserialized(JsonObject root) {
-        return null;
+    public Map<String, Recipe> getRecipes() {
+        return recipes;
     }
 
-    @Override
-    public JsonObject serialize(CookBook toSerialize) {
-        return null;
-    }
 }

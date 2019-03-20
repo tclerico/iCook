@@ -1,4 +1,8 @@
-package edu.ithaca.goosewillis.iCook;
+package edu.ithaca.goosewillis.icook;
+
+import com.google.gson.JsonObject;
+import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
+import edu.ithaca.goosewillis.icook.util.JsonSerializer;
 
 import java.util.List;
 
