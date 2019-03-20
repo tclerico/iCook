@@ -93,8 +93,8 @@ public class RecipeTest {
 
         List <Ingredient> needed = new ArrayList<>();
         needed.add(i1);
-        needed.add(i3);
         needed.add(i2);
+        needed.add(i3);
 
         List<String> steps = new ArrayList<>();
         steps.add("step1");
