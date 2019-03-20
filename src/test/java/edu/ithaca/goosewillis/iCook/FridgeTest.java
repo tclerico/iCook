@@ -43,6 +43,10 @@ class FridgeTest {
 
         // test if searching for an ingredient returns that ingredient
         assertEquals(testIngredient1, testFridge.searchIngredient("testIngredient1"));
+        // test when the I in ingredient is lowercase
+        assertEquals(testIngredient1, testFridge.searchIngredient("testingredient1"));
+        // test when the ingredient is not found
+        assertEquals(null, testFridge.searchIngredient("fakeIngredient"));
     }
 
 }
