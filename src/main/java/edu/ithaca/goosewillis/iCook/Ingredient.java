@@ -23,11 +23,11 @@ public class Ingredient {
 
     public double getCount(){return count;}
 
-    public double getCookTime(){return 0;}
+    public double getCookTime(){return cookTime;}
 
     public void setName(String name){this.name=name;}
 
     public void setCount(double count){this.count=count;}
 
-    public void setCookTime(double cookTime){this.cookTime=0;}
+    public void setCookTime(double cookTime){this.cookTime=cookTime;}
 }
