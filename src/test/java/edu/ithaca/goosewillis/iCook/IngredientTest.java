@@ -1,6 +1,6 @@
 package edu.ithaca.goosewillis.iCook;
 
-import edu.ithaca.goosewillis.icook.Ingredient;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

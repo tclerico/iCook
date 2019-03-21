@@ -1,12 +1,8 @@
 package edu.ithaca.goosewillis.icook.cookbook;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.ithaca.goosewillis.icook.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
-import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
-import edu.ithaca.goosewillis.icook.util.JsonSerializer;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -46,6 +42,11 @@ public class CookBook {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addRecipe(String name, Recipe recipe) {
+        recipes.put(name, recipe);
+        logger.log(Level.INFO, "Added new recipe to cookbook!");
     }
 
     public Map<String, Recipe> getRecipes() {

@@ -1,6 +1,6 @@
 package edu.ithaca.goosewillis.goosewillis.iCook;
 
-import edu.ithaca.goosewillis.icook.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

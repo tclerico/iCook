@@ -1,4 +1,7 @@
-package edu.ithaca.goosewillis.icook;
+package edu.ithaca.goosewillis.icook.fridge;
+
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;

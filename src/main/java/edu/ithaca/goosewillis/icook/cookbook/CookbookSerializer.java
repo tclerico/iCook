@@ -3,8 +3,8 @@ package edu.ithaca.goosewillis.icook.cookbook;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.ithaca.goosewillis.icook.Recipe;
-import edu.ithaca.goosewillis.icook.RecipeSerializer;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.RecipeSerializer;
 import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
 import edu.ithaca.goosewillis.icook.util.JsonSerializer;
 
@@ -20,7 +20,7 @@ public class CookbookSerializer implements JsonSerializer<CookBook>, JsonDeseria
         for (JsonElement element : array) {
             JsonObject recipe = element.getAsJsonObject();
             String id = recipe.get("id").getAsString();
-            Recipe r = new RecipeSerializer().deserialized(recipe.get("recipe").getAsJsonObject());
+            Recipe r = new RecipeSerializer().deserialize(recipe.get("recipe").getAsJsonObject());
             recipes.put(id, r);
         }
         return cookBook;

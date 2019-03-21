@@ -4,7 +4,7 @@ package edu.ithaca.goosewillis.iCook;
 package edu.ithaca.icook;
 
 
-import edu.ithaca.goosewillis.icook.Fridge;
+import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
