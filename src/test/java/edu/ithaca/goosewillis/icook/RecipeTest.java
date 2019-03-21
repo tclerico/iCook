@@ -1,6 +1,7 @@
-package edu.ithaca.goosewillis.goosewillis.iCook;
+package edu.ithaca.goosewillis.icook;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ public class RecipeTest {
     void constructorTest(){
 
         //Constructor with all valid inputs
-        Ingredient i1 = new Ingredient("Chicken Breast", 2);
-        Ingredient i2 = new Ingredient("Egg", 3);
-        Ingredient i3 = new Ingredient("Bread Crumb", 1);
+        Ingredient i1 = new Ingredient("Chicken Breast", 2, 2);
+        Ingredient i2 = new Ingredient("Egg", 3, 1);
+        Ingredient i3 = new Ingredient("Bread Crumb", 1, 1);
 
         List <Ingredient> needed = new ArrayList<>();
         needed.add(i1);
@@ -34,7 +35,7 @@ public class RecipeTest {
 
         int cooktime = 45;
 
-        Recipe rec = new Recipe(needed,steps, descript, cooktime);
+        Recipe rec = new Recipe("chicken", descript, needed, steps, cooktime);
 
         List<Ingredient> test1 = rec.getIngredients();
         assertEquals(3, test1.size());
@@ -46,7 +47,7 @@ public class RecipeTest {
 
 
         //Constructor with not enough ingredients
-        Ingredient ing = new Ingredient("Chicken Breast", 2);
+        Ingredient ing = new Ingredient("Chicken Breast", 2, 3);
 
         List <Ingredient> needed1 = new ArrayList<>();
         needed.add(ing);
@@ -62,13 +63,13 @@ public class RecipeTest {
 
         int time = 45;
 
-        assertThrows(IllegalArgumentException.class, ()-> new Recipe(needed1,steps1, desc, time));
+        assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", descript, needed1,steps1, time));
 
 
         //Constructor with not enough steps
-        Ingredient ing1 = new Ingredient("Chicken Breast", 2);
-        Ingredient ing2 = new Ingredient("Egg", 3);
-        Ingredient ing3 = new Ingredient("Bread Crumb", 1);
+        Ingredient ing1 = new Ingredient("Chicken Breast", 2, 2);
+        Ingredient ing2 = new Ingredient("Egg", 3, 1);
+        Ingredient ing3 = new Ingredient("Bread Crumb", 1, 2);
 
         List <Ingredient> req = new ArrayList<>();
         needed.add(ing1);
@@ -82,15 +83,15 @@ public class RecipeTest {
 
         int ct = 45;
 
-        assertThrows(IllegalArgumentException.class, ()-> new Recipe(req, instruct, description, ct));
+        assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", description, req, instruct, ct));
 
     }
 
     @Test
     void checkIngredients(){
-        Ingredient i1 = new Ingredient("Chicken Breast", 2);
-        Ingredient i2 = new Ingredient("Egg", 3);
-        Ingredient i3 = new Ingredient("Bread Crumb", 1);
+        Ingredient i1 = new Ingredient("Chicken Breast", 2, 1);
+        Ingredient i2 = new Ingredient("Egg", 3, 1);
+        Ingredient i3 = new Ingredient("Bread Crumb", 1, 1);
 
         List <Ingredient> needed = new ArrayList<>();
         needed.add(i1);
@@ -105,7 +106,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Chicken", descript, needed,steps, 10);
 
         //Check length of ingredient list
         List<Ingredient> test = rec.getIngredients();
@@ -119,9 +120,9 @@ public class RecipeTest {
 
     @Test
     void checkInstructions(){
-        Ingredient i1 = new Ingredient("Chicken Breast", 2);
-        Ingredient i2 = new Ingredient("Egg", 3);
-        Ingredient i3 = new Ingredient("Bread Crumb", 1);
+        Ingredient i1 = new Ingredient("Chicken Breast", 2, 1);
+        Ingredient i2 = new Ingredient("Egg", 3, 1);
+        Ingredient i3 = new Ingredient("Bread Crumb", 1, 1);
 
         List <Ingredient> needed = new ArrayList<>();
         needed.add(i1);
@@ -136,7 +137,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Shicken", descript, needed,steps, 10);
 
         List<String> test = rec.getInstructions();
         assertEquals(3, test.size());
@@ -155,9 +156,9 @@ public class RecipeTest {
 
     @Test
     void checkCookTime(){
-        Ingredient i1 = new Ingredient("Chicken Breast", 2);
-        Ingredient i2 = new Ingredient("Egg", 3);
-        Ingredient i3 = new Ingredient("Bread Crumb", 1);
+        Ingredient i1 = new Ingredient("Chicken Breast", 2, 1);
+        Ingredient i2 = new Ingredient("Egg", 3, 1);
+        Ingredient i3 = new Ingredient("Bread Crumb", 1, 1);
 
         List <Ingredient> needed = new ArrayList<>();
         needed.add(i1);
@@ -172,7 +173,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Shicken", descript, needed,steps, 10);
 
         assertEquals(10, rec.getCookTime());
     }

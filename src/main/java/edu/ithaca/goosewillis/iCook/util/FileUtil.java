@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
-import java.lang.annotation.Annotation;
 
 public class FileUtil {
 

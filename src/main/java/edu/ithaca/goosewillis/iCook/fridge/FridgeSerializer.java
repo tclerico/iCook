@@ -1,8 +1,8 @@
 package edu.ithaca.goosewillis.icook.fridge;
 
 import com.google.gson.JsonObject;
-import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
 import edu.ithaca.goosewillis.icook.util.JsonSerializer;
+import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
 
 public class FridgeSerializer implements JsonSerializer<Fridge>, JsonDeserializer<Fridge> {
 

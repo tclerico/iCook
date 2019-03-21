@@ -1,6 +1,5 @@
 package edu.ithaca.goosewillis.icook.recipes;
 
-import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import java.util.List;

@@ -3,10 +3,10 @@ package edu.ithaca.goosewillis.icook.cookbook;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.ithaca.goosewillis.icook.recipes.Recipe;
-import edu.ithaca.goosewillis.icook.recipes.RecipeSerializer;
 import edu.ithaca.goosewillis.icook.util.JsonDeserializer;
 import edu.ithaca.goosewillis.icook.util.JsonSerializer;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.RecipeSerializer;
 
 import java.util.Map;
 
