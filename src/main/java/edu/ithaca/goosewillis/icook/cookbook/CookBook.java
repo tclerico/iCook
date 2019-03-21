@@ -29,13 +29,14 @@ public class CookBook {
     }
 
     public void saveToFile() {
-        if (FileUtil.fileExists("cookbook.json")) {
-            FileUtil.deleteFile("cookbook.json");
-        }
         try {
-            File file = FileUtil.createFile("cookbook.json");
+            File file = new File("cookbook.json");
+            if (!file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
             FileWriter writer = new FileWriter(file);
-            writer.write(FileUtil.gson.toJson(this));
+            writer.write(new CookbookSerializer().serialize(this).toString());
             writer.flush();
             writer.close();
             logger.log(Level.INFO, "Saved cookbook to json file!");

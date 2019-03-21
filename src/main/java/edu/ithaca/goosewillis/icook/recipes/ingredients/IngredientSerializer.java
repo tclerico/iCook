@@ -10,8 +10,9 @@ public class IngredientSerializer implements JsonSerializer<Ingredient>, JsonDes
     public Ingredient deserialize(JsonObject root) {
         String name = root.get("name").getAsString();
         int count = root.get("count").getAsInt();
+        double cooktime = root.get("cooktime").getAsDouble();
         DietType dietType = DietType.valueOf(root.get("dietType").getAsString());
-        return new Ingredient(name, count, dietType);
+        return new Ingredient(name, count, cooktime, dietType);
     }
 
     @Override

@@ -2,7 +2,7 @@ package edu.ithaca.goosewillis.icook.recipes.ingredients;
 
 public enum DietType {
 
-    NONE("None"), VEGETERIAN("Vegeterian"), VEGAN("Vegan");
+    None("None"), Vegeterian("Vegeterian"), Vegan("Vegan");
 
     private String name;
 
@@ -13,4 +13,5 @@ public enum DietType {
     public String getName() {
         return name;
     }
+
 }
