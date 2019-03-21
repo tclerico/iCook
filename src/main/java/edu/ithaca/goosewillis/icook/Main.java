@@ -29,17 +29,17 @@ public class Main {
         chickenInstructions.add("Cook the ingredients(Chicken, tomato, asparagus)");
         pizzaInstructions.add("Roll the dough out");
 
-        pasta.add(new Ingredient("Pasta", 100));
-        pasta.add(new Ingredient("Tomato", 2));
-        pasta.add(new Ingredient("Pesto", 4));
+        pasta.add(new Ingredient("Pasta", 100, 0.5));
+        pasta.add(new Ingredient("Tomato", 2, 0.5));
+        pasta.add(new Ingredient("Pesto", 4, 0.5));
 
-        chicken.add(new Ingredient("Chicken Breast", 5));
-        chicken.add(new Ingredient("Tomato", 4));
-        chicken.add(new Ingredient("Asparagus", 10));
+        chicken.add(new Ingredient("Chicken Breast", 5, 0.5));
+        chicken.add(new Ingredient("Tomato", 4, 1));
+        chicken.add(new Ingredient("Asparagus", 10, 1));
 
-        pizza.add(new Ingredient("Pizza Dough", 1));
-        pizza.add(new Ingredient("Tomato", 4));
-        pizza.add(new Ingredient("Cheese", 10));
+        pizza.add(new Ingredient("Pizza Dough", 1, 1));
+        pizza.add(new Ingredient("Tomato", 4, 3));
+        pizza.add(new Ingredient("Cheese", 10, 4));
 
 
         Recipe pastaRecipe = new Recipe("T&P Pasta", "Tomato Pesto Pasta", pasta, pastaInstructions, 100);

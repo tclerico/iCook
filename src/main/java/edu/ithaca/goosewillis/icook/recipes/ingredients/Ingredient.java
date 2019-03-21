@@ -1,28 +1,23 @@
 package edu.ithaca.goosewillis.icook.recipes.ingredients;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 
+
 public class Ingredient {
 
     private String name;
     private double count;
-    private DietType dietType = DietType.NONE;
+    private DietType dietType;
     public double cookTime;
     // will add appropriate tags (Vegan, Vegetarian, etc.) after API stuff
     // need to discuss with client about ovenTime
 
     public Ingredient(String name, double count, double cookTime) {
-        if (count > 0) {
-            this.name = name;
-            this.count = count;
-            this.cookTime = cookTime;
-        } else {
-            throw new IllegalArgumentException(count + "is not a valid ingredient count");
-        }
+        this(name,count,cookTime, DietType.None);
     }
 
 
     public Ingredient(String name, double count, double cookTime, DietType dietType) {
-        if (count > 0) {
+        if (count > 0 && cookTime > 0 && name != null && !name.strip().isEmpty() ) {
             this.name = name;
             this.count = count;
             this.cookTime = cookTime;
