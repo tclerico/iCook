@@ -11,13 +11,17 @@ public class Ingredient {
     public Ingredient() {
     }
 
+    public Ingredient(String name, double count) {
+        this(name, count, DietType.None);
+    }
+
     public Ingredient(String name, double count, DietType dietType) {
         if (count > 0) {
             this.name = name;
             this.count = count;
             this.dietType = dietType;
         } else {
-            throw new IllegalArgumentException(count + "is not a valid ingredient count");
+            throw new IllegalArgumentException(count + " is not a valid ingredient count");
         }
     }
 

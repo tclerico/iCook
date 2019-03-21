@@ -19,9 +19,8 @@ public class CookbookSerializer implements JsonSerializer<CookBook>, JsonDeseria
         JsonArray array = root.get("recipes").getAsJsonArray();
         for (JsonElement element : array) {
             JsonObject recipe = element.getAsJsonObject();
-            String id = recipe.get("id").getAsString();
-            Recipe r = new RecipeSerializer().deserialize(recipe.get("recipe").getAsJsonObject());
-            recipes.put(id, r);
+            Recipe r = new RecipeSerializer().deserialize(recipe);
+            recipes.put(r.getName(), r);
         }
         return cookBook;
     }

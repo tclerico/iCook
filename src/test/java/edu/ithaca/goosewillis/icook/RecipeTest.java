@@ -1,6 +1,7 @@
-package edu.ithaca.goosewillis.goosewillis.iCook;
+package edu.ithaca.goosewillis.icook;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class RecipeTest {
 
         int cooktime = 45;
 
-        Recipe rec = new Recipe(needed,steps, descript, cooktime);
+        Recipe rec = new Recipe("chicken", descript, needed, steps, cooktime);
 
         List<Ingredient> test1 = rec.getIngredients();
         assertEquals(3, test1.size());
@@ -62,7 +63,7 @@ public class RecipeTest {
 
         int time = 45;
 
-        assertThrows(IllegalArgumentException.class, ()-> new Recipe(needed1,steps1, desc, time));
+        assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", descript, needed1,steps1, time));
 
 
         //Constructor with not enough steps
@@ -82,7 +83,7 @@ public class RecipeTest {
 
         int ct = 45;
 
-        assertThrows(IllegalArgumentException.class, ()-> new Recipe(req, instruct, description, ct));
+        assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", description, req, instruct, ct));
 
     }
 
@@ -105,7 +106,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Chicken", descript, needed,steps, 10);
 
         //Check length of ingredient list
         List<Ingredient> test = rec.getIngredients();
@@ -136,7 +137,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Shicken", descript, needed,steps, 10);
 
         List<String> test = rec.getInstructions();
         assertEquals(3, test.size());
@@ -172,7 +173,7 @@ public class RecipeTest {
 
         String descript = "This is the meal description";
 
-        Recipe rec = new Recipe(needed,steps, descript, 10);
+        Recipe rec = new Recipe("Shicken", descript, needed,steps, 10);
 
         assertEquals(10, rec.getCookTime());
     }

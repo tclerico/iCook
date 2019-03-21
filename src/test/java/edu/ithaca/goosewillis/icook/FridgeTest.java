@@ -1,15 +1,15 @@
-package edu.ithaca.goosewillis.iCook;
+package edu.ithaca.goosewillis.icook;
 
-<<<<<<< HEAD:src/test/java/edu/ithaca/icook/FridgeTest.java
-package edu.ithaca.icook;
 
+import org.junit.jupiter.api.Test;
 
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class FridgeTest {
 
@@ -29,34 +29,28 @@ class FridgeTest {
         assertEquals(testIngredients, testFridge.getIngredients());
     }
 
-}
-=======
-package edu.ithaca.goosewillis.iCook;
-
-
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-class FridgeTest {
-
     @Test
-    void getIngredientsTest() {
+    void searchIngredientTest() {
+        // create 3 ingredients
         Ingredient testIngredient1 = new Ingredient("testIngredient1", 1);
         Ingredient testIngredient2 = new Ingredient("testIngredient2", 2);
         Ingredient testIngredient3 = new Ingredient("testIngredient3", 3);
 
+        // create a list and add the 3 ingredients to it
         List<Ingredient> testIngredients = new ArrayList<Ingredient>();
         testIngredients.add(testIngredient1);
         testIngredients.add(testIngredient2);
         testIngredients.add(testIngredient3);
 
+        // create a fridge and pass it the list of ingredients
         Fridge testFridge = new Fridge(testIngredients);
 
-        assertEquals(testIngredients, testFridge.getIngredients());
+        // test if searching for an ingredient returns that ingredient
+        assertEquals(testIngredient1, testFridge.searchIngredient("testIngredient1"));
+        // test when the I in ingredient is lowercase
+        assertEquals(testIngredient1, testFridge.searchIngredient("testingredient1"));
+        // test when the ingredient is not found
+        assertEquals(null, testFridge.searchIngredient("fakeIngredient"));
     }
 
 }
->>>>>>> b5d2ca1514c4989869cbd43b381cbe173f5fb637:src/test/java/edu/ithaca/icook/FridgeTest.java
