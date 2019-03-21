@@ -3,6 +3,9 @@ import java.util.Scanner;
 import java.util.function.DoubleBinaryOperator;
 
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+import edu.ithaca.goosewillis.icook.fridge.Fridge;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 
 public class CLI {
 
