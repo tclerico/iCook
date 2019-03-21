@@ -15,9 +15,13 @@ public class Ingredient {
         this(name,count,cookTime, DietType.None);
     }
 
+    public Ingredient(String name, double count) {
+        this(name,count,0, DietType.None);
+    }
+
 
     public Ingredient(String name, double count, double cookTime, DietType dietType) {
-        if (count > 0 && cookTime > 0 && name != null && !name.strip().isEmpty() ) {
+        if (count > 0 && cookTime > 0 && name != null && !name.trim().isEmpty()) {
             this.name = name;
             this.count = count;
             this.cookTime = cookTime;
