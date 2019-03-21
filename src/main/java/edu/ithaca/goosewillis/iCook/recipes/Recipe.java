@@ -16,17 +16,20 @@ public class Recipe {
     }
 
     public Recipe(String name, String description, List<Ingredient> needed, List<String> steps, int cooktime) {
-        if (needed.size() > 2 && steps.size() > 2) {
+        if (needed.size() >= 1 && steps.size() >= 1) {
             this.name = name;
             this.ingredients = needed;
             this.instructions = steps;
             this.description = description;
             this.cookTime = cooktime;
-
         } else {
             throw new IllegalArgumentException("Not enough information to constitute a recipe");
         }
+    }
 
+    @Override
+    public String toString() {
+        return "Name: " + name + " Description: " + description;
     }
 
     public String getName() {
