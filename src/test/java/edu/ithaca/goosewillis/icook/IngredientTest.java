@@ -1,5 +1,6 @@
-package edu.ithaca.goosewillis.iCook;
+package edu.ithaca.goosewillis.icook;
 
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,15 +14,15 @@ public class IngredientTest {
         //check getters
         assertEquals("Chicken Breast", ingredient1.getName());
         assertEquals(4, ingredient1.getCount());
-        assertEquals(15, ingredient1.getCookTime());
+        //assertEquals(15, ingredient1.getCookTime());
 
         //check setters
         ingredient1.setName("Chicken Wing");
         ingredient1.setCount(12);
-        ingredient1.setCookTime(20);
+        //ingredient1.setCookTime(20);
         assertEquals("Chicken Wing", ingredient1.getName());
         assertEquals(12, ingredient1.getCount());
-        assertEquals(20, ingredient1.getCookTime());
+        //assertEquals(20, ingredient1.getCookTime());
 
         //check illegal inputs
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", 0, 10));
