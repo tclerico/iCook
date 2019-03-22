@@ -1,4 +1,5 @@
 package edu.ithaca.goosewillis.icook;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.DoubleBinaryOperator;
@@ -19,7 +20,8 @@ public class CLI {
         Scanner reader = new Scanner(System.in);
 
         String action = "";
-        System.out.println("Welcome to iCook");
+        System.out.println("Welcome to iCook\n" +
+                "type 'help' for available commands");
 
         try{
             CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
@@ -33,9 +35,7 @@ public class CLI {
                     System.out.println("Please enter the ingredient information ( name and amount separated by a comma )");
                     action = reader.nextLine();
                     String [] info = action.split(", ");
-//                    for (int i=0; i<info.length; i++){
-//                        info[i] = info[i].trim();
-//                    }
+
                     String name = info[0];
                     //TODO Check user input here
                     double amount = Double.parseDouble(info[1]);
@@ -59,15 +59,24 @@ public class CLI {
                     System.out.println(oneTray.display());
 
                 }
+                else if(action.equals("help")){
+                    System.out.println("Commands\n 'add ingredient' to add an ingredient to your fridge\n" +
+                            "'show ingredients' to show all ingredients in your fridge\n" +
+                            "'generate meal' to generate a onetray meal");
+                }
 
 
             }
+            fridge.saveFridgeToFile();
+            cookBook.saveToFile();
 
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
+
+
 
     }
 
