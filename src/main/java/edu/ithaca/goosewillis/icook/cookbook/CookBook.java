@@ -92,8 +92,6 @@ public class CookBook {
         String descript = toUse.get(0).getName()+" one tray meal";
         String name = toUse.get(0).getName()+" one tray meal";
 
-
-
         return new Recipe( name, descript, toUse, instructions, fullTime);
 
     }

@@ -56,7 +56,7 @@ public class CLI {
                     }
                     Recipe oneTray = cookBook.generateOneTray(toUse);
                     cookBook.addRecipe(oneTray.getName(), oneTray);
-                    System.out.println(oneTray.toString());
+                    System.out.println(oneTray.display());
 
                 }
 
