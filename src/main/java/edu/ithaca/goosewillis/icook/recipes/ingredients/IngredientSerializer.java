@@ -20,6 +20,7 @@ public class IngredientSerializer implements JsonSerializer<Ingredient>, JsonDes
         JsonObject root = new JsonObject();
         root.addProperty("name", toSerialize.getName());
         root.addProperty("count", toSerialize.getCount());
+        root.addProperty("cooktime", toSerialize.getCookTime());
         root.addProperty("dietType", toSerialize.getDietType().getName());
         return root;
     }
