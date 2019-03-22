@@ -16,7 +16,7 @@ public class Ingredient {
     }
 
     public Ingredient(String name, double count) {
-        this(name,count,0, DietType.None);
+        this(name,count,1, DietType.None);
     }
 
 

@@ -73,47 +73,7 @@ public class Recipe {
         return cookTime;
     }
 
-    public Recipe generateOneTray(ArrayList<Ingredient> toUse){
-        int i, j;
-        Ingredient temp;
-        boolean swapped;
-        int n = toUse.size();
 
-        //sort array based on cook time in descending order
-        for (i=0; i<n-1; i++){
-            swapped = false;
-            for (j=0; j<n-i-1; j++){
-                if (toUse.get(j).getCookTime() < toUse.get(j).getCookTime()){
-                    temp = toUse.get(j);
-                    toUse.set(j, toUse.get(j+1));
-                    toUse.set(j+1, temp);
-                    swapped = true;
-                }
-            }
-            if (!swapped){
-                break;
-            }
-        }
-
-        ArrayList<String> instructions = new ArrayList<>();
-        instructions.add("Preheat oven to 350");
-        double fullTime = toUse.get(0).getCookTime();
-        instructions.add("The total cooking time is: "+Double.toString(fullTime));
-        instructions.add("Place "+toUse.get(0).getName()+" in the oven");
-        for (i=1; i<toUse.size(); i++){
-            String ct = Double.toString(fullTime - toUse.get(i).getCookTime());
-            instructions.add("After "+ct+" minutes, add the "+toUse.get(i).getName());
-        }
-        instructions.add("Remove from oven and let stand for 2 minutes");
-
-        String descript = toUse.get(i).getName()+" one tray meal";
-        String name = toUse.get(i).getName()+" one tray meal";
-
-        //Recipe oneTray = new Recipe( name, descript, toUse, instructions, fullTime);
-
-        return new Recipe( name, descript, toUse, instructions, fullTime);
-
-    }
 
 
 }

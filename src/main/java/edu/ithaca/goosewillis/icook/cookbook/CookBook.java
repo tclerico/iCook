@@ -2,11 +2,13 @@ package edu.ithaca.goosewillis.icook.cookbook;
 
 import com.google.gson.JsonObject;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -52,6 +54,48 @@ public class CookBook {
 
     public Map<String, Recipe> getRecipes() {
         return recipes;
+    }
+
+    public Recipe generateOneTray(ArrayList<Ingredient> toUse){
+        int i, j;
+        Ingredient temp;
+        boolean swapped;
+        int n = toUse.size();
+
+        //sort array based on cook time in descending order
+        for (i=0; i<n-1; i++){
+            swapped = false;
+            for (j=0; j<n-i-1; j++){
+                if (toUse.get(j).getCookTime() < toUse.get(j).getCookTime()){
+                    temp = toUse.get(j);
+                    toUse.set(j, toUse.get(j+1));
+                    toUse.set(j+1, temp);
+                    swapped = true;
+                }
+            }
+            if (!swapped){
+                break;
+            }
+        }
+
+        ArrayList<String> instructions = new ArrayList<>();
+        instructions.add("Preheat oven to 350");
+        double fullTime = toUse.get(0).getCookTime();
+        instructions.add("The total cooking time is: "+Double.toString(fullTime));
+        instructions.add("Place "+toUse.get(0).getName()+" in the oven");
+        for (i=1; i<toUse.size(); i++){
+            String ct = Double.toString(fullTime - toUse.get(i).getCookTime());
+            instructions.add("After "+ct+" minutes, add the "+toUse.get(i).getName());
+        }
+        instructions.add("Remove from oven and let stand for 2 minutes");
+
+        String descript = toUse.get(0).getName()+" one tray meal";
+        String name = toUse.get(0).getName()+" one tray meal";
+
+
+
+        return new Recipe( name, descript, toUse, instructions, fullTime);
+
     }
 
 }
