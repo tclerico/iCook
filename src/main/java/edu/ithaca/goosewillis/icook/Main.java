@@ -1,6 +1,8 @@
 package edu.ithaca.goosewillis.icook;
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
+import edu.ithaca.goosewillis.icook.fridge.Fridge;
+import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
@@ -9,9 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static void cookbookTest(){
         //Main cookbook instance
         CookBook cookBook = new CookBook();
+
         //These are the lists holding the ingredients for specific recipes
         List<Ingredient> pasta = new ArrayList<>();
         List<Ingredient> chicken = new ArrayList<>();
@@ -47,5 +51,31 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void fridgeTest(){
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(new Ingredient("Chicken Breast", 5, 1));
+        ingredients.add(new Ingredient("Tomato", 4, 1));
+        ingredients.add(new Ingredient("Broccoli", 3, 10));
+        ingredients.add(new Ingredient("Carrot", 2, 6));
+        Fridge fridge = new Fridge(ingredients);
+        fridge.saveFridgeToFile();
+        try{
+            Fridge fromFile = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
+            System.out.println(fromFile.getIngredients().size());
+            for(Ingredient i : fromFile.getIngredients()){
+                System.out.println(i.toString());
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void main(String[] args) {
+        cookbookTest();
+        fridgeTest();
     }
 }

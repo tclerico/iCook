@@ -60,4 +60,8 @@ public class Ingredient {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public String toString(){
+        return "Name: "+name;
+    }
 }

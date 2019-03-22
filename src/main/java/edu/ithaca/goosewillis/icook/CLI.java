@@ -2,10 +2,13 @@ package edu.ithaca.goosewillis.icook;
 import java.util.Scanner;
 import java.util.function.DoubleBinaryOperator;
 
+import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
+import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
 
 public class CLI {
 
@@ -18,7 +21,13 @@ public class CLI {
         System.out.println("Welcome to iCook");
 
         //TODO LOAD ALL INFO HERE
-
+        try{
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         while(!action.equals("quit")){
             action = reader.nextLine();
 
@@ -35,6 +44,7 @@ public class CLI {
                 Ingredient toAdd = new Ingredient(name, amount);
 
                 //Add to fridge
+
 
             }else if (action.equals("generate meal")){
                 //one tray generation
