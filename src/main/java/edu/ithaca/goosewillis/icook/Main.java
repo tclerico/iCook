@@ -51,7 +51,6 @@ public class Main {
         cookBook.addRecipe(chickenRecipe.getName(), chickenRecipe);
         cookBook.addRecipe(pizzaRecipe.getName(), pizzaRecipe);
 
-
         cookBook.saveToFile();
 
 
@@ -61,6 +60,8 @@ public class Main {
             for (Recipe recipe : fromFile.getRecipes().values()) {
                 System.out.println(recipe.toString());
             }
+
+            System.out.println("Commit test");
         } catch (Exception e) {
             e.printStackTrace();
         }
