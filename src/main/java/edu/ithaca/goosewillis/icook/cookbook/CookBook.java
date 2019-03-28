@@ -22,7 +22,6 @@ public class CookBook {
         this.recipes = new HashMap<>();
     }
 
-
     public CookBook(JsonObject root) {
         this.recipes = new CookbookSerializer().deserialize(root).recipes;
         logger.log(Level.INFO, "Recipes loaded into cookbook!");
@@ -36,7 +35,7 @@ public class CookBook {
             }
             file.createNewFile();
             FileWriter writer = new FileWriter(file);
-            writer.write(new CookbookSerializer().serialize(this).toString());
+            writer.write(FileUtil.gson.toJson(new CookbookSerializer().serialize(this)));
             writer.flush();
             writer.close();
             logger.log(Level.INFO, "Saved cookbook to json file!");
