@@ -61,3 +61,5 @@ For this sprint we want to be able to get recipe recommendations and generate on
 
 ## Sprint 2 Goal
 For this sprint we want ot be able to have a functioning recipe recommendation system
+
+* For this sprint we have not changed any of our diagrams refrenced above
