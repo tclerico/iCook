@@ -1,6 +1,8 @@
 package edu.ithaca.goosewillis.icook.user;
 
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import java.util.ArrayList;
@@ -12,7 +14,8 @@ public class User {
     private String password;
     private Fridge fridge;
     private ArrayList<Ingredient> dislikedIngredients;
-    //need to add restrictions
+    private ArrayList<Recipe> favoriteRecipes;
+    private ArrayList<DietType> restrictions;
 
     public User(String username, String password, ArrayList<Ingredient> dislikedIngredients){
         if(isUsernameValid(username) && isPasswordValid(password)){
@@ -36,6 +39,18 @@ public class User {
     public void removeFromFridge(Ingredient ingredient){}
 
     public void useIngredient(String ingredientName, int ingredientCount){}
+
+    public String generateOneTrayMeal(){}
+
+    public void uploadRecipe(Recipe recipe){}
+
+    public void favoriteRecipe(Recipe recipe){}
+
+    public String allPossibleRecipes(){}
+
+    public String getRecipesByTime(int time){}
+
+    public void reviewRecipe(Recipe recipe){}
 
     public String displayFridge(){
         List<Ingredient> ingredients = fridge.getIngredients();
