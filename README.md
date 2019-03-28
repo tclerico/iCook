@@ -1,7 +1,6 @@
 # iCook
 
 ### [Waffle Board](https://waffle.io/tclerico/iCook)
-* [Sprint 1](#Sprint-1)
 
 ## Diagrams
 * [Narrative/Scenario Document](https://docs.google.com/document/d/1HJ5ZsFQmdsHKm9AtFVYwepTwJpKF7xUP3W8LC2srMwQ/edit?usp=sharing)
@@ -55,5 +54,10 @@ When the chef selects the ingredient they want to remove
 Then the ingredient is removed and the inventory is updated 
 
 ## Sprint 1
-### Sprint Goal
+* [Sprint 1](https://docs.google.com/document/d/1BgBDH61LPW8zyBY26ZLSlV9bLEMI4AgiOrCQbYHnaks/edit)
+* [Sprint Retrospective](https://docs.google.com/document/d/1E8aQNVnv946KjcbIMXgus86zHKYQ0D7FuiyDIvDuCmA/edit)
+### Sprint 1 Goal
 For this sprint we want to be able to get recipe recommendations and generate one tray meals.
+
+## Sprint 2 Goal
+For this sprint we want ot be able to have a functioning recipe recommendation system
