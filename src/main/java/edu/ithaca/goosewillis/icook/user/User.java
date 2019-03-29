@@ -17,12 +17,15 @@ public class User {
     private ArrayList<Recipe> favoriteRecipes;
     private ArrayList<DietType> restrictions;
 
-    public User(String username, String password, ArrayList<Ingredient> dislikedIngredients){
+    public User(String username, String password, Fridge fridge, ArrayList<Ingredient> dislikedIngredients,
+                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions){
         if(isUsernameValid(username) && isPasswordValid(password)){
             this.username = username;
             this.password = password;
-            this.fridge = new Fridge();
+            this.fridge = fridge;
             this.dislikedIngredients = dislikedIngredients;
+            this.favoriteRecipes = favoriteRecipes;
+            this.restrictions = restrictions;
         }else{
             throw new IllegalArgumentException("Invalid username or password");
         }
@@ -36,19 +39,32 @@ public class User {
         }
     }
 
-    public void removeFromFridge(Ingredient ingredient){}
+    public void removeFromFridge(Ingredient ingredient){
+        if(isIngredientValid(ingredient) && (fridge.searchIngredient(ingredient.getName()) == ingredient)){
+            fridge.removeIngredient(ingredient);
+        }else{
+            throw new IllegalArgumentException("You sure this ingredient's in your fridge?");
+        }
+    }
 
-    public void useIngredient(String ingredientName, int ingredientCount){}
+    public void useIngredient(String ingredientName, int ingredientCount){
+        if((fridge.searchIngredient(ingredientName).getName().equals(ingredientName)
+                && fridge.searchIngredient(ingredientName).getCount() >= ingredientCount)){
+                fridge.searchIngredient(ingredientName).setCount(fridge.searchIngredient(ingredientName).getCount() - ingredientCount);
+        }else{
+            throw new IllegalArgumentException("Invalid Ingredient name or count");
+        }
+    }
 
-    public String generateOneTrayMeal(){}
+    public String generateOneTrayMeal(){return null;}
 
     public void uploadRecipe(Recipe recipe){}
 
     public void favoriteRecipe(Recipe recipe){}
 
-    public String allPossibleRecipes(){}
+    public String getRecipeRecommendations(){return null;}
 
-    public String getRecipesByTime(int time){}
+    public String getRecipesByTime(int time){return null;}
 
     public void reviewRecipe(Recipe recipe){}
 
@@ -77,6 +93,10 @@ public class User {
         dislikedIngredients.remove(ingredient);
     }
 
+    public void addRestriction(){}
+
+    public void removeRestriction(){}
+
     private static boolean isUsernameValid(String username){
         if(username != null){
             return true;
@@ -94,8 +114,7 @@ public class User {
     }
 
     private static boolean isIngredientValid(Ingredient ingredient){
-        if(ingredient != null && ingredient.getName().matches("[a-zA-z]")
-                && ingredient.getCount() >=1 && ingredient.getCookTime() >= 0){
+        if(ingredient != null && ingredient.getCount() >=1 && ingredient.getCookTime() >= 0){
             return true;
         }else{
             return false;
@@ -122,6 +141,3 @@ public class User {
 
     public String getPassword(){ return this.password; }
 }
-
-
-//Log so far: 3 hours

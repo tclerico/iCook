@@ -21,7 +21,7 @@ public class Ingredient {
 
 
     public Ingredient(String name, double count, double cookTime, DietType dietType) {
-        if (count > 0 && cookTime > 0 && name != null && !name.trim().isEmpty()) {
+        if (count > 0 && cookTime >= 0 && name != null && !name.trim().isEmpty()) {
             this.name = name;
             this.count = count;
             this.cookTime = cookTime;
