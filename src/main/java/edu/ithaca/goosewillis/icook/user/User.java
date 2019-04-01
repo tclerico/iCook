@@ -1,5 +1,6 @@
 package edu.ithaca.goosewillis.icook.user;
 
+import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
@@ -56,7 +57,9 @@ public class User {
         }
     }
 
-    public String generateOneTrayMeal(){return null;}
+    public String generateOneTray(){
+        return null;
+    }
 
     public void uploadRecipe(Recipe recipe){}
 
@@ -64,7 +67,7 @@ public class User {
 
     public String getRecipeRecommendations(){return null;}
 
-    public String getRecipesByTime(int time){return null;}
+    public String getRecipesByTime(int cookTime){return null;}
 
     public void reviewRecipe(Recipe recipe){}
 
