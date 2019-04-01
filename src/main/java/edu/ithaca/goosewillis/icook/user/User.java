@@ -73,10 +73,10 @@ public class User {
 
     public String displayFridge(){
         List<Ingredient> ingredients = fridge.getIngredients();
-        String fridgeString = "Ingredients: \n";
+        String fridgeString = "Your fridge: \n";
 
         for(int i = 0; i < ingredients.size(); i++){
-            fridgeString += ("Name: " + ingredients.get(i).getName() +
+            fridgeString += ("Ingredient: " + ingredients.get(i).getName() +
                              ", Count: " + ingredients.get(i).getCount() +
                              ", Cook Time: " + ingredients.get(i).getCookTime() +
                              ", Diet Type: " + ingredients.get(i).getDietType() + "\n");
@@ -144,3 +144,4 @@ public class User {
 
     public String getPassword(){ return this.password; }
 }
+
