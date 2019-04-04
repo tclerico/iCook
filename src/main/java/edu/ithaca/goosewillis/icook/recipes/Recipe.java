@@ -101,6 +101,10 @@ public class Recipe {
         for (int j=0; j<instructions.size(); j++){
             toReturn = toReturn + instructions.get(j)+"\n";
         }
+        toReturn = toReturn+"Tags:\n";
+        for (int k=0; k<tags.size(); k++){
+            toReturn = toReturn + tags.get(k)+"\n";
+        }
 
         return toReturn;
     }
