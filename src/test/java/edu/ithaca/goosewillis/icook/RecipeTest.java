@@ -187,8 +187,15 @@ public class RecipeTest {
     @Test
     void getTagsTest() {
         // test if get tags returns the current number of tags in the recipe
+
+        Ingredient i1 = new Ingredient("Chicken Breast", 2, 2);
+
         List<String> testSteps = new ArrayList<String>();
+        testSteps.add("Preheat oven to 350 degrees");
+
         List<Ingredient> testNeeded = new ArrayList<Ingredient>();
+        testNeeded.add(i1);
+
         List<DietType> tags = new ArrayList<DietType>();
 
         tags.add(DietType.Vegan);

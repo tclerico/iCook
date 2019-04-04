@@ -89,7 +89,7 @@ public class Recipe {
     }
 
     public List<DietType> getTags() {
-        return null;
+        return tags;
     }
 
     public String display(){
