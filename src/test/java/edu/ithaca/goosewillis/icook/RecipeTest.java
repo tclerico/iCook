@@ -1,6 +1,7 @@
 package edu.ithaca.goosewillis.icook;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
@@ -85,6 +86,16 @@ public class RecipeTest {
 
         assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", description, req, instruct, ct));
 
+        // constructor with tags
+        List<DietType> tags = new ArrayList<>();
+        tags.add(DietType.Vegeterian);
+        tags.add(DietType.Vegan);
+
+        Recipe taggedRecipe = new Recipe("chicken", descript, tags, needed, steps, cooktime);
+
+        List<DietType> myTags = taggedRecipe.getTags();
+        assertEquals(2, myTags.size());
+
     }
 
     @Test
@@ -150,11 +161,6 @@ public class RecipeTest {
     }
 
     @Test
-    void checkTags(){
-        //TODO AT A LATER TIME **Implement tags when staring on recommendations**
-    }
-
-    @Test
     void checkCookTime(){
         Ingredient i1 = new Ingredient("Chicken Breast", 2, 1);
         Ingredient i2 = new Ingredient("Egg", 3, 1);
@@ -178,6 +184,20 @@ public class RecipeTest {
         assertEquals(10, rec.getCookTime());
     }
 
+    @Test
+    void getTagsTest() {
+        // test if get tags returns the current number of tags in the recipe
+        List<String> testSteps = new ArrayList<String>();
+        List<Ingredient> testNeeded = new ArrayList<Ingredient>();
+        List<DietType> tags = new ArrayList<DietType>();
+
+        tags.add(DietType.Vegan);
+        tags.add(DietType.Vegeterian);
+
+        Recipe rec = new Recipe("test", "test", tags, testNeeded, testSteps, 1.0);
+
+        assertEquals(2, rec.getTags().size());
+    }
 
 
 }

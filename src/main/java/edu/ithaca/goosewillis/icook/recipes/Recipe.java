@@ -1,5 +1,6 @@
 package edu.ithaca.goosewillis.icook.recipes;
 
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class Recipe {
 
     private List<Ingredient> ingredients;
     private List<String> instructions;
+    private List<DietType> tags;
     private String description;
     private String name;
     private double cookTime;
@@ -19,9 +21,22 @@ public class Recipe {
     public Recipe(String name, String description, List<Ingredient> needed, List<String> steps, double cooktime) {
         if (needed.size() >= 1 && steps.size() >= 1) {
             this.name = name;
+            this.description = description;
             this.ingredients = needed;
             this.instructions = steps;
+            this.cookTime = cooktime;
+        } else {
+            throw new IllegalArgumentException("Not enough information to constitute a recipe");
+        }
+    }
+
+    public Recipe(String name, String description, List<DietType> tags, List<Ingredient> needed, List<String> steps, double cooktime) {
+        if (needed.size() >= 1 && steps.size() >= 1) {
+            this.name = name;
             this.description = description;
+            this.tags = tags;
+            this.ingredients = needed;
+            this.instructions = steps;
             this.cookTime = cooktime;
         } else {
             throw new IllegalArgumentException("Not enough information to constitute a recipe");
@@ -71,6 +86,10 @@ public class Recipe {
 
     public double getCookTime() {
         return cookTime;
+    }
+
+    public List<DietType> getTags() {
+        return null;
     }
 
     public String display(){
