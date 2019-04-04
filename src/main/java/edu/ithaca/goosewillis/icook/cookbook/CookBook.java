@@ -66,7 +66,7 @@ public class CookBook {
         for (i=0; i<n-1; i++){
             swapped = false;
             for (j=0; j<n-i-1; j++){
-                if (toUse.get(j).getCookTime() < toUse.get(j).getCookTime()){
+                if (toUse.get(j).getCookTime() < toUse.get(j+1).getCookTime()){
                     temp = toUse.get(j);
                     toUse.set(j, toUse.get(j+1));
                     toUse.set(j+1, temp);
