@@ -63,9 +63,13 @@ public class User {
 
     public void uploadRecipe(Recipe recipe){}
 
-    public void favoriteRecipe(Recipe recipe){}
+    public void favoriteRecipe(Recipe recipe){
+        favoriteRecipes.add(recipe);
+    }
 
-    public void unfavoriteRecipe(Recipe recipe){}
+    public void unfavoriteRecipe(Recipe recipe){
+        favoriteRecipes.remove(recipe);
+    }
 
     public String getRecipeRecommendations(){
         //will not recommend recipes with restricted or disliked ingredients
@@ -88,9 +92,17 @@ public class User {
         return fridgeString;
     }
 
-    public void addRestriction(Ingredient ingredient){}
+    public void addRestriction(Ingredient ingredient){
+        restrictions.add(ingredient);
+    }
 
-    public void removeRestriction(Ingredient ingredient){}
+    public void removeRestriction(Ingredient ingredient){
+        if(restrictions.contains(ingredient)){
+            restrictions.remove(ingredient);
+        }else{
+            throw new IllegalArgumentException("You can only remove restricted ingredients");
+        }
+    }
 
     public void addDislikedIngredient(Ingredient ingredient){
         if(isIngredientValid(ingredient)){
