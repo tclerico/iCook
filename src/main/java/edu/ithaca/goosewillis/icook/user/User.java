@@ -16,10 +16,10 @@ public class User {
     private Fridge fridge;
     private ArrayList<Ingredient> dislikedIngredients;
     private ArrayList<Recipe> favoriteRecipes;
-    private ArrayList<DietType> restrictions;
+    private ArrayList<Ingredient> restrictions;
 
     public User(String username, String password, Fridge fridge, ArrayList<Ingredient> dislikedIngredients,
-                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions){
+                ArrayList<Recipe> favoriteRecipes, ArrayList<Ingredient> restrictions){
         if(isUsernameValid(username) && isPasswordValid(password)){
             this.username = username;
             this.password = password;
@@ -65,7 +65,11 @@ public class User {
 
     public void favoriteRecipe(Recipe recipe){}
 
-    public String getRecipeRecommendations(){return null;}
+    public void unfavoriteRecipe(Recipe recipe){}
+
+    public String getRecipeRecommendations(){
+        //will not recommend recipes with restricted or disliked ingredients
+        return null;}
 
     public String getRecipesByTime(int cookTime){return null;}
 
@@ -84,6 +88,10 @@ public class User {
         return fridgeString;
     }
 
+    public void addRestriction(Ingredient ingredient){}
+
+    public void removeRestriction(Ingredient ingredient){}
+
     public void addDislikedIngredient(Ingredient ingredient){
         if(isIngredientValid(ingredient)){
             dislikedIngredients.add(ingredient);
@@ -95,10 +103,6 @@ public class User {
     public void removeDislikedIngredient(Ingredient ingredient){
         dislikedIngredients.remove(ingredient);
     }
-
-    public void addRestriction(){}
-
-    public void removeRestriction(){}
 
     private static boolean isUsernameValid(String username){
         if(username != null){
