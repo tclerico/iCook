@@ -1,6 +1,7 @@
 package edu.ithaca.goosewillis.icook;
 
-
+import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
 import org.junit.jupiter.api.Test;
 
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
@@ -51,6 +52,20 @@ class FridgeTest {
         assertEquals(testIngredient1, testFridge.searchIngredient("testingredient1"));
         // test when the ingredient is not found
         assertEquals(null, testFridge.searchIngredient("fakeIngredient"));
+    }
+
+    @Test
+    void getIngredientsByCookTimeTest(){
+        try {
+            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
+
+            assertTrue(fridge.getIngredientsByCookTime(1).contains(fridge.searchIngredient("Chicken Breast")));
+            assertTrue(fridge.getIngredientsByCookTime(1).contains(fridge.searchIngredient("Tomato")));
+            assertFalse(fridge.getIngredientsByCookTime(1).contains(fridge.searchIngredient("Broccoli")));
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
