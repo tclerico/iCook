@@ -2,7 +2,7 @@ package edu.ithaca.goosewillis.icook.recipes.ingredients;
 
 public enum DietType {
 
-    None("None"), Vegeterian("Vegeterian"), Vegan("Vegan");
+    None("None"), Vegetarian("Vegetarian"), Vegan("Vegan"), GlutenFree("Gluten Free"), NonDairy("Non Dairy");
 
     private String name;
 

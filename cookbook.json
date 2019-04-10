@@ -29,6 +29,50 @@
       ]
     },
     {
+      "name": "Can't Make in User Test",
+      "description": "Test Recipe",
+      "cookTime": 20,
+      "instructions": [
+        "Test"
+      ],
+      "ingredients": [
+        {
+          "name": "Not in Fridge 1",
+          "count": 7,
+          "cooktime": 20,
+          "dietType": "None"
+        },
+        {
+          "name": "Not in Fridge 2",
+          "count": 7,
+          "cooktime": 20,
+          "dietType": "None"
+        }
+      ]
+    },
+    {
+      "name": "Can Almost Make in User Test",
+      "description": "Test Recipe 2",
+      "cookTime": 20,
+      "instructions": [
+        "Test"
+      ],
+      "ingredients": [
+        {
+          "name": "Tomato",
+          "count": 2.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Not in Fridge 1",
+          "count": 7,
+          "cooktime": 20,
+          "dietType": "None"
+        }
+      ]
+    },
+    {
       "name": "Chicken Chicken",
       "description": "Winner winner chicken dinner",
       "cookTime": 105.0,
