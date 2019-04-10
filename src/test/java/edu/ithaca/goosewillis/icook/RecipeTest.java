@@ -206,5 +206,4 @@ public class RecipeTest {
         assertEquals(2, rec.getTags().size());
     }
 
-
 }

@@ -3,6 +3,7 @@ package edu.ithaca.goosewillis.icook.cookbook;
 import com.google.gson.JsonObject;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.user.User;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
@@ -128,6 +129,17 @@ public class CookBook {
             }
         }
         return recommendations;
+    }
+
+    public ArrayList<Recipe> getRecipesByTag(DietType tag){
+        ArrayList<Recipe> recipesByTag = new ArrayList<>();
+
+        for(Recipe currRecipe : recipes.values()){
+            if(currRecipe.getTags().contains(tag)){
+                recipesByTag.add(currRecipe);
+            }
+        }
+        return recipesByTag;
     }
 
 }

@@ -54,6 +54,10 @@
       "name": "Can Almost Make in User Test",
       "description": "Test Recipe 2",
       "cookTime": 20,
+      "tags": [
+        "Vegan",
+        "Vegetarian"
+      ],
       "instructions": [
         "Test"
       ],
