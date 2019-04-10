@@ -31,9 +31,9 @@ public class Fridge {
         return this.ingredients;
     }
 
-    public void addIngredient(Ingredient ingredient){
-        ingredients.add(ingredient);
-    }
+    public void addIngredient(Ingredient ingredient){ ingredients.add(ingredient); }
+
+    public void removeIngredient(Ingredient ingredient){ ingredients.remove(ingredient); }
 
     // null otherwise
     public Ingredient searchIngredient(String name) {

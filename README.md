@@ -1,5 +1,7 @@
 # iCook
 
+[![CircleCI](https://circleci.com/gh/tclerico/iCook/tree/master.svg?style=svg)](https://circleci.com/gh/tclerico/iCook/tree/master)
+
 ### [Waffle Board](https://waffle.io/tclerico/iCook)
 
 ## Diagrams
