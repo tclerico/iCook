@@ -1,1 +1,88 @@
-{"recipes":[{"name":"T&P Pasta","description":"Tomato Pesto Pasta","cookTime":100.0,"instructions":["Cook the pasta"],"ingredients":[{"name":"Pasta","count":100.0,"cooktime":1.0,"dietType":"None"},{"name":"Tomato","count":2.0,"cooktime":1.0,"dietType":"None"},{"name":"Pesto","count":4.0,"cooktime":1.0,"dietType":"None"}]},{"name":"Chicken Chicken","description":"Winner winner chicken dinner","cookTime":105.0,"instructions":["Cook the ingredients(Chicken, tomato, asparagus)"],"ingredients":[{"name":"Chicken Breast","count":5.0,"cooktime":1.0,"dietType":"None"},{"name":"Tomato","count":4.0,"cooktime":1.0,"dietType":"None"},{"name":"Asparagus","count":10.0,"cooktime":1.0,"dietType":"None"}]},{"name":"Cheese Pizza","description":"Classic cheese pizza","cookTime":50.0,"instructions":["Roll the dough out"],"ingredients":[{"name":"Pizza Dough","count":1.0,"cooktime":1.0,"dietType":"None"},{"name":"Tomato","count":4.0,"cooktime":1.0,"dietType":"None"},{"name":"Cheese","count":10.0,"cooktime":1.0,"dietType":"None"}]},{"name":"Chicken Breast one tray meal","description":"Chicken Breast one tray meal","cookTime":30.0,"instructions":["Preheat oven to 350","The total cooking time is: 30.0","Place Chicken Breast in the oven","After 20.0 minutes, add the Broccoli","After 24.0 minutes, add the Carrot","Remove from oven and let stand for 2 minutes"],"ingredients":[{"name":"Chicken Breast","count":5.0,"cooktime":30.0,"dietType":"None"},{"name":"Broccoli","count":3.0,"cooktime":10.0,"dietType":"None"},{"name":"Carrot","count":2.0,"cooktime":6.0,"dietType":"None"}]}]}
+{
+  "recipes": [
+    {
+      "name": "T\u0026P Pasta",
+      "description": "Tomato Pesto Pasta",
+      "cookTime": 100.0,
+      "instructions": [
+        "Cook the pasta"
+      ],
+      "ingredients": [
+        {
+          "name": "Pasta",
+          "count": 100.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Tomato",
+          "count": 2.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Pesto",
+          "count": 4.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ]
+    },
+    {
+      "name": "Chicken Chicken",
+      "description": "Winner winner chicken dinner",
+      "cookTime": 105.0,
+      "instructions": [
+        "Cook the ingredients(Chicken, tomato, asparagus)"
+      ],
+      "ingredients": [
+        {
+          "name": "Chicken Breast",
+          "count": 5.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Tomato",
+          "count": 4.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Asparagus",
+          "count": 10.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ]
+    },
+    {
+      "name": "Cheese Pizza",
+      "description": "Classic cheese pizza",
+      "cookTime": 50.0,
+      "instructions": [
+        "Roll the dough out"
+      ],
+      "ingredients": [
+        {
+          "name": "Pizza Dough",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Tomato",
+          "count": 4.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "Cheese",
+          "count": 10.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ]
+    }
+  ]
+}
