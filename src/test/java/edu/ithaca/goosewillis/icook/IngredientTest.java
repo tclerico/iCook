@@ -28,7 +28,6 @@ public class IngredientTest {
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", 0, 10));
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", -5, 10));
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", -.01, 10));
-        assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", 5, 0));
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("Sauerkraut", 5, -10));
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient("", 5, 10));
         assertThrows(IllegalArgumentException.class, ()-> new Ingredient(" ", 5, 10));

@@ -19,15 +19,19 @@ public class CookBook {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private Map<String, Recipe> recipes;
+    private Map<String, Ingredient> ingredients;
 
     public CookBook() {
         this.recipes = new HashMap<>();
+        this.ingredients = new HashMap<>();
     }
 
 
     public CookBook(JsonObject root) {
-        this.recipes = new CookbookSerializer().deserialize(root).recipes;
-        logger.log(Level.INFO, "Recipes loaded into cookbook!");
+        CookBook deserialized = new CookbookSerializer().deserialize(root);
+        this.recipes = deserialized.recipes;
+        this.ingredients = deserialized.ingredients;
+        logger.log(Level.INFO, "Recipes & Ingredients loaded into cookbook!");
     }
 
     public void saveToFile() {
@@ -38,7 +42,7 @@ public class CookBook {
             }
             file.createNewFile();
             FileWriter writer = new FileWriter(file);
-            writer.write(new CookbookSerializer().serialize(this).toString());
+            writer.write(FileUtil.gson.toJson(new CookbookSerializer().serialize(this)));
             writer.flush();
             writer.close();
             logger.log(Level.INFO, "Saved cookbook to json file!");
@@ -54,6 +58,10 @@ public class CookBook {
 
     public Map<String, Recipe> getRecipes() {
         return recipes;
+    }
+
+    public Map<String, Ingredient> getIngredients() {
+        return ingredients;
     }
 
     public Recipe generateOneTray(ArrayList<Ingredient> toUse){
