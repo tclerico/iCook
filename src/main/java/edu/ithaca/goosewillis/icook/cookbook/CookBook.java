@@ -48,8 +48,10 @@ public class CookBook {
     }
 
     public void addRecipe(String name, Recipe recipe) {
-        recipes.put(name, recipe);
-        logger.log(Level.INFO, "Added new recipe to cookbook!");
+        if(!recipes.containsKey(name)){
+            recipes.put(name, recipe);
+            logger.log(Level.INFO, "Added new recipe to cookbook!");
+        }
     }
 
     public Map<String, Recipe> getRecipes() {
