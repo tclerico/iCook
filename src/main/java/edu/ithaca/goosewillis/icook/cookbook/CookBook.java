@@ -114,30 +114,37 @@ public class CookBook {
     }
 
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge){
-        ArrayList<Recipe> recommendations = new ArrayList<>();
-
-        for(Recipe currRecipe : this.recipes.values()){
-            int canMake = 0;
-            List<Ingredient> recipeIngredients = currRecipe.getIngredients();
-            for(Ingredient currIngredient : recipeIngredients){
-                if(fridge.searchIngredient(currIngredient.getName()) == null){
-                    canMake++;
+        ArrayList<Recipe> recommendations = new ArrayList<Recipe>();
+        try {
+            for (Recipe currRecipe : this.recipes.values()) {
+                int canMake = 0;
+                List<Ingredient> recipeIngredients = currRecipe.getIngredients();
+                for (Ingredient currIngredient : recipeIngredients) {
+                    if (fridge.searchIngredient(currIngredient.getName()) == null) {
+                        canMake++;
+                    }
+                }
+                if (canMake <= 1) {
+                    recommendations.add(currRecipe);
                 }
             }
-            if(canMake <= 1){
-                recommendations.add(currRecipe);
-            }
+        }catch (NullPointerException e){
+            System.out.println("NullPointerException Caught");
         }
         return recommendations;
     }
 
     public ArrayList<Recipe> getRecipesByTag(DietType tag){
-        ArrayList<Recipe> recipesByTag = new ArrayList<>();
+        ArrayList<Recipe> recipesByTag = new ArrayList<Recipe>();
 
-        for(Recipe currRecipe : recipes.values()){
-            if(currRecipe.getTags().contains(tag)){
-                recipesByTag.add(currRecipe);
+        try {
+            for(Recipe currRecipe : recipes.values()){
+                if(currRecipe.getTags().contains(tag)){
+                    recipesByTag.add(currRecipe);
+                }
             }
+        }catch(NullPointerException e){
+            System.out.println("NullPointerException Caught");
         }
         return recipesByTag;
     }
