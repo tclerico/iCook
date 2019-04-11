@@ -22,7 +22,7 @@ import static edu.ithaca.goosewillis.icook.APIQueries.IngredientQueries.readInIn
 public class IngredientQueriesIT {
 
     @Test
-    public static void fullAPITest() throws UnirestException {
+    public void fullAPITest() throws UnirestException {
         String key = "";
         String host = "";
         try {
@@ -47,8 +47,10 @@ public class IngredientQueriesIT {
         JsonArray query = rec.getAsJsonArray("Recipes");
         JsonObject first = query.get(0).getAsJsonObject();
         String rName = first.get("name").getAsString();
+        System.out.println(rName);
 
-        String clean = rName.trim().replace(' ', '+');
+        String clean = rName.replace(' ', '+');
+        System.out.println(clean);
         HttpResponse<String> idResponse = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=1&offset=0&instructionsRequired=true&query="+clean)
                 .header("X-RapidAPI-Host", host)
                 .header("X-RapidAPI-Key", key)
@@ -56,7 +58,8 @@ public class IngredientQueriesIT {
         assertEquals(200, idResponse.getStatus());
 
         Gson gID = new Gson();
-        JsonObject r = gID.fromJson(response.getBody(), JsonObject.class);
+        JsonObject r = gID.fromJson(idResponse.getBody(), JsonObject.class);
+        System.out.println(r);
         JsonArray result = r.getAsJsonArray("results");
         JsonObject firstRecipe = result.get(0).getAsJsonObject();
 
@@ -70,7 +73,8 @@ public class IngredientQueriesIT {
 
         assertEquals(200, fullResponse.getStatus());
         Gson fg = new Gson();
-        JsonObject recipe = g.fromJson(response.getBody(), JsonObject.class);
+        JsonObject recipe = g.fromJson(fullResponse.getBody(), JsonObject.class);
+        System.out.println(recipe);
         JsonArray analIns = recipe.get("analyzedInstructions").getAsJsonArray().get(0).getAsJsonObject().get("steps").getAsJsonArray();
         String recipeName = recipe.get("title").getAsString();
         Integer cooktime = recipe.get("readyInMinutes").getAsInt();
@@ -97,15 +101,19 @@ public class IngredientQueriesIT {
 
         Recipe nRecipe = new Recipe(rName, " ", toAdd, instructs, cooktime);
         List<Ingredient> ings = nRecipe.getIngredients();
-        Ingredient apple = new Ingredient("apple", 1,10);
-        assertTrue(ings.contains(apple));
+        List<String> names  = new ArrayList<>();
+        for (Ingredient curr : ings){
+            names.add(curr.getName());
+        }
+        System.out.println(ings);
+        assertTrue(names.contains("fuji apple"));
 
 
     }
 
 
     @Test
-    public static void ingredientRequestTest(){
+    public void ingredientRequestTest(){
         List<String> ingredientTest = readInIngredients();
         assertTrue(ingredientTest.size() > 10);
     }
