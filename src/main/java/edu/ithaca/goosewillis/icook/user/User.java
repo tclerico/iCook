@@ -60,6 +60,10 @@ public class User {
         favoriteRecipes.add(recipe);
     }
 
+    public void unfavoriteRecipe(Recipe recipe){
+        favoriteRecipes.remove(recipe);
+    }
+
     public List<Ingredient> displayFridge(){
         List<Ingredient> ingredients = fridge.getIngredients();
         return ingredients;

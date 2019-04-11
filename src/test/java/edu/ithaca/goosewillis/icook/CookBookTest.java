@@ -31,17 +31,17 @@ public class CookBookTest {
         }
     }
 
-    @Test
-    void getRecipesByTagTest(){
-        try {
-            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
-
-            assertTrue(cookBook.getRecipesByTag(DietType.Vegan).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
-            assertTrue(cookBook.getRecipesByTag(DietType.Vegetarian).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
-            assertFalse(cookBook.getRecipesByTag(DietType.GlutenFree).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    void getRecipesByTagTest(){
+//        try {
+//            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+//
+//            assertTrue(cookBook.getRecipesByTag(DietType.Vegan).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
+//            assertTrue(cookBook.getRecipesByTag(DietType.Vegetarian).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
+//            assertFalse(cookBook.getRecipesByTag(DietType.GlutenFree).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
+//
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
