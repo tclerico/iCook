@@ -4,6 +4,10 @@ target/
 .idea/
 iCook.iml
 
+# This file holds the credentials that allow some of our integration tests to run.
+# This file should be kept locally by developers and not pushed to the repo.
+credentials.json
+
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml
