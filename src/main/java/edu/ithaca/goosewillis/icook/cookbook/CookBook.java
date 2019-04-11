@@ -116,11 +116,11 @@ public class CookBook {
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge){
         ArrayList<Recipe> recommendations = new ArrayList<>();
 
-        for(Recipe currRecipe : recipes.values()){
+        for(Recipe currRecipe : this.recipes.values()){
             int canMake = 0;
             List<Ingredient> recipeIngredients = currRecipe.getIngredients();
             for(Ingredient currIngredient : recipeIngredients){
-                if(fridge.searchIngredient(currIngredient.getName()).getName() == null){
+                if(fridge.searchIngredient(currIngredient.getName()) == null){
                     canMake++;
                 }
             }

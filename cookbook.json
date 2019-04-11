@@ -77,6 +77,30 @@
       ]
     },
     {
+      "name": "Can Make in User Test",
+      "description": "Test Recipe 3",
+      "cookTime": 20,
+      "tags": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "instructions": [
+        "Test"
+      ],
+      "ingredients": [
+        {
+          "name": "Tomato",
+          "count": 2.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {"name":"Broccoli",
+          "count":3.0,
+          "cooktime":10.0,
+          "dietType":"None"}
+      ]
+    },
+    {
       "name": "Chicken Chicken",
       "description": "Winner winner chicken dinner",
       "cookTime": 105.0,

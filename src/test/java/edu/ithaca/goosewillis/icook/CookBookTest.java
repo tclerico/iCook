@@ -18,6 +18,8 @@ public class CookBookTest {
             CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
             Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
 
+            assertTrue(cookBook.getRecipeRecommendations(fridge).contains(cookBook.getSpecificRecipe("Can Make in User Test")));
+            assertTrue(cookBook.getRecipeRecommendations(fridge).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
             assertTrue(!cookBook.getRecipeRecommendations(fridge).contains(cookBook.getSpecificRecipe("Can't Make in User Test")));
 
         }catch (Exception e) {
