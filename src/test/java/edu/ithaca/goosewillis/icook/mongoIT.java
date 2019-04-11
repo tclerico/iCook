@@ -12,9 +12,9 @@ public class mongoIT {
 
     @Test
     void mongoConnectionTest() {
-        String user = "goosewillis"; // the user name
-        String database = "icook"; // the name of the database in which the user is defined
-        char[] password = { 'p', 'a', 's', 's', 'w', 'o', 'r', 'd' };; // the password as a character array
+        String user = ""; // the user name
+        String database = ""; // the name of the database in which the user is defined
+        char[] password = {}; // the password as a character array
 
         MongoCredential credential = MongoCredential.createCredential(user, database, password);
 
