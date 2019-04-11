@@ -1,16 +1,17 @@
 package edu.ithaca.goosewillis.icook.cookbook;
 
 import com.google.gson.JsonObject;
+import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+import edu.ithaca.goosewillis.icook.user.User;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,6 +67,14 @@ public class CookBook {
         return ingredients;
     }
 
+    public Recipe getSpecificRecipe(String name){
+        if(recipes.containsKey(name)){
+            return recipes.get(name);
+        }else{
+            return null;
+        }
+    }
+
     public Recipe generateOneTray(ArrayList<Ingredient> toUse){
         int i, j;
         Ingredient temp;
@@ -106,4 +115,39 @@ public class CookBook {
 
     }
 
+    public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge){
+        ArrayList<Recipe> recommendations = new ArrayList<Recipe>();
+        try {
+            for (Recipe currRecipe : this.recipes.values()) {
+                int canMake = 0;
+                List<Ingredient> recipeIngredients = currRecipe.getIngredients();
+                for (Ingredient currIngredient : recipeIngredients) {
+                    if (fridge.searchIngredient(currIngredient.getName()) == null) {
+                        canMake++;
+                    }
+                }
+                if (canMake <= 1) {
+                    recommendations.add(currRecipe);
+                }
+            }
+        }catch (NullPointerException e){
+            System.out.println("NullPointerException Caught");
+        }
+        return recommendations;
+    }
+
+    public ArrayList<Recipe> getRecipesByTag(DietType tag){
+        ArrayList<Recipe> recipesByTag = new ArrayList<Recipe>();
+
+        try {
+            for(Recipe currRecipe : recipes.values()){
+                if(currRecipe.getTags().contains(tag)){
+                    recipesByTag.add(currRecipe);
+                }
+            }
+        }catch(NullPointerException e){
+            System.out.println("NullPointerException Caught");
+        }
+        return recipesByTag;
+    }
 }
