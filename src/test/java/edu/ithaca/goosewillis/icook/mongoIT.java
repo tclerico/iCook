@@ -1,6 +1,9 @@
 package edu.ithaca.goosewillis.icook;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import com.google.gson.JsonObject;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
 import java.util.Arrays;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -12,21 +15,26 @@ public class mongoIT {
 
     @Test
     void mongoConnectionTest() {
-        String    user        = "";   // the user name
-        String    database    = "";   // the name of the database in which the user is defined
-        char[]    password    = {};   // the password as a character array
-        String    host        = "";   // the host to connect to
-        int       port        = 0;    // the port to connect on
+        try {
+            JsonObject credentials = FileUtil.readFromJson("../credentials.json");
 
-        MongoCredential credential = MongoCredential.createCredential(user, database, password);
+            String    user        = credentials.get("user").getAsString();       // the user name
+            String    password    = credentials.get("password").getAsString();   // the password as a character array
+            String    host        = credentials.get("host").getAsString();       // the host to connect to
+            String    port        = credentials.get("port").getAsString();       // the port to connect on
+            String    database    = credentials.get("database").getAsString();   // the name of the database in which the user is defined
 
-        MongoClientOptions options = MongoClientOptions.builder().sslEnabled(true).build();
+            String uri = "mongodb://" + user + ":" + password + "@" + host + ":" + port + "/" + database;
 
-        MongoClient mongoClient = new MongoClient(new ServerAddress(host, port),
-                Arrays.asList(credential),
-                options);
+            MongoClientURI mongoURI = new MongoClientURI(uri);
 
-        // todo: confirm connection was successful!
+            MongoClient mongoClient = new MongoClient(mongoURI);
+
+            // todo: confirm connection was successful!
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
