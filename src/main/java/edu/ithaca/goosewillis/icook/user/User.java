@@ -1,6 +1,5 @@
 package edu.ithaca.goosewillis.icook.user;
 
-import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
@@ -33,7 +32,7 @@ public class User {
     }
 
     public void addToFridge(Ingredient ingredient){
-        if(isIngredientValid(ingredient)){
+        if(ingredient.isIngredientValid(ingredient)){
             fridge.addIngredient(ingredient);
         }else{
             throw new IllegalArgumentException("You can only add valid ingredients");
@@ -41,7 +40,7 @@ public class User {
     }
 
     public void removeFromFridge(Ingredient ingredient){
-        if(isIngredientValid(ingredient) && (fridge.searchIngredient(ingredient.getName()) == ingredient)){
+        if(ingredient.isIngredientValid(ingredient) && (fridge.searchIngredient(ingredient.getName()) == ingredient)){
             fridge.removeIngredient(ingredient);
         }else{
             throw new IllegalArgumentException("You sure this ingredient's in your fridge?");
@@ -57,35 +56,18 @@ public class User {
         }
     }
 
-    public String generateOneTray(){
-        return null;
+    public void favoriteRecipe(Recipe recipe){
+        favoriteRecipes.add(recipe);
     }
 
-    public void uploadRecipe(Recipe recipe){}
-
-    public void favoriteRecipe(Recipe recipe){}
-
-    public String getRecipeRecommendations(){return null;}
-
-    public String getRecipesByTime(int cookTime){return null;}
-
-    public void reviewRecipe(Recipe recipe){}
-
-    public String displayFridge(){
+    public List<Ingredient> displayFridge(){
         List<Ingredient> ingredients = fridge.getIngredients();
-        String fridgeString = "Your fridge: \n";
+        return ingredients;
 
-        for(int i = 0; i < ingredients.size(); i++){
-            fridgeString += ("Ingredient: " + ingredients.get(i).getName() +
-                             ", Count: " + ingredients.get(i).getCount() +
-                             ", Cook Time: " + ingredients.get(i).getCookTime() +
-                             ", Diet Type: " + ingredients.get(i).getDietType() + "\n");
-        }
-        return fridgeString;
     }
 
     public void addDislikedIngredient(Ingredient ingredient){
-        if(isIngredientValid(ingredient)){
+        if(ingredient.isIngredientValid(ingredient)){
             dislikedIngredients.add(ingredient);
         }else{
             throw new IllegalArgumentException("You can only add valid ingredients");
@@ -96,9 +78,33 @@ public class User {
         dislikedIngredients.remove(ingredient);
     }
 
-    public void addRestriction(){}
+    public void addRestriction(String restriction){
+        if(restriction.equalsIgnoreCase("Vegan")){
+            restrictions.add(DietType.Vegan);
+        }else if(restriction.equalsIgnoreCase("Vegetarian")){
+            restrictions.add(DietType.Vegetarian);
+        }else if(restriction.equalsIgnoreCase("Gluten Free")){
+            restrictions.add(DietType.GlutenFree);
+        }else if(restriction.equalsIgnoreCase("Non Dairy")){
+            restrictions.add(DietType.NonDairy);
+        }else{
+            throw new IllegalArgumentException("Enter a valid diet type");
+        }
+    }
 
-    public void removeRestriction(){}
+    public void removeRestriction(String restriction){
+        if(restriction.equalsIgnoreCase("Vegan")){
+            restrictions.remove(DietType.Vegan);
+        }else if(restriction.equalsIgnoreCase("Vegetarian")){
+            restrictions.remove(DietType.Vegetarian);
+        }else if(restriction.equalsIgnoreCase("Gluten Free")){
+            restrictions.remove(DietType.GlutenFree);
+        }else if(restriction.equalsIgnoreCase("Non Dairy")){
+            restrictions.remove(DietType.NonDairy);
+        }else{
+            throw new IllegalArgumentException("Enter a valid diet type");
+        }
+    }
 
     private static boolean isUsernameValid(String username){
         if(username != null){
@@ -110,14 +116,6 @@ public class User {
 
     private static boolean isPasswordValid(String password){
         if(password != null){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private static boolean isIngredientValid(Ingredient ingredient){
-        if(ingredient != null && ingredient.getCount() >=1 && ingredient.getCookTime() >= 0){
             return true;
         }else{
             return false;
