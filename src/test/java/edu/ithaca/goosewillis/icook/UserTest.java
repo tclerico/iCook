@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.None;
+import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -20,7 +21,7 @@ public class UserTest {
         Fridge fridge = new Fridge();
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
-        ArrayList<Ingredient> restrictions = new ArrayList<>();
+        ArrayList<DietType> restrictions = new ArrayList<>();
 
         User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
         user1.setUsername("newUser1");
@@ -41,7 +42,7 @@ public class UserTest {
         Fridge fridge = new Fridge();
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
-        ArrayList<Ingredient> restrictions = new ArrayList<>();
+        ArrayList<DietType> restrictions = new ArrayList<>();
 
         User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
         user1.addToFridge(chickenBreast);
@@ -72,7 +73,7 @@ public class UserTest {
         Fridge fridge = new Fridge();
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
-        ArrayList<Ingredient> restrictions = new ArrayList<>();
+        ArrayList<DietType> restrictions = new ArrayList<>();
 
         Ingredient pb = new Ingredient("Peanut Butter", 1, 0);
         Ingredient bread = new Ingredient("Bread", 2, 0);
@@ -102,12 +103,6 @@ public class UserTest {
 
         assertTrue(!dislikedIngredients.contains(mayo));
         assertFalse(dislikedIngredients.contains(mayo));
-
-        //add and remove restrictions
-        user1.addRestriction(pb);
-        assertTrue(restrictions.contains(pb));
-        user1.removeRestriction(pb);
-        assertTrue(!restrictions.contains(pb));
 
         //add and remove favorite recipes
         user1.favoriteRecipe(pbj);

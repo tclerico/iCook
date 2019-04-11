@@ -88,7 +88,7 @@ public class RecipeTest {
 
         // constructor with tags
         List<DietType> tags = new ArrayList<>();
-        tags.add(DietType.Vegeterian);
+        tags.add(DietType.Vegetarian);
         tags.add(DietType.Vegan);
 
         Recipe taggedRecipe = new Recipe("chicken", descript, tags, needed, steps, cooktime);
@@ -199,12 +199,11 @@ public class RecipeTest {
         List<DietType> tags = new ArrayList<DietType>();
 
         tags.add(DietType.Vegan);
-        tags.add(DietType.Vegeterian);
+        tags.add(DietType.Vegetarian);
 
         Recipe rec = new Recipe("test", "test", tags, testNeeded, testSteps, 1.0);
 
         assertEquals(2, rec.getTags().size());
     }
-
 
 }

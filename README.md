@@ -61,6 +61,8 @@ Then the ingredient is removed and the inventory is updated
 ### Sprint 1 Goal
 For this sprint we want to be able to get recipe recommendations and generate one tray meals.
 
+## Sprint 2
+* [Sprint 2](https://docs.google.com/document/d/1r69Gim_mgdh44o-r6r2CxbkstrYWhEchlQFOorf55bk/edit)
 ## Sprint 2 Goal
 For this sprint we want ot be able to have a functioning recipe recommendation system
 

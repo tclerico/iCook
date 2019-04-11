@@ -31,6 +31,14 @@ public class Ingredient {
         }
     }
 
+    public boolean isIngredientValid(Ingredient ingredient){
+        if(ingredient != null && ingredient.getCount() >=1 && ingredient.getCookTime() >= 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void setCount(double count) {
         this.count = count;
     }
