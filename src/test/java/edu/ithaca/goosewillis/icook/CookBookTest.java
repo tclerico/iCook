@@ -3,11 +3,15 @@ package edu.ithaca.goosewillis.icook;
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
 import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 import org.junit.jupiter.api.Test;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 
+import java.util.ArrayList;
+
+import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CookBookTest {
