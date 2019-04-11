@@ -47,6 +47,18 @@ public class Fridge {
         return null;
     }
 
+    public ArrayList<Ingredient> getIngredientsByCookTime(int cookTime){
+        ArrayList<Ingredient> ingredientsWithSameCookTime = new ArrayList<>();
+        Iterator<Ingredient> itr = this.getIngredients().iterator();
+        while(itr.hasNext()){
+            Ingredient current = itr.next();
+            if(current.getCookTime() == cookTime){
+                ingredientsWithSameCookTime.add(current);
+            }
+        }
+        return ingredientsWithSameCookTime;
+    }
+
     public void saveFridgeToFile(){
         try{
             File file = new File("fridge.json");
