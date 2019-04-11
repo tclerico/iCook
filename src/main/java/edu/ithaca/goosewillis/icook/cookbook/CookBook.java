@@ -53,8 +53,10 @@ public class CookBook {
     }
 
     public void addRecipe(String name, Recipe recipe) {
-        recipes.put(name, recipe);
-        logger.log(Level.INFO, "Added new recipe to cookbook!");
+        if(!recipes.containsKey(name)){
+            recipes.put(name, recipe);
+            logger.log(Level.INFO, "Added new recipe to cookbook!");
+        }
     }
 
     public Map<String, Recipe> getRecipes() {
@@ -83,7 +85,7 @@ public class CookBook {
         for (i=0; i<n-1; i++){
             swapped = false;
             for (j=0; j<n-i-1; j++){
-                if (toUse.get(j).getCookTime() < toUse.get(j).getCookTime()){
+                if (toUse.get(j).getCookTime() < toUse.get(j+1).getCookTime()){
                     temp = toUse.get(j);
                     toUse.set(j, toUse.get(j+1));
                     toUse.set(j+1, temp);
