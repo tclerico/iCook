@@ -8,8 +8,10 @@ import edu.ithaca.goosewillis.icook.user.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.None;
+import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -73,6 +75,22 @@ public class UserTest {
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
         ArrayList<DietType> restrictions = new ArrayList<>();
 
+        Ingredient pb = new Ingredient("Peanut Butter", 1, 0);
+        Ingredient bread = new Ingredient("Bread", 2, 0);
+        Ingredient jelly = new Ingredient("Jelly", 1, 0);
+
+        List<Ingredient> pbjIngredients = new ArrayList<>();
+        pbjIngredients.add(pb);
+        pbjIngredients.add(bread);
+        pbjIngredients.add(jelly);
+
+        List<String> pbjSteps = new ArrayList<>();
+        pbjSteps.add("Get all yer ingredients together");
+        pbjSteps.add("Lather one side of one piece of bread with peanut butter");
+        pbjSteps.add("Do the same to the other piece of bread with jelly");
+
+        Recipe pbj = new Recipe("Peanut Butter and Jelly", "Your favorite sandwich in less than a minute", pbjIngredients, pbjSteps, 1 );
+
         User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
 
         Ingredient mayo = new Ingredient("Mayo", 1, 0, None);
@@ -85,6 +103,12 @@ public class UserTest {
 
         assertTrue(!dislikedIngredients.contains(mayo));
         assertFalse(dislikedIngredients.contains(mayo));
+
+        //add and remove favorite recipes
+        user1.favoriteRecipe(pbj);
+        assertTrue(favoriteRecipes.contains(pbj));
+        user1.unfavoriteRecipe(pbj);
+        assertTrue(!favoriteRecipes.contains(pbj));
 
     }
 
