@@ -5,10 +5,7 @@ import java.net.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.google.gson.*;
 
@@ -22,6 +19,7 @@ import com.mashape.unirest.http.Unirest;
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 import org.apache.http.client.HttpRequestRetryHandler;
@@ -101,6 +99,7 @@ public class IngredientQueries {
                         //System.out.println("Adding: "+rec.get("name").getAsString());
                     }
                 }
+                //break;
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -129,6 +128,7 @@ public class IngredientQueries {
                         recipeID.add(recipe.get("id").getAsInt());
                     }
                 }
+                //break;
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -137,7 +137,7 @@ public class IngredientQueries {
         return recipeID;
     }
 
-    public static void constructRecipe(CookBook cb, String name, Integer cooktime, List<String> ingredients, List<String> instructions){
+    public static void constructRecipe(CookBook cb, String name, Integer cooktime, List<String> ingredients, List<String> instructions, Set<DietType> tags){
         try{
             //TODO SEARCH TO SEE IF INGREDIENT ALREADY EXISTS IN DB OR WHATEVER IS STORING IT -> create if doesnt exist -> get if does
 
@@ -147,7 +147,7 @@ public class IngredientQueries {
                 ingToAdd.add(toAdd);
             }
 
-            Recipe nRecipe = new Recipe(name, " ", ingToAdd, instructions, cooktime);
+            Recipe nRecipe = new Recipe(name, " ", tags, ingToAdd, instructions, cooktime);
             //System.out.println(nRecipe.getInstructions().size());
             cb.addRecipe(name, nRecipe);
 
@@ -186,10 +186,19 @@ public class IngredientQueries {
                             }
 
                             //Use these for the tags
-                            Boolean vegetarian = recipe.get("vegetarian").getAsBoolean();
-                            Boolean vegan = recipe.get("vegan").getAsBoolean();
-                            Boolean glutenFree = recipe.get("glutenFree").getAsBoolean();
-                            Boolean dairyFree = recipe.get("dairyFree").getAsBoolean();
+                            Set<DietType> tags = new HashSet<>();
+                            if (recipe.get("vegetarian").getAsBoolean()){
+                                tags.add(DietType.Vegetarian);
+                            }
+                            if (recipe.get("vegan").getAsBoolean()){
+                                tags.add(DietType.Vegan);
+                            }
+                            if (recipe.get("glutenFree").getAsBoolean()){
+                                tags.add(DietType.GlutenFree);
+                            }
+                            if (recipe.get("dairyFree").getAsBoolean()){
+                                tags.add(DietType.NonDairy);
+                            }
 
                             JsonArray ingredients = recipe.getAsJsonArray("extendedIngredients");
                             List<String> recipeIngredients = new ArrayList<>();
@@ -198,7 +207,7 @@ public class IngredientQueries {
                                 String ingName = ing.get("name").getAsString();
                                 recipeIngredients.add(ingName);
                             }
-                            constructRecipe(cookBook, name, cooktime, recipeIngredients, instructs);
+                            constructRecipe(cookBook, name, cooktime, recipeIngredients, instructs, tags);
                         }
                     } catch (Exception e){
                         e.printStackTrace();
