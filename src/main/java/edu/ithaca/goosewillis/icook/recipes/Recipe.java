@@ -5,12 +5,13 @@ import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Recipe {
 
     private List<Ingredient> ingredients;
     private List<String> instructions;
-    private List<DietType> tags;
+    private Set<DietType> tags;
     private String description;
     private String name;
     private double cookTime;
@@ -30,7 +31,7 @@ public class Recipe {
         }
     }
 
-    public Recipe(String name, String description, List<DietType> tags, List<Ingredient> needed, List<String> steps, double cooktime) {
+    public Recipe(String name, String description, Set<DietType> tags, List<Ingredient> needed, List<String> steps, double cooktime) {
         if (needed.size() >= 1 && steps.size() >= 1) {
             this.name = name;
             this.description = description;
@@ -88,7 +89,7 @@ public class Recipe {
         return cookTime;
     }
 
-    public List<DietType> getTags() {
+    public Set<DietType> getTags() {
         return tags;
     }
 
@@ -102,10 +103,9 @@ public class Recipe {
             toReturn = toReturn + instructions.get(j)+"\n";
         }
         toReturn = toReturn+"Tags:\n";
-        for (int k=0; k<tags.size(); k++){
-            toReturn = toReturn + tags.get(k)+"\n";
+        for (DietType type : tags) {
+            toReturn += type + "\n";
         }
-
         return toReturn;
     }
 

@@ -6,7 +6,9 @@ import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -87,13 +89,13 @@ public class RecipeTest {
         assertThrows(IllegalArgumentException.class, ()-> new Recipe("Chicken", description, req, instruct, ct));
 
         // constructor with tags
-        List<DietType> tags = new ArrayList<>();
-        tags.add(DietType.Vegeterian);
+        Set<DietType> tags = new HashSet<>();
+        tags.add(DietType.Vegetarian);
         tags.add(DietType.Vegan);
 
         Recipe taggedRecipe = new Recipe("chicken", descript, tags, needed, steps, cooktime);
 
-        List<DietType> myTags = taggedRecipe.getTags();
+        Set<DietType> myTags = taggedRecipe.getTags();
         assertEquals(2, myTags.size());
 
     }
@@ -196,15 +198,14 @@ public class RecipeTest {
         List<Ingredient> testNeeded = new ArrayList<Ingredient>();
         testNeeded.add(i1);
 
-        List<DietType> tags = new ArrayList<DietType>();
+        Set<DietType> tags = new HashSet<DietType>();
 
         tags.add(DietType.Vegan);
-        tags.add(DietType.Vegeterian);
+        tags.add(DietType.Vegetarian);
 
         Recipe rec = new Recipe("test", "test", tags, testNeeded, testSteps, 1.0);
 
         assertEquals(2, rec.getTags().size());
     }
-
 
 }
