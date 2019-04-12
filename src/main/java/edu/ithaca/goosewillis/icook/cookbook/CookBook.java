@@ -136,18 +136,48 @@ public class CookBook {
         return recommendations;
     }
 
-    public ArrayList<Recipe> getRecipesByTag(DietType tag){
-        ArrayList<Recipe> recipesByTag = new ArrayList<Recipe>();
-
-        try {
-            for(Recipe currRecipe : recipes.values()){
-                if(currRecipe.getTags().contains(tag)){
-                    recipesByTag.add(currRecipe);
+    public Set<Recipe> getRecipesByTag(DietType... tag){
+        Set<Recipe> recipesByTag = new HashSet<>();
+        for (Recipe recipe : this.recipes.values()) {
+            for (DietType type : tag) {
+                if (recipe.getTags().contains(type)) {
+                    if (!recipesByTag.contains(recipe)) {
+                        recipesByTag.add(recipe);
+                    }
                 }
             }
-        }catch(NullPointerException e){
-            System.out.println("NullPointerException Caught");
         }
         return recipesByTag;
+    }
+
+    public Set<Ingredient> getIngredientsByTag(DietType... tag) {
+        Set<Ingredient> ingredientsByTag = new HashSet<>();
+        for (Ingredient ingredient : this.ingredients.values()) {
+            for (DietType type : tag) {
+                if (ingredient.getDietType() == type) {
+                    if (!ingredientsByTag.contains(ingredient)) {
+                        ingredientsByTag.add(ingredient);
+                    }
+                }
+            }
+        }
+        return ingredientsByTag;
+    }
+
+    public Recipe getRecipe(String name) {
+        Recipe recipe = this.recipes.get(name);
+        if (recipe == null) return null;
+        return recipe;
+    }
+
+
+    public Set<Recipe> getRecipesByTime(double minutes) {
+        Set<Recipe> inTime = new HashSet<>();
+        for (Recipe recipe : this.recipes.values()) {
+            if (recipe.getCookTime() <= minutes) {
+                inTime.add(recipe);
+            }
+        }
+        return inTime;
     }
 }
