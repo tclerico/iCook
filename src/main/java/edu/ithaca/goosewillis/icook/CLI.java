@@ -84,7 +84,7 @@ public class CLI {
                     //Doesnt exist keep prompting
                     System.out.println("That command doesn't exist!");
                 } else {
-                    nextCommand.execute(inputCommand, action);
+                    nextCommand.execute(action);
                 }
             }
             //fridge.saveFridgeToFile();

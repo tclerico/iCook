@@ -86,12 +86,13 @@ public class CommandManager {
             @Override
             public boolean execute(String fullInput) {
                 if (loggedIn){
-                    List<String> arguments = Arrays.asList(fullInput.split(" "));
-                    List<String> name = new ArrayList<>();
-                    for (int i=1; i<arguments.size(); i++){
-                        name.add(arguments.get(i));
-                    }
-                    String recipeName = String.join(" ", name);
+//                    List<String> arguments = Arrays.asList(fullInput.split(" "));
+//                    List<String> name = new ArrayList<>();
+//                    for (int i=1; i<arguments.size(); i++){
+//                        name.add(arguments.get(i));
+//                    }
+//                    String recipeName = String.join(" ", name);
+                    String recipeName = fullInput.replaceFirst("name ", "");
                     Recipe recipe = cookBook.getRecipe(recipeName);
                     System.out.println(recipe.display());
                 }
@@ -104,6 +105,8 @@ public class CommandManager {
         commands.put(searchRecipeByName.getCommandName(), searchRecipeByName);
 
         //Search recipes by tag
+
+        //TODO UPDATE THIS TO ADD TO LIST -> UPDATE SEARCH TO TAKE LIST
         Command searchRecipeByTag = new Command("tag") {
             @Override
             public boolean execute(String fullInput) {
@@ -242,12 +245,14 @@ public class CommandManager {
                 List<String> arguments = new ArrayList<>();
                 //Clean up input and check for option, split into list to be added
                 if(fullInput.contains("-m")){
-                    String nInput = fullInput.replaceFirst("-m$", "");
-                    arguments = Arrays.asList(fullInput.split(","));
+                    System.out.println("Additional option");
+                    String nInput = fullInput.replaceAll("add -m ", "");
+                    System.out.println(nInput);
+                    arguments = Arrays.asList(nInput.split(", "));
                 }
                 else{
                     String nInput = fullInput.replaceFirst("add ", "");
-                    arguments = Arrays.asList(fullInput.split(" "));
+                    arguments = Arrays.asList(nInput.split(" "));
                 }
 
                 //add each ingredient to the fridge
@@ -277,7 +282,7 @@ public class CommandManager {
                         "time [minutes]                 searches for recipes based on time, returns a list of suitable recipes\n" +
                         "tag [type]                     (only 4 tags exist, 'vegetarian' 'vegan' 'gluten' 'dairy') searches for recipe based on restrictions\n" +
                         "recommend                      returns a list of recipes\n" +
-                        "add [ingredient] [....]        adds ingredients to your fridge\n" +
+                        "add [ingredient] [....]        adds ingredients to your fridge. Use -m to add multiple ingredients but use COMMA SEPARATION\n" +
                         "display                        displays the contents of your fridge");
 
                 return false;
