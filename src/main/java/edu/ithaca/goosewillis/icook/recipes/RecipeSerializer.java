@@ -34,13 +34,13 @@ public class RecipeSerializer implements JsonSerializer<Recipe>, JsonDeserialize
             instructions.add(instruction.getAsString());
         }
         for (JsonElement tag : tags){
-            if (tag.equals("Vegetarian")) {
+            if (tag.getAsString().equals("Vegetarian")) {
                 restrictions.add(DietType.Vegetarian);
-            } else if (tag.equals("Vegan")) {
+            } else if (tag.getAsString().equals("Vegan")) {
                 restrictions.add(DietType.Vegan);
-            } else if (tag.equals("Gluten Free")) {
+            } else if (tag.getAsString().equals("Gluten Free")) {
                 restrictions.add(DietType.GlutenFree);
-            } else if (tag.equals("Dairy Free")) {
+            } else if (tag.getAsString().equals("Dairy Free")) {
                 restrictions.add(DietType.NonDairy);
             }
         }

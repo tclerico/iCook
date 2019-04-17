@@ -1,5 +1,5 @@
 {
-  "username": "tim",
+  "username": "test",
   "password": "pass",
   "fridge": {
     "ingredients": [
@@ -28,7 +28,7 @@
         "dietType": "None"
       },
       {
-        "name": "beef",
+        "name": "Spinach",
         "count": 1.0,
         "cooktime": 10.0,
         "dietType": "None"

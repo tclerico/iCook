@@ -78,13 +78,13 @@ public class CLI {
 
             while(cliState == State.RUNNING){
                 action = reader.nextLine();
-                String[] pieces = action.split(" ");
-                Command nextCommand = manager.getCommand(pieces[0]);
+                String inputCommand = action.split(" ")[0];
+                Command nextCommand = manager.getCommand(inputCommand);
                 if (nextCommand == null) {
                     //Doesnt exist keep prompting
                     System.out.println("That command doesn't exist!");
                 } else {
-                    nextCommand.execute(Arrays.asList(pieces));
+                    nextCommand.execute(inputCommand, action);
                 }
             }
             //fridge.saveFridgeToFile();

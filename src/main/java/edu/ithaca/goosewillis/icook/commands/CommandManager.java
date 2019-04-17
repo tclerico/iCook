@@ -10,6 +10,7 @@ import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.user.User;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class CommandManager {
@@ -38,17 +39,17 @@ public class CommandManager {
         return command;
     }
 
-    public boolean executeCommand(String commandName, List<String> arguments) {
+    public boolean executeCommand(String commandName, String fullInput) {
         Command toExecute = getCommand(commandName);
         if (toExecute == null) return false;
-        toExecute.execute(arguments);
+        toExecute.execute(fullInput);
         return true;
     }
 
     public void loadCommands() {
         Command quitCommand = new Command("quit") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
                 CLI.cliState = State.STOPPING;
                 if(loggedIn){
                     CLI.logout(user);
@@ -63,7 +64,8 @@ public class CommandManager {
         //Search Recipe By Time
         Command searchRecipeByTime = new Command("time") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
                 if(loggedIn){
                     double minutes = Double.valueOf(arguments.get(1));
                     Set<Recipe> recipes = cookBook.getRecipesByTime(minutes);
@@ -82,9 +84,9 @@ public class CommandManager {
         //Search recipe by name
         Command searchRecipeByName = new Command("name") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
                 if (loggedIn){
-                    //arguments.remove(0);
+                    List<String> arguments = Arrays.asList(fullInput.split(" "));
                     List<String> name = new ArrayList<>();
                     for (int i=1; i<arguments.size(); i++){
                         name.add(arguments.get(i));
@@ -104,9 +106,9 @@ public class CommandManager {
         //Search recipes by tag
         Command searchRecipeByTag = new Command("tag") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
                 if (loggedIn) {
-                    //arguments.remove(0);
+                    List<String> arguments = Arrays.asList(fullInput.split(" "));
                     String arg = arguments.get(1);
                     //String tag = arg.substring(0, 1).toUpperCase() + arg.substring(1);
                     String tag = arg;
@@ -120,7 +122,7 @@ public class CommandManager {
                     } else if (tag.equals("Dairy")) {
                         restriction = DietType.NonDairy;
                     }
-                    System.out.println(restriction);
+//                    DietType restriction = DietType.valueOf(arg);
                     Set<Recipe> recipes = cookBook.getRecipesByTag(restriction);
                     for (Recipe r : recipes) {
                         System.out.println(r.getName());
@@ -136,7 +138,12 @@ public class CommandManager {
 
         Command recommendRecipe = new Command("recommend") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
+                if (arguments.size() > 1){
+                    System.out.println("This command does not take any arguments please try again");
+                    return false;
+                }
                 if (loggedIn) {
                     List<Recipe> recommended = cookBook.getRecipeRecommendations(user.getFridge());
                     for (Recipe r : recommended) {
@@ -153,7 +160,8 @@ public class CommandManager {
 
         Command register = new Command("register") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
                 if (!loggedIn) {
                     //arguments.remove(0);
                     try {
@@ -175,7 +183,8 @@ public class CommandManager {
 
         Command login = new Command("login") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
                 if (!loggedIn){
                     //arguments.remove(0);
                     User u = CLI.login(arguments.get(1), arguments.get(2));
@@ -194,7 +203,7 @@ public class CommandManager {
 
         Command logout = new Command("logout") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
                 if (loggedIn){
                     CLI.logout(user);
                     setUser(null);
@@ -208,7 +217,12 @@ public class CommandManager {
 
         Command displayFridge = new Command("display") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
+                if (arguments.size() > 1){
+                    System.out.println("This command does not take any arguments please try again");
+                    return false;
+                }
                 if (loggedIn){
                     Fridge f = user.getFridge();
                     for (Ingredient i : f.getIngredients()){
@@ -224,9 +238,21 @@ public class CommandManager {
 
         Command addToFridge = new Command("add") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = new ArrayList<>();
+                //Clean up input and check for option, split into list to be added
+                if(fullInput.contains("-m")){
+                    String nInput = fullInput.replaceFirst("-m$", "");
+                    arguments = Arrays.asList(fullInput.split(","));
+                }
+                else{
+                    String nInput = fullInput.replaceFirst("add ", "");
+                    arguments = Arrays.asList(fullInput.split(" "));
+                }
+
+                //add each ingredient to the fridge
                 if (loggedIn){
-                    for (int i=1; i<arguments.size(); i++){
+                    for (int i=0; i<arguments.size(); i++){
                         user.addToFridge(new Ingredient(arguments.get(i), 1, 10));
                     }
                     System.out.println("Ingredients Added");
@@ -240,7 +266,8 @@ public class CommandManager {
 
         Command help = new Command("help") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
                 System.out.println("Commands:\n" +
                         "quit                           logs user out and exits program\n"+
                         "login [username] [password]    logs user in\n" +
@@ -261,7 +288,8 @@ public class CommandManager {
 
         Command oneTray = new Command("generate") {
             @Override
-            public boolean execute(List<String> arguments) {
+            public boolean execute(String fullInput) {
+                List<String> arguments = Arrays.asList(fullInput.split(" "));
                 //TODO
                 return false;
             }

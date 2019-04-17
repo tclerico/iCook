@@ -1,6 +1,6 @@
 {
-  "username": "tim",
-  "password": "pass",
+  "username": "user2",
+  "password": "password",
   "fridge": {
     "ingredients": [
       {
@@ -25,12 +25,6 @@
         "name": "Carrot",
         "count": 2.0,
         "cooktime": 6.0,
-        "dietType": "None"
-      },
-      {
-        "name": "beef",
-        "count": 1.0,
-        "cooktime": 10.0,
         "dietType": "None"
       }
     ]

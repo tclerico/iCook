@@ -10,7 +10,7 @@ public abstract class Command {
         this.commandName = commandName;
     }
 
-    public abstract boolean execute(List<String> arguments);
+    public abstract boolean execute(String fullInput);
 
     public String getCommandName() {
         return commandName;

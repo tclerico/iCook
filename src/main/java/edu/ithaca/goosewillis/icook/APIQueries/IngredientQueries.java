@@ -199,6 +199,7 @@ public class IngredientQueries {
                             if (recipe.get("dairyFree").getAsBoolean()){
                                 tags.add(DietType.NonDairy);
                             }
+                            System.out.println(tags);
 
                             JsonArray ingredients = recipe.getAsJsonArray("extendedIngredients");
                             List<String> recipeIngredients = new ArrayList<>();
