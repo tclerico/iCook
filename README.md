@@ -68,3 +68,8 @@ For this sprint we want to be able to get recipe recommendations and generate on
 For this sprint we want ot be able to have a functioning recipe recommendation system
 
 * For this sprint we have not changed any of our diagrams refrenced above
+
+
+## Sprint 3
+* [Sprint 3 Plan] (https://docs.google.com/document/d/1whyUM_P2oEDlDSrURuRbPjoOZb4azPSONjRh9_nleJQ/edit?usp=sharing)
+
