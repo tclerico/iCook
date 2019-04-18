@@ -96,7 +96,7 @@ public class Recipe {
     public String display(){
         String toReturn = name+"\n"+description+"\n"+"Ingredients Needed:\n";
         for (int i=0; i<ingredients.size(); i++){
-            toReturn = toReturn + ingredients.get(i).getName()+"\n";
+            toReturn = toReturn + Integer.toString(i+1)+": " + ingredients.get(i).getName()+"\n";
         }
         toReturn = toReturn+"Steps:\n";
         for (int j=0; j<instructions.size(); j++){

@@ -1,0 +1,38 @@
+{
+  "username": "test",
+  "password": "pass",
+  "fridge": {
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "count": 5.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Tomato",
+        "count": 4.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Broccoli",
+        "count": 3.0,
+        "cooktime": 10.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Carrot",
+        "count": 2.0,
+        "cooktime": 6.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Spinach",
+        "count": 1.0,
+        "cooktime": 10.0,
+        "dietType": "None"
+      }
+    ]
+  }
+}

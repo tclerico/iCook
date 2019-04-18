@@ -33,6 +33,11 @@ public class User {
         }
     }
 
+    public User(){}
+
+    public Fridge getFridge(){ return this.fridge; }
+
+
     public void addToFridge(Ingredient ingredient){
         if(ingredient.isIngredientValid(ingredient)){
             fridge.addIngredient(ingredient);
