@@ -16,6 +16,7 @@ public class User {
     private ArrayList<Ingredient> dislikedIngredients;
     private ArrayList<Recipe> favoriteRecipes;
     private ArrayList<DietType> restrictions;
+    private ArrayList<Recipe> history;
 
     public User(String username, String password, Fridge fridge, ArrayList<Ingredient> dislikedIngredients,
                 ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions){
@@ -108,6 +109,10 @@ public class User {
         }else{
             throw new IllegalArgumentException("Enter a valid diet type");
         }
+    }
+
+    public void addRecipeToHistory(Recipe recipe){
+        history.add(recipe);
     }
 
     private static boolean isUsernameValid(String username){
