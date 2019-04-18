@@ -160,5 +160,21 @@ public class User {
     }
 
     public String getPassword(){ return this.password; }
+
+    public ArrayList<Ingredient> getDislikedIngredients(){
+        return this.dislikedIngredients;
+    }
+
+    public ArrayList<Recipe> getFavoriteRecipes(){
+        return this.favoriteRecipes;
+    }
+
+    public ArrayList<DietType> getRestrictions(){
+        return this.restrictions;
+    }
+
+    public ArrayList<Recipe> getHistory(){
+        return this.history;
+    }
 }
 
