@@ -19,7 +19,7 @@ public class User {
     private ArrayList<Recipe> history;
 
     public User(String username, String password, Fridge fridge, ArrayList<Ingredient> dislikedIngredients,
-                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions){
+                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions, ArrayList<Recipe> history){
         if(isUsernameValid(username) && isPasswordValid(password)){
             this.username = username;
             this.password = password;
@@ -27,6 +27,7 @@ public class User {
             this.dislikedIngredients = dislikedIngredients;
             this.favoriteRecipes = favoriteRecipes;
             this.restrictions = restrictions;
+            this.history = history;
         }else{
             throw new IllegalArgumentException("Invalid username or password");
         }
@@ -114,6 +115,10 @@ public class User {
     public void addRecipeToHistory(Recipe recipe){
         history.add(recipe);
     }
+
+    public void removeRecipeFromHistory(Recipe recipe){ history.remove(recipe); }
+
+    public void clearRecipeHistory(){ history.clear(); }
 
     private static boolean isUsernameValid(String username){
         if(username != null){
