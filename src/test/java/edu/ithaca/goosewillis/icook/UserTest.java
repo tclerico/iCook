@@ -22,15 +22,16 @@ public class UserTest {
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
         ArrayList<DietType> restrictions = new ArrayList<>();
+        ArrayList<Recipe> history = new ArrayList<>();
 
-        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
+        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions, history);
         user1.setUsername("newUser1");
         user1.setPassword("newPassword");
         assertEquals("newUser1", user1.getUsername());
         assertEquals("newPassword", user1.getPassword());
 
-        assertThrows(IllegalArgumentException.class, ()-> new User(null, "password", fridge, dislikedIngredients, favoriteRecipes, restrictions));
-        assertThrows(IllegalArgumentException.class, ()-> new User("user1", null, fridge, dislikedIngredients, favoriteRecipes, restrictions));
+        assertThrows(IllegalArgumentException.class, ()-> new User(null, "password", fridge, dislikedIngredients, favoriteRecipes, restrictions, history));
+        assertThrows(IllegalArgumentException.class, ()-> new User("user1", null, fridge, dislikedIngredients, favoriteRecipes, restrictions, history));
     }
 
     @Test //tests user's ability to add to fridge, remove from fridge, and use ingredient
@@ -43,8 +44,9 @@ public class UserTest {
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
         ArrayList<DietType> restrictions = new ArrayList<>();
+        ArrayList<Recipe> history = new ArrayList<>();
 
-        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
+        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions, history);
         user1.addToFridge(chickenBreast);
         user1.addToFridge(brownRice);
         user1.addToFridge(broccoli);
@@ -74,6 +76,7 @@ public class UserTest {
         ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
         ArrayList<Recipe> favoriteRecipes = new ArrayList<>();
         ArrayList<DietType> restrictions = new ArrayList<>();
+        ArrayList<Recipe> history = new ArrayList<>();
 
         Ingredient pb = new Ingredient("Peanut Butter", 1, 0);
         Ingredient bread = new Ingredient("Bread", 2, 0);
@@ -91,7 +94,7 @@ public class UserTest {
 
         Recipe pbj = new Recipe("Peanut Butter and Jelly", "Your favorite sandwich in less than a minute", pbjIngredients, pbjSteps, 1 );
 
-        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions);
+        User user1 = new User("user1", "password", fridge, dislikedIngredients, favoriteRecipes, restrictions, history);
 
         Ingredient mayo = new Ingredient("Mayo", 1, 0, None);
         user1.addDislikedIngredient(mayo);
@@ -109,6 +112,16 @@ public class UserTest {
         assertTrue(favoriteRecipes.contains(pbj));
         user1.unfavoriteRecipe(pbj);
         assertTrue(!favoriteRecipes.contains(pbj));
+
+        assertFalse(history.contains(pbj));
+        user1.addRecipeToHistory(pbj);
+        assertTrue(history.contains(pbj));
+        user1.removeRecipeFromHistory(pbj);
+        assertTrue(history.isEmpty());
+        user1.addRecipeToHistory(pbj);
+        user1.clearRecipeHistory();
+        assertTrue(history.isEmpty());
+        assertFalse(history.contains(pbj));
 
     }
 
