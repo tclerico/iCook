@@ -73,5 +73,5 @@ For this sprint we want ot be able to have a functioning recipe recommendation s
 ## Sprint 3
 * [Sprint 3 Plan](https://docs.google.com/document/d/1whyUM_P2oEDlDSrURuRbPjoOZb4azPSONjRh9_nleJQ/edit?usp=sharing)
 
-# Sprint Goal:
+## Sprint Goal:
 Add spice recommendation, integrate one tray meal generation with recipe recommendations, clean ingredient input and store individual ingredients
