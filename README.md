@@ -10,6 +10,9 @@
 * [Class Diagram](https://drive.google.com/file/d/1xZrD_i0tI43p2xnsMDsNeT6hNzWfNDYk/view?usp=sharing)
 * [Sequence Diagram](https://drive.google.com/open?id=1xxWUaln-3PHPR8UdziEnuUuOg_W2Z2Jf)
 
+## Product Goal
+To generate one-tray-meals and recommend recipes based off the food available to a user
+
 ## Description
 
 Cooking is by far one of the greatest skills to learn. To be able to feed oneself is key to a happy, healthy life. But when you are trying to learn, what do you buy? Many people might say that you pick a recipe you'd like to try and buy those ingredients while making sure to keep staples like flour, butter, and eggs constantly stocked.
