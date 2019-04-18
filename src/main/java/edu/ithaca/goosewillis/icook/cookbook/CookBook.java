@@ -136,15 +136,13 @@ public class CookBook {
         return recommendations;
     }
 
-    public Set<Recipe> getRecipesByTag(DietType... tag){
+    public Set<Recipe> getRecipesByTag(DietType tag){
         Set<Recipe> recipesByTag = new HashSet<>();
         for (Recipe recipe : this.recipes.values()) {
-            for (DietType type : tag) {
-                if (recipe.getTags().contains(type)) {
+                if (recipe.getTags().contains(tag)) {
                     if (!recipesByTag.contains(recipe)) {
                         recipesByTag.add(recipe);
                     }
-                }
             }
         }
         return recipesByTag;
