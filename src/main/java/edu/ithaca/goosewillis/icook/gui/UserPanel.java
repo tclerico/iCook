@@ -84,6 +84,7 @@ public class UserPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e){
             //redirect to search panel
+            controller.changePage(new SearchPanel(user, controller));
         }
     }
 
