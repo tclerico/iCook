@@ -19,8 +19,8 @@ public class CookBookTest {
     @Test
     void getRecommendationsTest(){
         try {
-            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
-            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
+            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridgeTest.json"));
 
             assertTrue(cookBook.getRecipeRecommendations(fridge).contains(cookBook.getSpecificRecipe("Can Make in User Test")));
             assertTrue(cookBook.getRecipeRecommendations(fridge).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
@@ -34,7 +34,7 @@ public class CookBookTest {
 //    @Test
 //    void getRecipesByTagTest(){
 //        try {
-//            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+//            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
 //
 //            assertTrue(cookBook.getRecipesByTag(DietType.Vegan).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
 //            assertTrue(cookBook.getRecipesByTag(DietType.Vegetarian).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));

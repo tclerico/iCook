@@ -57,7 +57,7 @@ class FridgeTest {
     @Test
     void getIngredientsByCookTimeTest(){
         try {
-            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridge.json"));
+            Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridgeTest.json"));
 
             assertTrue(fridge.getIngredientsByCookTime(1).contains(fridge.searchIngredient("Chicken Breast")));
             assertTrue(fridge.getIngredientsByCookTime(1).contains(fridge.searchIngredient("Tomato")));

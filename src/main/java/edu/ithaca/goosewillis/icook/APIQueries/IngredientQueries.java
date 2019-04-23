@@ -99,11 +99,10 @@ public class IngredientQueries {
                         //System.out.println("Adding: "+rec.get("name").getAsString());
                     }
                 }
-                //break;
+                break;
             }catch (Exception e){
                 e.printStackTrace();
             }
-            //break;
         }
         return recipeNames;
     }
@@ -128,11 +127,10 @@ public class IngredientQueries {
                         recipeID.add(recipe.get("id").getAsInt());
                     }
                 }
-                //break;
+                break;
             }catch (Exception e){
                 e.printStackTrace();
             }
-            //break;
         }
         return recipeID;
     }
@@ -206,6 +204,11 @@ public class IngredientQueries {
                             for (JsonElement element : ingredients) {
                                 JsonObject ing = element.getAsJsonObject();
                                 String ingName = ing.get("name").getAsString();
+
+                                Double amount = ing.get("amount").getAsDouble();
+                                String unit = ing.get("unit").getAsString();
+
+                                
                                 recipeIngredients.add(ingName);
                             }
                             constructRecipe(cookBook, name, cooktime, recipeIngredients, instructs, tags);

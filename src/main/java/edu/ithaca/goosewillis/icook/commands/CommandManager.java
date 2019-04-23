@@ -86,12 +86,6 @@ public class CommandManager {
             @Override
             public boolean execute(String fullInput) {
                 if (loggedIn){
-//                    List<String> arguments = Arrays.asList(fullInput.split(" "));
-//                    List<String> name = new ArrayList<>();
-//                    for (int i=1; i<arguments.size(); i++){
-//                        name.add(arguments.get(i));
-//                    }
-//                    String recipeName = String.join(" ", name);
                     String recipeName = fullInput.replaceFirst("name ", "");
                     Recipe recipe = cookBook.getRecipe(recipeName);
                     System.out.println(recipe.display());

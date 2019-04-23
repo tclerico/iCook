@@ -35,7 +35,9 @@ public class CLI {
     public static User login(String username, String password){
         try{
             User user = new UserSerializer().deserialize(FileUtil.readFromJson(username+".json"));
-            return user;
+            if (user.getPassword().equals(password)){
+                return user;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -68,7 +70,7 @@ public class CLI {
                 "type 'help' for available commands");
 
         try{
-            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
             //Read in from file to check against log-ins
             User user = null;
 
