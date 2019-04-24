@@ -109,6 +109,7 @@ public class UserPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e){
             String ingName = newItem.getText();
+            //TODO ADD INGREDIENT TO THE USERS ACTUAL FRIDGE, NOT JUST DISPLAY
             DefaultListModel<String> items = readInItems();
             items.addElement(ingName);
             JPanel nfridge = setupFridge(items);
@@ -135,8 +136,8 @@ public class UserPanel extends JPanel {
         }
     }
 
-
     private class LogoutAction implements ActionListener{
+        //TODO LOGOUT NEEDS TO SAVE ALL THINGS TO FILES / DB
         @Override
         public void actionPerformed(ActionEvent e){
             user = null;

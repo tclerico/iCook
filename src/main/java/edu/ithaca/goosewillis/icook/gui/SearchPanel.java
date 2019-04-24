@@ -1,6 +1,7 @@
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
+import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.user.User;
 
 import javax.swing.*;
@@ -79,6 +80,20 @@ public class SearchPanel extends JPanel{
 
             }else if (selected.equals("Tag")){
                 //search by tag
+                String type = input.getText();
+                //TODO Convert string to diet type
+                for (DietType d : DietType.values()){
+                    if (d.getName().equals(type)){
+                        Set<Recipe> res = controller.cookBook.getRecipesByTag(d);
+                        String str = "";
+                        for(Recipe r : res){
+                            str+=r.getName()+"\n";
+                        }
+                        results.setText(str);
+                    }
+                }
+
+
             }else{
                 //TODO THIS WORKS, But formatting needs to be fixed
                 //search by name
@@ -91,6 +106,7 @@ public class SearchPanel extends JPanel{
 
         }
     }
+
 
     public JMenuBar initMenu(){
         JMenuBar menuBar = new JMenuBar();

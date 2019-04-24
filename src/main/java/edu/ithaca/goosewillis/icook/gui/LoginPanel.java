@@ -37,6 +37,8 @@ public class LoginPanel extends JPanel {
         this.add(login);
 
         JButton register = new JButton("Register");
+        register.addActionListener(new RegisterAction());
+        this.add(register);
 
 
 
@@ -61,6 +63,14 @@ public class LoginPanel extends JPanel {
             }
 
 
+        }
+    }
+
+
+    private class RegisterAction implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            controller.changePage(new RegisterPanel(controller));
         }
     }
 
