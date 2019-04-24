@@ -18,6 +18,8 @@ public class UserPanel extends JPanel {
 
     User user;
     AppStateController controller;
+    JTextArea newItem;
+    JPanel fridge;
 
     public UserPanel(User user, AppStateController controller){
         this.user = user;
@@ -30,32 +32,31 @@ public class UserPanel extends JPanel {
             e.printStackTrace();
         }
         this.setLayout(new BorderLayout());
-        JPanel menuPanel = new JPanel();
         JPanel fridgePanel = new JPanel();
         JPanel title = new JPanel();
-//        menuPanel.setBounds(350,5,700,10);
-//        fridgePanel.setBounds(350, 100, 500,100);
-//        title.setBounds(350,25,500,10);
-
-
 
         JMenuBar mb = initMenu();
-        menuPanel.add(mb);
         title.add(new JLabel("User: "+user.getUsername()));
 
-        JList fridgeItems = initFridge();
-        JScrollPane listScroller = new JScrollPane(fridgeItems);
-        listScroller.setSize(new Dimension(15,20));
-        fridgePanel.add(listScroller);
+        //Setup Fridge Display
+        fridge = setupFridge(readInItems());
+
         this.add(mb, BorderLayout.NORTH);
         this.add(title, BorderLayout.WEST);
-        this.add(fridgePanel, BorderLayout.CENTER);
-
+        this.add(fridge, BorderLayout.CENTER);
 
         //TODO ADD A 'Add to fridge' section positioned East
+        JPanel addIngPanel = new JPanel();
+        newItem = new JTextArea(1,15);
+        JButton addButton = new JButton("Add to Fridge");
+        addButton.addActionListener(new AddIngredientAction());
+
+        addIngPanel.add(newItem);
+        addIngPanel.add(addButton);
+        this.add(addIngPanel, BorderLayout.EAST);
+
 
     }
-
 
 
     public JMenuBar initMenu(){
@@ -74,19 +75,46 @@ public class UserPanel extends JPanel {
         return menuBar;
     }
 
+    public JPanel setupFridge(DefaultListModel items){
+        JPanel fPanel = new JPanel();
+        JList fridge = new JList(items);
+        fridge.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        fridge.setVisibleRowCount(8);
+        JScrollPane fridgeScroller = new JScrollPane(fridge);
+        fridgeScroller.setSize(30,50);
+        fPanel.add(fridgeScroller);
+        return fPanel;
+    }
 
 
-    public JList initFridge(){
+    public DefaultListModel<String> readInItems(){
         Fridge uf = user.getFridge();
         DefaultListModel<String> items = new DefaultListModel<>();
         for (Ingredient i : uf.getIngredients()){
             items.addElement(i.toString());
         }
-        JList list = new JList(items);
 
-        list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        list.setVisibleRowCount(8);
-        return list;
+        return items;
+    }
+
+    public void resetFridge(JPanel newFridge){
+        this.remove(fridge);
+        this.add(newFridge, BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
+
+    private class AddIngredientAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            String ingName = newItem.getText();
+            DefaultListModel<String> items = readInItems();
+            items.addElement(ingName);
+            JPanel nfridge = setupFridge(items);
+            resetFridge(nfridge);
+
+        }
     }
 
 

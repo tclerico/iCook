@@ -80,7 +80,11 @@ public class SearchPanel extends JPanel{
             }else if (selected.equals("Tag")){
                 //search by tag
             }else{
+                //TODO THIS WORKS, But formatting needs to be fixed
                 //search by name
+                String name = input.getText();
+                Recipe result = controller.cookBook.getSpecificRecipe(name);
+                results.setText(result.display());
             }
 
 
