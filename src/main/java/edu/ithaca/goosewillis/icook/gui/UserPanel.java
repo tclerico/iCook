@@ -1,8 +1,11 @@
 package edu.ithaca.goosewillis.icook.gui;
 
+import edu.ithaca.goosewillis.icook.cookbook.CookBook;
+import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.user.User;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +23,12 @@ public class UserPanel extends JPanel {
         this.user = user;
         this.controller = controller;
         this.controller.setUser(user);
+        try {
+            CookBook cb = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
+            this.controller.setCookBook(cb);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         //this.setLayout(new FlowLayout());
         JPanel menuPanel = new JPanel();
         JPanel fridgePanel = new JPanel();
