@@ -29,13 +29,13 @@ public class UserPanel extends JPanel {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //this.setLayout(new FlowLayout());
+        this.setLayout(new BorderLayout());
         JPanel menuPanel = new JPanel();
         JPanel fridgePanel = new JPanel();
         JPanel title = new JPanel();
-        menuPanel.setBounds(350,5,700,10);
-        fridgePanel.setBounds(350, 100, 500,100);
-        title.setBounds(350,25,500,10);
+//        menuPanel.setBounds(350,5,700,10);
+//        fridgePanel.setBounds(350, 100, 500,100);
+//        title.setBounds(350,25,500,10);
 
 
 
@@ -47,10 +47,12 @@ public class UserPanel extends JPanel {
         JScrollPane listScroller = new JScrollPane(fridgeItems);
         listScroller.setSize(new Dimension(15,20));
         fridgePanel.add(listScroller);
-        this.add(menuPanel);
-        this.add(title);
-        this.add(fridgePanel);
+        this.add(mb, BorderLayout.NORTH);
+        this.add(title, BorderLayout.WEST);
+        this.add(fridgePanel, BorderLayout.CENTER);
 
+
+        //TODO ADD A 'Add to fridge' section positioned East
 
     }
 

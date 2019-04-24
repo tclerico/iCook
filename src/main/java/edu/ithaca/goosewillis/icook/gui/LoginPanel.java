@@ -36,6 +36,9 @@ public class LoginPanel extends JPanel {
 
         this.add(login);
 
+        JButton register = new JButton("Register");
+
+
 
     }
 

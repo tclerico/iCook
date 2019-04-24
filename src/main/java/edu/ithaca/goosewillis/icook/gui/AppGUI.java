@@ -8,7 +8,8 @@ public class AppGUI extends JPanel{
 
     public AppGUI(){
         AppStateController controller = new AppStateController(this);
-        this.add(new LoginPanel(controller));
+        this.setLayout(new BorderLayout());
+        this.add(new LoginPanel(controller), BorderLayout.CENTER);
     }
 
 
