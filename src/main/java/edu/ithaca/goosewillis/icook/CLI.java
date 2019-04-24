@@ -28,7 +28,7 @@ public class CLI {
 
     public static User createUser(String username, String password) throws Exception{
         Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("defaultFridge.json"));
-        User user = new User(username, password, fridge, new ArrayList<Ingredient>(), new ArrayList<Recipe>(), new ArrayList<DietType>());
+        User user = new User(username, password, fridge, new ArrayList<Ingredient>(), new ArrayList<Recipe>(), new ArrayList<DietType>(), new ArrayList<Recipe>());
         return user;
     }
 
