@@ -142,7 +142,7 @@ public class CommandManager {
                     return false;
                 }
                 if (loggedIn) {
-                    List<Recipe> recommended = cookBook.getRecipeRecommendations(user.getFridge());
+                    List<Recipe> recommended = cookBook.getRecipeRecommendations(user.getFridge(), user.getRestrictions(), user.getDislikedIngredients());
                     for (Recipe r : recommended) {
                         System.out.println(r.getName());
                     }

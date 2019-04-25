@@ -115,17 +115,32 @@ public class CookBook {
 
     }
 
-    public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge){
+    public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge, ArrayList<DietType> restrictions, ArrayList<Ingredient> dislikedIngredients){
         ArrayList<Recipe> recommendations = new ArrayList<Recipe>();
         try {
             for (Recipe currRecipe : this.recipes.values()) {
+                //canMake is an incrementor that will not add a certain recipe to the recommendations ArrayList (if it is set above 1 for now)
                 int canMake = 0;
+
+                //if recipe does not contain a restriction in the user's ArrayList, it will not be recommended
+                for(int i = 0; i < restrictions.size(); i++){
+                    if(!currRecipe.getTags().contains(restrictions.get(i))){
+                        canMake += 10;
+                    }
+                }
+
                 List<Ingredient> recipeIngredients = currRecipe.getIngredients();
                 for (Ingredient currIngredient : recipeIngredients) {
+                    //increments canMake if user doesn't have ingredient
                     if (fridge.searchIngredient(currIngredient.getName()) == null) {
                         canMake++;
                     }
+                    //increments canMake so recipe won't be recommended if there is a dislikedIngredient
+//                    if(dislikedIngredients.contains(currIngredient)){
+//                        canMake += 10;
+//                    }
                 }
+
                 if (canMake <= 1) {
                     recommendations.add(currRecipe);
                 }

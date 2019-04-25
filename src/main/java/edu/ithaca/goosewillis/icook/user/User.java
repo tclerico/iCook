@@ -19,9 +19,10 @@ public class User {
     private ArrayList<Ingredient> dislikedIngredients;
     private ArrayList<Recipe> favoriteRecipes;
     private ArrayList<DietType> restrictions;
+    private ArrayList<Recipe> history;
 
     public User(String username, String password, Fridge fridge, ArrayList<Ingredient> dislikedIngredients,
-                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions){
+                ArrayList<Recipe> favoriteRecipes, ArrayList<DietType> restrictions, ArrayList<Recipe> history){
         if(isUsernameValid(username) && isPasswordValid(password)){
             this.username = username;
             this.password = password;
@@ -29,6 +30,7 @@ public class User {
             this.dislikedIngredients = dislikedIngredients;
             this.favoriteRecipes = favoriteRecipes;
             this.restrictions = restrictions;
+            this.history = history;
         }else{
             throw new IllegalArgumentException("Invalid username or password");
         }
@@ -118,6 +120,14 @@ public class User {
         }
     }
 
+    public void addRecipeToHistory(Recipe recipe){
+        history.add(recipe);
+    }
+
+    public void removeRecipeFromHistory(Recipe recipe){ history.remove(recipe); }
+
+    public void clearRecipeHistory(){ history.clear(); }
+
     private static boolean isUsernameValid(String username){
         if(username != null){
             return true;
@@ -154,21 +164,22 @@ public class User {
 
     public String getPassword(){ return this.password; }
 
-
-    public void saveToFile(){
-        try{
-            File file = new File(getUsername()+".json");
-            if (!file.exists()){
-                file.delete();
-            }
-            file.createNewFile();
-            FileWriter writer = new FileWriter(file);
-            writer.write(FileUtil.gson.toJson(new UserSerializer().serialize(this)));
-            writer.flush();
-            writer.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public ArrayList<Ingredient> getDislikedIngredients(){
+        return this.dislikedIngredients;
     }
+
+    public ArrayList<Recipe> getFavoriteRecipes(){
+        return this.favoriteRecipes;
+    }
+
+    public ArrayList<DietType> getRestrictions(){
+        return this.restrictions;
+    }
+
+    public ArrayList<Recipe> getHistory(){
+        return this.history;
+    }
+
+
 }
 

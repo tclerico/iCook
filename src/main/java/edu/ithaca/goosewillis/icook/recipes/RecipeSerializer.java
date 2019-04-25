@@ -44,7 +44,7 @@ public class RecipeSerializer implements JsonSerializer<Recipe>, JsonDeserialize
                 restrictions.add(DietType.NonDairy);
             }
         }
-        return new Recipe(name, description,restrictions, ingredients, instructions, cookTime);
+        return new Recipe(name, description, restrictions, ingredients, instructions, cookTime);
     }
 
     @Override
