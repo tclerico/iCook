@@ -47,7 +47,7 @@ public class RegisterPanel extends JPanel {
             String pass = password.getText();
             try{
                 Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("defaultFridge.json"));
-                User user = new User(uname, pass, fridge, new ArrayList<Ingredient>(), new ArrayList<Recipe>(), new ArrayList<DietType>());
+                User user = new User(uname, pass, fridge, new ArrayList<Ingredient>(), new ArrayList<Recipe>(), new ArrayList<DietType>(), new ArrayList<Recipe>());
                 controller.changePage(new UserPanel(user, controller));
             }catch (Exception ex){
                 ex.printStackTrace();

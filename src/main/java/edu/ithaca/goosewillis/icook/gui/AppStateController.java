@@ -19,7 +19,13 @@ public class AppStateController {
         this.user = user;
     }
 
+    public User getUser(){return this.user;}
+
     public void setCookBook(CookBook cb){this.cookBook = cb;}
+
+    public CookBook getCookBook() {
+        return cookBook;
+    }
 
     public void changePage(JPanel panel){
         gui.changePanel(panel);
