@@ -32,6 +32,7 @@ public class RegisterPanel extends JPanel {
         this.add(password);
 
         JButton register = new JButton("Create Account");
+        register.addActionListener(new RegistrationListener());
         this.add(register);
 
     }

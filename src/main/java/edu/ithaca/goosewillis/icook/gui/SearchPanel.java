@@ -128,6 +128,7 @@ public class SearchPanel extends JPanel{
     private class LogoutAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
+            user.saveToFile();
             user = null;
             controller.changePage(new LoginPanel(controller));
         }

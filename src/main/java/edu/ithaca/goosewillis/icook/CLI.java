@@ -47,19 +47,7 @@ public class CLI {
 
     public static void logout(User user){
         System.out.println("being logged out");
-        try {
-            File file = new File(user.getUsername()+".json");
-            if (!file.exists()){
-                file.delete();
-            }
-            file.createNewFile();
-            FileWriter writer = new FileWriter(file);
-            writer.write(FileUtil.gson.toJson(new UserSerializer().serialize(user)));
-            writer.flush();
-            writer.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        user.saveToFile();
     }
 
     public static void main(String[] args) {

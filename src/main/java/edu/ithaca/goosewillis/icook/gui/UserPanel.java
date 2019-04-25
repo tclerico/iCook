@@ -19,9 +19,11 @@ public class UserPanel extends JPanel {
     User user;
     AppStateController controller;
     JTextArea newItem;
+    JTextArea delItem;
     JPanel fridge;
 
     public UserPanel(User user, AppStateController controller){
+        //TODO Add 'recommend' to user panel??
         this.user = user;
         this.controller = controller;
         this.controller.setUser(user);
@@ -45,15 +47,15 @@ public class UserPanel extends JPanel {
         this.add(title, BorderLayout.WEST);
         this.add(fridge, BorderLayout.CENTER);
 
-        //TODO ADD A 'Add to fridge' section positioned East
-        JPanel addIngPanel = new JPanel();
+        JPanel editFridgePanel = new JPanel();
         newItem = new JTextArea(1,15);
         JButton addButton = new JButton("Add to Fridge");
         addButton.addActionListener(new AddIngredientAction());
+        //TODO add a 'remove item' for fridge?
 
-        addIngPanel.add(newItem);
-        addIngPanel.add(addButton);
-        this.add(addIngPanel, BorderLayout.EAST);
+        editFridgePanel.add(newItem);
+        editFridgePanel.add(addButton);
+        this.add(editFridgePanel, BorderLayout.EAST);
 
 
     }
@@ -109,7 +111,7 @@ public class UserPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e){
             String ingName = newItem.getText();
-            //TODO ADD INGREDIENT TO THE USERS ACTUAL FRIDGE, NOT JUST DISPLAY
+            //TODO ADD INGREDIENT TO THE USERS ACTUAL FRIDGE, NOT JUST DISPLAY -> need mongo thing or a holder for all ings
             DefaultListModel<String> items = readInItems();
             items.addElement(ingName);
             JPanel nfridge = setupFridge(items);
@@ -140,8 +142,10 @@ public class UserPanel extends JPanel {
         //TODO LOGOUT NEEDS TO SAVE ALL THINGS TO FILES / DB
         @Override
         public void actionPerformed(ActionEvent e){
+            user.saveToFile();
             user = null;
             controller.changePage(new LoginPanel(controller));
+
         }
     }
 
