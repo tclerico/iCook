@@ -180,6 +180,22 @@ public class User {
         return this.history;
     }
 
+    public void saveToFile(){
+        try{
+            File file = new File(getUsername()+".json");
+            if (!file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
+            writer.write(FileUtil.gson.toJson(new UserSerializer().serialize(this)));
+            writer.flush();
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
