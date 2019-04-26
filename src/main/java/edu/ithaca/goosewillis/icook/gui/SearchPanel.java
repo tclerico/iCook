@@ -19,7 +19,7 @@ public class SearchPanel extends JPanel{
     AppStateController controller;
     JComboBox dropDown;
     JTextArea input;
-    JLabel results;
+    JPanel results;
 
 
     public SearchPanel(User user, AppStateController controller){
@@ -46,14 +46,48 @@ public class SearchPanel extends JPanel{
 
         this.add(searchWrapper, BorderLayout.WEST);
 
-        JPanel resultWrapper = new JPanel();
-        resultWrapper.setSize(50,150);
-        results = new JLabel("No Results Yet");
-        resultWrapper.add(results);
-        this.add(resultWrapper, BorderLayout.CENTER);
+        results = new JPanel();
+        //results.setSize(50,150);
+
+        this.add(results, BorderLayout.CENTER);
         this.add(initMenu(), BorderLayout.NORTH);
     }
 
+
+    public void fillSearchResults(Set<Recipe> results){
+        DefaultListModel<String> items = new DefaultListModel<>();
+        for (Recipe r : results){
+            items.addElement(r.getName());
+        }
+        JList resList = new JList(items);
+        resList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        resList.setVisibleRowCount(10);
+        JScrollPane searchResults = new JScrollPane(resList);
+        refreshSearchResults(searchResults);
+    }
+
+    public void displayRecipe(Recipe r){
+        DefaultListModel<String> items = new DefaultListModel<>();
+        for (String s : r.getInstructions()){
+            items.addElement(s);
+        }
+        JList instructs = new JList(items);
+        instructs.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        instructs.setVisibleRowCount(10);
+        JScrollPane pane = new JScrollPane(instructs);
+        refreshSearchResults(pane);
+    }
+
+    public void refreshSearchResults(JScrollPane searchResults){
+        JPanel newResPan = new JPanel();
+        newResPan.setLayout(new BorderLayout());
+        //newResPan.setSize(50,150);
+        newResPan.add(searchResults, BorderLayout.CENTER);
+        this.remove(this.results);
+        this.add(newResPan, BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
 
 
     private class SearchAction implements ActionListener{
@@ -71,12 +105,7 @@ public class SearchPanel extends JPanel{
                 //search by time
                 Double time = Double.valueOf(input.getText());
                 Set<Recipe> timeResults = controller.cookBook.getRecipesByTime(time);
-                String resString = "";
-
-                for (Recipe r : timeResults){
-                    resString += r.getName()+"\n";
-                }
-                results.setText(resString);
+                fillSearchResults(timeResults);
 
             }else if (selected.equals("Tag")){
                 //search by tag
@@ -85,11 +114,7 @@ public class SearchPanel extends JPanel{
                 for (DietType d : DietType.values()){
                     if (d.getName().equals(type)){
                         Set<Recipe> res = controller.cookBook.getRecipesByTag(d);
-                        String str = "";
-                        for(Recipe r : res){
-                            str+=r.getName()+"\n";
-                        }
-                        results.setText(str);
+                        fillSearchResults(res);
                     }
                 }
 
@@ -99,7 +124,7 @@ public class SearchPanel extends JPanel{
                 //search by name
                 String name = input.getText();
                 Recipe result = controller.cookBook.getSpecificRecipe(name);
-                results.setText(result.display());
+                displayRecipe(result);
             }
 
 
@@ -148,8 +173,6 @@ public class SearchPanel extends JPanel{
             controller.changePage(new UserPanel(user, controller));
         }
     }
-
-
 
 
 
