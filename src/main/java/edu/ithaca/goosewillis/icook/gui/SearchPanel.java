@@ -20,7 +20,9 @@ public class SearchPanel extends JPanel{
     JComboBox dropDown;
     JTextArea input;
     JPanel results;
+    JList resList;
 
+    //TODO Add 'add to favorites'
 
     public SearchPanel(User user, AppStateController controller){
         this.user = user;
@@ -39,10 +41,14 @@ public class SearchPanel extends JPanel{
 
         JPanel searchWrapper = new JPanel();
 
+        JButton favorite = new JButton("Favorite Recipe");
+        favorite.addActionListener(new FavoriteAction());
+
         searchWrapper.add(inputLabel);
         searchWrapper.add(input);
         searchWrapper.add(dropDown);
         searchWrapper.add(search);
+        searchWrapper.add(favorite);
 
         this.add(searchWrapper, BorderLayout.WEST);
 
@@ -51,6 +57,9 @@ public class SearchPanel extends JPanel{
 
         this.add(results, BorderLayout.CENTER);
         this.add(initMenu(), BorderLayout.NORTH);
+
+
+
     }
 
 
@@ -59,8 +68,8 @@ public class SearchPanel extends JPanel{
         for (Recipe r : results){
             items.addElement(r.getName());
         }
-        JList resList = new JList(items);
-        resList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        resList = new JList(items);
+        resList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         resList.setVisibleRowCount(10);
         JScrollPane searchResults = new JScrollPane(resList);
         refreshSearchResults(searchResults);
@@ -90,6 +99,30 @@ public class SearchPanel extends JPanel{
         this.repaint();
     }
 
+    public JMenuBar initMenu(){
+        JMenuBar menuBar = new JMenuBar();
+        JMenu options = new JMenu("Options");
+        JMenuItem logout = new JMenuItem("Logout");
+        logout.addActionListener(new LogoutAction());
+        JMenuItem oneTray = new JMenuItem("One Tray");
+        oneTray.addActionListener(new OneTrayAction());
+        JMenuItem account = new JMenuItem("Account");
+        account.addActionListener(new AccountAction());
+        options.add(logout);
+        options.add(oneTray);
+        options.add(account);
+        menuBar.add(options);
+        return menuBar;
+    }
+
+    private class FavoriteAction implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            String selected = resList.getSelectedValue().toString();
+            Recipe favoriteRecipe = controller.cookBook.getSpecificRecipe(selected);
+            user.favoriteRecipe(favoriteRecipe);
+        }
+    }
 
     private class SearchAction implements ActionListener{
 
@@ -130,24 +163,6 @@ public class SearchPanel extends JPanel{
 
         }
     }
-
-
-    public JMenuBar initMenu(){
-        JMenuBar menuBar = new JMenuBar();
-        JMenu options = new JMenu("Options");
-        JMenuItem logout = new JMenuItem("Logout");
-        logout.addActionListener(new LogoutAction());
-        JMenuItem oneTray = new JMenuItem("One Tray");
-        oneTray.addActionListener(new OneTrayAction());
-        JMenuItem account = new JMenuItem("Account");
-        account.addActionListener(new AccountAction());
-        options.add(logout);
-        options.add(oneTray);
-        options.add(account);
-        menuBar.add(options);
-        return menuBar;
-    }
-
 
     private class LogoutAction implements ActionListener{
         @Override

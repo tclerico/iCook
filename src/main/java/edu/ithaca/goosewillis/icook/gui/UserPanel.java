@@ -3,6 +3,7 @@ package edu.ithaca.goosewillis.icook.gui;
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
 import edu.ithaca.goosewillis.icook.cookbook.CookbookSerializer;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.user.User;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
@@ -22,6 +23,7 @@ public class UserPanel extends JPanel {
     JTextArea delItem;
     JPanel fridge;
     List<Ingredient>fridgeItems;
+    JPanel favorites;
 
     public UserPanel(User user, AppStateController controller){
         //TODO Add 'recommend' to user panel??
@@ -44,17 +46,19 @@ public class UserPanel extends JPanel {
 
         //Setup Fridge Display
         fridge = setupFridge(readInItems());
+        JLabel fridgeLabel = new JLabel("Fridge:");
+        fridgePanel.add(fridgeLabel);
+        fridgePanel.add(fridge);
 
         this.add(mb, BorderLayout.NORTH);
         this.add(title, BorderLayout.WEST);
-        this.add(fridge, BorderLayout.CENTER);
+        this.add(fridgePanel, BorderLayout.CENTER);
 
         JPanel editFridgePanel = new JPanel();
         editFridgePanel.setLayout(new BorderLayout());
         newItem = new JTextArea(1,15);
         JButton addButton = new JButton("Add to Fridge");
         addButton.addActionListener(new AddIngredientAction());
-        //TODO add a 'remove item' for fridge?
         delItem = new JTextArea(1,15);
         JButton remove = new JButton("Remove");
         remove.addActionListener(new RemoveIngredientAction());
@@ -71,6 +75,13 @@ public class UserPanel extends JPanel {
         editFridgePanel.add(removeItems, BorderLayout.CENTER);
         this.add(editFridgePanel, BorderLayout.EAST);
 
+        //TODO add a Favorites Section
+        favorites = initFavorites();
+        JPanel favePanel =  new JPanel();
+        JLabel favs = new JLabel("Favorites");
+        favePanel.add(favs);
+        favePanel.add(favorites);
+        this.add(favePanel, BorderLayout.SOUTH);
 
     }
 
@@ -91,7 +102,6 @@ public class UserPanel extends JPanel {
         return menuBar;
     }
 
-
     public JPanel setupFridge(DefaultListModel items){
         JPanel fPanel = new JPanel();
         JList fridge = new JList(items);
@@ -102,7 +112,6 @@ public class UserPanel extends JPanel {
         fPanel.add(fridgeScroller);
         return fPanel;
     }
-
 
     public DefaultListModel<String> readInItems(){
         DefaultListModel<String> items = new DefaultListModel<>();
@@ -121,6 +130,23 @@ public class UserPanel extends JPanel {
         this.repaint();
     }
 
+    public JPanel initFavorites(){
+        List<Recipe> userFaves = user.getFavoriteRecipes();
+        DefaultListModel<String> favs = new DefaultListModel<>();
+        for (Recipe r : userFaves){
+            favs.addElement(r.getName());
+        }
+        JList favlist = new JList(favs);
+        favlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        favlist.setVisibleRowCount(10);
+        JScrollPane scoller = new JScrollPane(favlist);
+        JPanel favoritePanel = new JPanel();
+        favoritePanel.add(scoller);
+        return favoritePanel;
+    }
+
+
+    // ACTION LISTENERS
 
     private class RemoveIngredientAction implements  ActionListener{
          @Override
@@ -128,9 +154,7 @@ public class UserPanel extends JPanel {
              String toRem = delItem.getText();
              int j = -1;
              for (int i=0; i<fridgeItems.size(); i++){
-                 System.out.println(fridgeItems.get(i).getName());
                  if (fridgeItems.get(i).getName().equals(toRem)){
-                     System.out.println("Found");
                      j=i;
                  }
              }
@@ -150,7 +174,6 @@ public class UserPanel extends JPanel {
          }
     }
 
-
     private class AddIngredientAction implements ActionListener{
 
         @Override
@@ -164,7 +187,6 @@ public class UserPanel extends JPanel {
 
         }
     }
-
 
     private class SearchAction implements ActionListener{
 
@@ -184,7 +206,6 @@ public class UserPanel extends JPanel {
     }
 
     private class LogoutAction implements ActionListener{
-        //TODO LOGOUT NEEDS TO SAVE ALL THINGS TO FILES / DB
         @Override
         public void actionPerformed(ActionEvent e){
             user.saveToFile();
