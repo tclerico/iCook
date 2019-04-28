@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,6 +38,23 @@ public class CookBookTest {
             //assertTrue(!cookBook.getRecipeRecommendations(fridge, restrictions, dislikedIngredients).contains(cookBook.getSpecificRecipe("Dislike Broccoli")));
 
         }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void generateOneTrayTest(){
+        try {
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
+            HashMap<String, String> toUse = new HashMap<>();
+            toUse.put("Test Beef", "Beef");
+            toUse.put("Test Chicken", "Chicken");
+            toUse.put("Test Vegetable", "Vegetable");
+            toUse.put("Test Pork", "Pork");
+            Recipe gen = cookBook.generateOneTray(toUse);
+            assertEquals(4, gen.getIngredients().size());
+
+        }catch (Exception e){
             e.printStackTrace();
         }
     }

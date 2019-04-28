@@ -81,6 +81,7 @@ public class IngredientQueries {
     public static List<String> loadRecipeNames(String key, String host, List<String> ingredientList){
         List<String> recipeNames = new ArrayList<>();
         // Get a list of recipes for each ingredient and name to list
+        int count = 0;
         for(String name : ingredientList){
             //System.out.println(name);
             try{
@@ -99,7 +100,13 @@ public class IngredientQueries {
                         //System.out.println("Adding: "+rec.get("name").getAsString());
                     }
                 }
-                break;
+
+                //break;
+//                count++;
+//                if (count>2){
+//                    break;
+//                }
+
             }catch (Exception e){
                 e.printStackTrace();
             }
