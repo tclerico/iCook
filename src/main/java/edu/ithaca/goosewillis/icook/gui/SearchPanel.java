@@ -84,7 +84,8 @@ public class SearchPanel extends JPanel{
         //newResPan.setSize(50,150);
         newResPan.add(searchResults, BorderLayout.CENTER);
         this.remove(this.results);
-        this.add(newResPan, BorderLayout.CENTER);
+        this.results = newResPan;
+        this.add(this.results, BorderLayout.CENTER);
         this.revalidate();
         this.repaint();
     }

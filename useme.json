@@ -22,9 +22,9 @@
         "dietType": "None"
       },
       {
-        "name": "Carrot",
-        "count": 2.0,
-        "cooktime": 6.0,
+        "name": "Apple",
+        "count": 1.0,
+        "cooktime": 1.0,
         "dietType": "None"
       }
     ]
