@@ -134,7 +134,7 @@ public class UserPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            //redirect to onetray generation panel
+            controller.changePage(new OneTrayPanel(controller, user));
         }
     }
 

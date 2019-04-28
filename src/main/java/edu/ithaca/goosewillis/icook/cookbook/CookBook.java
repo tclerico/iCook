@@ -164,6 +164,9 @@ public class CookBook {
             instructions.add("Cook for 15 minutes");
         }
 
+        instructions.add("Remove from oven and let stand for 2 minutes");
+        instructions.add("ENJOY!");
+
         Recipe generated = new Recipe("OneTray meal", "Generated meal", allIngredients,instructions,cookTime);
         return generated;
 
@@ -176,7 +179,9 @@ public class CookBook {
             if (i==tocat.size()-1){
                 str+=tocat.get(i);
             }
-            str+=tocat.get(i)+", ";
+            else {
+                str+=tocat.get(i)+", ";
+            }
         }
         return str;
     }

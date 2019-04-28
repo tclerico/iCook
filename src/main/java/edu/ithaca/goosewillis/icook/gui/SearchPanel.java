@@ -47,7 +47,7 @@ public class SearchPanel extends JPanel{
         this.add(searchWrapper, BorderLayout.WEST);
 
         results = new JPanel();
-        //results.setSize(50,150);
+
 
         this.add(results, BorderLayout.CENTER);
         this.add(initMenu(), BorderLayout.NORTH);
@@ -110,7 +110,6 @@ public class SearchPanel extends JPanel{
             }else if (selected.equals("Tag")){
                 //search by tag
                 String type = input.getText();
-                //TODO Convert string to diet type
                 for (DietType d : DietType.values()){
                     if (d.getName().equals(type)){
                         Set<Recipe> res = controller.cookBook.getRecipesByTag(d);
@@ -120,7 +119,6 @@ public class SearchPanel extends JPanel{
 
 
             }else{
-                //TODO THIS WORKS, But formatting needs to be fixed
                 //search by name
                 String name = input.getText();
                 Recipe result = controller.cookBook.getSpecificRecipe(name);
@@ -163,7 +161,7 @@ public class SearchPanel extends JPanel{
 
         @Override
         public void actionPerformed(ActionEvent e){
-            //redirect to onetray generation panel
+            controller.changePage(new OneTrayPanel(controller, user));
         }
     }
 
