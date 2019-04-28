@@ -8,6 +8,7 @@ import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 import edu.ithaca.goosewillis.icook.user.User;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -75,44 +76,109 @@ public class CookBook {
         }
     }
 
-    public Recipe generateOneTray(ArrayList<Ingredient> toUse){
-        int i, j;
-        Ingredient temp;
-        boolean swapped;
-        int n = toUse.size();
+    public Recipe generateOneTray(HashMap<String, String> toUse){
+        // toUse is a map of ingredient names to food type, e.g.  Broccoli: Vegetable
+        // cook time is given in gui when food type is selected
 
-        //sort array based on cook time in descending order
-        for (i=0; i<n-1; i++){
-            swapped = false;
-            for (j=0; j<n-i-1; j++){
-                if (toUse.get(j).getCookTime() < toUse.get(j+1).getCookTime()){
-                    temp = toUse.get(j);
-                    toUse.set(j, toUse.get(j+1));
-                    toUse.set(j+1, temp);
-                    swapped = true;
-                }
+        List<String> beef = new ArrayList<>();
+        List<String> chicken = new ArrayList<>();
+        List<String> vegetable = new ArrayList<>();
+        List<String> pork = new ArrayList<>();
+        List<Ingredient> allIngredients = new ArrayList<>();
+        for (Map.Entry entry : toUse.entrySet()){
+            if (entry.getValue().equals("Beef")){
+                beef.add(entry.getKey().toString());
             }
-            if (!swapped){
-                break;
+            else if (entry.getValue().equals("Chicken")){
+                chicken.add(entry.getKey().toString());
+            }
+            else if (entry.getValue().equals("Vegetable")){
+                vegetable.add(entry.getKey().toString());
+            }
+            else {
+                pork.add(entry.getKey().toString());
+            }
+            allIngredients.add(new Ingredient(entry.getKey().toString(), 1,1));
+        }
+
+        Integer bsize = beef.size();
+        Integer csize = chicken.size();
+        Integer vsize = vegetable.size();
+        Integer psize = pork.size();
+
+        List<String> instructions = new ArrayList<>();
+
+        double cookTime;
+        if (bsize > 0 || csize > 0){
+            cookTime = 35.00;
+        }else if(vsize > 0){
+            cookTime = 30.00;
+        }else{
+            cookTime = 15.00;
+        }
+
+        instructions.add("The total cooking time is: " + Double.toString(cookTime));
+        String b = "";
+        String c = "";
+        String v = "";
+        String p = "";
+        //double delta = 0;
+        if (bsize > 0){
+            b = concatList(beef);
+        }
+        if (csize>0){
+            c = concatList(chicken);
+        }
+        if (vsize > 0){
+            v = concatList(vegetable);
+        }
+        if (psize > 0){
+            p = concatList(pork);
+        }
+
+        instructions.add("Preheat oven to 425");
+        instructions.add("Lightly coat pan in vegetable oil");
+
+        if (b.length() > 0 || c.length() >0){
+            instructions.add("Add "+b+" "+c+" to the pan");
+            if (vsize>0){
+                instructions.add("Cook for 5 minutes");
+            }else if (psize>0){
+                instructions.add("Cook for 20 minutes");
+            }else{
+                instructions.add("Cook for 35 minutes");
             }
         }
 
-        ArrayList<String> instructions = new ArrayList<>();
-        instructions.add("Preheat oven to 350");
-        double fullTime = toUse.get(0).getCookTime();
-        instructions.add("The total cooking time is: "+Double.toString(fullTime));
-        instructions.add("Place "+toUse.get(0).getName()+" in the oven");
-        for (i=1; i<toUse.size(); i++){
-            String ct = Double.toString(fullTime - toUse.get(i).getCookTime());
-            instructions.add("After "+ct+" minutes, add the "+toUse.get(i).getName());
+        if (vsize > 0){
+            instructions.add("Add "+v+" to the pan");
+            if (psize>0){
+                instructions.add("Cook for 15 minutes");
+            }else {
+                instructions.add("Cook for 30 minutes");
+            }
         }
-        instructions.add("Remove from oven and let stand for 2 minutes");
 
-        String descript = toUse.get(0).getName()+" one tray meal";
-        String name = toUse.get(0).getName()+" one tray meal";
+        if (psize>0){
+            instructions.add("Add "+p+" to the pan");
+            instructions.add("Cook for 15 minutes");
+        }
 
-        return new Recipe( name, descript, toUse, instructions, fullTime);
+        Recipe generated = new Recipe("OneTray meal", "Generated meal", allIngredients,instructions,cookTime);
+        return generated;
 
+    }
+
+
+    public String concatList(List<String> tocat){
+        String str = "";
+        for (int i=0; i<tocat.size(); i++){
+            if (i==tocat.size()-1){
+                str+=tocat.get(i);
+            }
+            str+=tocat.get(i)+", ";
+        }
+        return str;
     }
 
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge, ArrayList<DietType> restrictions, ArrayList<Ingredient> dislikedIngredients){
