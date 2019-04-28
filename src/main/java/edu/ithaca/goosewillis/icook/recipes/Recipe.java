@@ -26,6 +26,7 @@ public class Recipe {
             this.ingredients = needed;
             this.instructions = steps;
             this.cookTime = cooktime;
+            this.tags = null;
         } else {
             throw new IllegalArgumentException("Not enough information to constitute a recipe");
         }
