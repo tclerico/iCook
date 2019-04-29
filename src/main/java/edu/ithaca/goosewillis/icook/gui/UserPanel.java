@@ -24,6 +24,8 @@ public class UserPanel extends JPanel {
     JPanel fridge;
     List<Ingredient>fridgeItems;
     JPanel favorites;
+    JList favlist;
+    JPanel favePanel;
 
     public UserPanel(User user, AppStateController controller){
         //TODO Add 'recommend' to user panel??
@@ -77,9 +79,13 @@ public class UserPanel extends JPanel {
 
         //TODO add a Favorites Section
         favorites = initFavorites();
-        JPanel favePanel =  new JPanel();
+        favePanel =  new JPanel();
         JLabel favs = new JLabel("Favorites");
+        JButton removeFavorite = new JButton("Remove Favorite");
+        removeFavorite.addActionListener(new RemoveFavorite());
+
         favePanel.add(favs);
+        favePanel.add(removeFavorite);
         favePanel.add(favorites);
         this.add(favePanel, BorderLayout.SOUTH);
 
@@ -132,17 +138,26 @@ public class UserPanel extends JPanel {
 
     public JPanel initFavorites(){
         List<Recipe> userFaves = user.getFavoriteRecipes();
+        //System.out.println(userFaves);
         DefaultListModel<String> favs = new DefaultListModel<>();
         for (Recipe r : userFaves){
             favs.addElement(r.getName());
         }
-        JList favlist = new JList(favs);
-        favlist.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        favlist = new JList(favs);
+        favlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         favlist.setVisibleRowCount(10);
         JScrollPane scoller = new JScrollPane(favlist);
         JPanel favoritePanel = new JPanel();
         favoritePanel.add(scoller);
         return favoritePanel;
+    }
+
+    public void refreshFavorites(){
+        favePanel.remove(favorites);
+        favorites = initFavorites();
+        favePanel.add(favorites);
+        favePanel.revalidate();
+        favePanel.repaint();
     }
 
 
@@ -184,6 +199,23 @@ public class UserPanel extends JPanel {
             fridgeItems.add(new Ingredient(ingName,1,1));
             JPanel nfridge = setupFridge(items);
             resetFridge(nfridge);
+
+        }
+    }
+
+    private class RemoveFavorite implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            String selected = favlist.getSelectedValue().toString();
+            Recipe toRem = controller.cookBook.getSpecificRecipe(selected);
+            int j = 0;
+            for (int i=0; i<user.getFavoriteRecipes().size(); i++){
+                if (user.getFavoriteRecipes().get(i).getName().equals(toRem.getName())){
+                    j=i;
+                }
+            }
+            user.getFavoriteRecipes().remove(j);
+            refreshFavorites();
 
         }
     }
