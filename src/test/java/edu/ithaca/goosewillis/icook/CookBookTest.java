@@ -7,12 +7,16 @@ import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+import edu.ithaca.goosewillis.icook.user.User;
+import edu.ithaca.goosewillis.icook.user.UserSerializer;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 import org.junit.jupiter.api.Test;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +58,19 @@ public class CookBookTest {
             Recipe gen = cookBook.generateOneTray(toUse);
             assertEquals(4, gen.getIngredients().size());
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    void recTest(){
+        try{
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
+            User user = new UserSerializer().deserialize(FileUtil.readFromJson("useme.json"));
+            List<Recipe> recs = cookBook.recommendRecipes(user.getFridge());
+            System.out.println(recs.size());
         }catch (Exception e){
             e.printStackTrace();
         }

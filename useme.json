@@ -28,7 +28,61 @@
         "dietType": "None"
       },
       {
-        "name": "Pork Chop",
+        "name": "bacon",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "butter",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "eggs",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "flour",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "salt",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "water",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "light cream",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "white pepper",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "white cheddar cheese",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "dried thyme",
         "count": 1.0,
         "cooktime": 1.0,
         "dietType": "None"

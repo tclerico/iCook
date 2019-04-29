@@ -26,6 +26,7 @@ public class UserPanel extends JPanel {
     JPanel favorites;
     JList favlist;
     JPanel favePanel;
+    JPanel recommendations;
 
     public UserPanel(User user, AppStateController controller){
         //TODO Add 'recommend' to user panel??
@@ -40,21 +41,26 @@ public class UserPanel extends JPanel {
         }
         fridgeItems = this.user.getFridge().getIngredients();
         this.setLayout(new BorderLayout());
-        JPanel fridgePanel = new JPanel();
+
         JPanel title = new JPanel();
 
         JMenuBar mb = initMenu();
         title.add(new JLabel("User: "+user.getUsername()));
 
+
+        this.add(mb, BorderLayout.NORTH);
+
+        this.add(title, BorderLayout.WEST);
+
+        JPanel centerPanel = new JPanel();
+        JPanel fridgePanel = new JPanel();
         //Setup Fridge Display
         fridge = setupFridge(readInItems());
         JLabel fridgeLabel = new JLabel("Fridge:");
         fridgePanel.add(fridgeLabel);
         fridgePanel.add(fridge);
 
-        this.add(mb, BorderLayout.NORTH);
-        this.add(title, BorderLayout.WEST);
-        this.add(fridgePanel, BorderLayout.CENTER);
+
 
         JPanel editFridgePanel = new JPanel();
         editFridgePanel.setLayout(new BorderLayout());
@@ -75,20 +81,40 @@ public class UserPanel extends JPanel {
 
         editFridgePanel.add(addItems, BorderLayout.NORTH);
         editFridgePanel.add(removeItems, BorderLayout.CENTER);
+
+        this.add(fridge, BorderLayout.CENTER);
         this.add(editFridgePanel, BorderLayout.EAST);
 
+//        centerPanel.setLayout(new BorderLayout());
+//        centerPanel.add(fridgePanel, BorderLayout.WEST);
+//        centerPanel.add(editFridgePanel, BorderLayout.CENTER);
+//        this.add(centerPanel, BorderLayout.CENTER);
+
         //TODO add a Favorites Section
+
+        JPanel extras = new JPanel();
+        extras.setLayout(new BorderLayout());
+
         favorites = initFavorites();
         favePanel =  new JPanel();
-        JLabel favs = new JLabel("Favorites");
+        JLabel favs = new JLabel("Favorites:");
         JButton removeFavorite = new JButton("Remove Favorite");
         removeFavorite.addActionListener(new RemoveFavorite());
 
         favePanel.add(favs);
         favePanel.add(removeFavorite);
         favePanel.add(favorites);
-        this.add(favePanel, BorderLayout.SOUTH);
+        extras.add(favePanel, BorderLayout.EAST);
 
+
+        recommendations = initRecommendations();
+        extras.add(recommendations, BorderLayout.CENTER);
+
+        this.add(extras, BorderLayout.SOUTH);
+
+//        JButton recommend = new JButton("REc");
+//        recommend.addActionListener(new RecommendAction());
+//        this.add(recommend);
     }
 
 
@@ -108,10 +134,25 @@ public class UserPanel extends JPanel {
         return menuBar;
     }
 
+    public JPanel initRecommendations(){
+        List<Recipe> recs = controller.cookBook.recommendRecipes(user.getFridge());
+        DefaultListModel<String> recNames = new DefaultListModel<>();
+        for (Recipe r : recs){
+            recNames.addElement(r.getName());
+        }
+        JList list = new JList(recNames);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setVisibleRowCount(10);
+        JScrollPane scrollPane = new JScrollPane(list);
+        JPanel recPanel = new JPanel();
+        recPanel.add(scrollPane);
+        return recPanel;
+    }
+
     public JPanel setupFridge(DefaultListModel items){
         JPanel fPanel = new JPanel();
         JList fridge = new JList(items);
-        fridge.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        fridge.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fridge.setVisibleRowCount(8);
         JScrollPane fridgeScroller = new JScrollPane(fridge);
         fridgeScroller.setSize(30,50);
@@ -217,6 +258,16 @@ public class UserPanel extends JPanel {
             user.getFavoriteRecipes().remove(j);
             refreshFavorites();
 
+        }
+    }
+
+    private class RecommendAction implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            Fridge uf = user.getFridge();
+            System.out.println("Fridge size: "+uf.getIngredients().size());
+            List<Recipe> rec = controller.cookBook.recommendRecipes(uf);
+            System.out.println("Num Recommend: "+rec.size());
         }
     }
 

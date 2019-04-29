@@ -25,7 +25,7 @@ public class AppGUI extends JPanel{
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("iCook");
-        frame.setSize(700,400);
+        frame.setSize(800,400);
         AppGUI gt = new AppGUI();
         frame.add(gt);
         frame.setVisible(true);
