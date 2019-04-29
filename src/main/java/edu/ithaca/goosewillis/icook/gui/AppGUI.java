@@ -1,3 +1,8 @@
+/*
+Create by Tim Clerico
+This is the main class that runs the GUI
+ */
+
 package edu.ithaca.goosewillis.icook.gui;
 
 import java.awt.*;
@@ -13,6 +18,10 @@ public class AppGUI extends JPanel{
     }
 
 
+    /**
+     * Changes the currently displayed panel to the panel given as an argument
+     * @param panel
+     */
     public void changePanel(JPanel panel){
         this.removeAll();
         this.add(panel, BorderLayout.CENTER);

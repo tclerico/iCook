@@ -1,3 +1,7 @@
+/*
+Created by Tim Clerico
+Panel to handel user login
+ */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.user.User;
@@ -16,16 +20,16 @@ public class LoginPanel extends JPanel {
     AppStateController controller;
 
     public LoginPanel(AppStateController appController){
+        //Set controller for this 'session'
         controller=appController;
-        //JPanel initial = new JPanel();
+
+        //Set up login text fields
         JLabel ulabel = new JLabel("Username:");
         JLabel plabel = new JLabel("Password:");
         username = new JTextArea(1,15);
         password = new JTextArea(1,15);
 
-//        GridLayout layout = new GridLayout(3,2);
-//        this.setLayout(layout);
-
+        //Add to panel
         this.add(ulabel);
         this.add(username);
         this.add(plabel);
@@ -40,11 +44,13 @@ public class LoginPanel extends JPanel {
         register.addActionListener(new RegisterAction());
         this.add(register);
 
-
-
     }
 
 
+    /*
+     * Action listener for the Login button
+     * Handles logging a user in and redirects to the user panel
+     */
     private class LoginAction implements ActionListener{
 
         @Override
@@ -61,12 +67,13 @@ public class LoginPanel extends JPanel {
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-
-
         }
     }
 
 
+    /*
+    Redirects to the Registration page
+     */
     private class RegisterAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){

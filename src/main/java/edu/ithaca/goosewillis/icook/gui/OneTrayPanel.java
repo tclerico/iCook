@@ -1,3 +1,6 @@
+/*
+Created by Tim Clerico
+ */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
@@ -56,7 +59,10 @@ public class OneTrayPanel extends JPanel {
     }
 
 
-
+    /**
+     * Sets up the menu bar with all possible redirects for this page
+     * @return A JMenuBar object to be added to the panel in the 'NORTH' section of layout
+     */
     public JMenuBar initMenu(){
         JMenuBar menuBar = new JMenuBar();
         JMenu options = new JMenu("Options");
@@ -73,7 +79,10 @@ public class OneTrayPanel extends JPanel {
         return menuBar;
     }
 
-
+    /**
+     * Updates a panel displaying the selected ingredients
+     * @param newPanel panel to use in update
+     */
     public void refreshIngredients(JPanel newPanel){
         this.remove(ingredientList);
         this.add(newPanel, BorderLayout.CENTER);
@@ -81,6 +90,10 @@ public class OneTrayPanel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Displays the recipe that was generated using input ingredients
+     * @param instructions the List of steps for the recipe
+     */
     public void displayOneTray(List<String> instructions){
         DefaultListModel<String> steps = new DefaultListModel<>();
         for (String i : instructions){
@@ -100,7 +113,6 @@ public class OneTrayPanel extends JPanel {
         this.repaint();
 
     }
-
 
 
     // ACTION LISTENERS
@@ -126,7 +138,6 @@ public class OneTrayPanel extends JPanel {
         }
     }
 
-
     private class GenerateMealAction implements ActionListener{
 
         @Override
@@ -137,9 +148,6 @@ public class OneTrayPanel extends JPanel {
         }
     }
 
-
-
-
     private class SearchAction implements ActionListener {
 
         @Override
@@ -148,7 +156,6 @@ public class OneTrayPanel extends JPanel {
             controller.changePage(new SearchPanel(user, controller));
         }
     }
-
 
     private class LogoutAction implements ActionListener{
         @Override
@@ -159,7 +166,6 @@ public class OneTrayPanel extends JPanel {
 
         }
     }
-
 
     private class AccountAction implements ActionListener{
         @Override

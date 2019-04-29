@@ -70,7 +70,7 @@ public class CookBookTest {
             CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
             User user = new UserSerializer().deserialize(FileUtil.readFromJson("useme.json"));
             List<Recipe> recs = cookBook.recommendRecipes(user.getFridge());
-            System.out.println(recs.size());
+            assertEquals(4, recs.size());
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -1,3 +1,6 @@
+/*
+Created by Tim Clerico
+ */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
@@ -29,7 +32,7 @@ public class UserPanel extends JPanel {
     JPanel recommendations;
 
     public UserPanel(User user, AppStateController controller){
-        //TODO Add 'recommend' to user panel??
+        //Initialize data members
         this.user = user;
         this.controller = controller;
         this.controller.setUser(user);
@@ -40,28 +43,25 @@ public class UserPanel extends JPanel {
             e.printStackTrace();
         }
         fridgeItems = this.user.getFridge().getIngredients();
+
+        //Set layout for panel
         this.setLayout(new BorderLayout());
 
+        //Create 'wrapper' panels for items on the page
         JPanel title = new JPanel();
-
         JMenuBar mb = initMenu();
         title.add(new JLabel("User: "+user.getUsername()));
-
-
         this.add(mb, BorderLayout.NORTH);
-
         this.add(title, BorderLayout.WEST);
 
-        JPanel centerPanel = new JPanel();
-        JPanel fridgePanel = new JPanel();
         //Setup Fridge Display
+        JPanel fridgePanel = new JPanel();
         fridge = setupFridge(readInItems());
         JLabel fridgeLabel = new JLabel("Fridge:");
         fridgePanel.add(fridgeLabel);
         fridgePanel.add(fridge);
 
-
-
+        //Setup panel for editing items in fridge
         JPanel editFridgePanel = new JPanel();
         editFridgePanel.setLayout(new BorderLayout());
         newItem = new JTextArea(1,15);
@@ -85,13 +85,8 @@ public class UserPanel extends JPanel {
         this.add(fridge, BorderLayout.CENTER);
         this.add(editFridgePanel, BorderLayout.EAST);
 
-//        centerPanel.setLayout(new BorderLayout());
-//        centerPanel.add(fridgePanel, BorderLayout.WEST);
-//        centerPanel.add(editFridgePanel, BorderLayout.CENTER);
-//        this.add(centerPanel, BorderLayout.CENTER);
 
-        //TODO add a Favorites Section
-
+        //Setup the 'extras' favorite recipes and recommended recipes
         JPanel extras = new JPanel();
         extras.setLayout(new BorderLayout());
 
@@ -112,12 +107,14 @@ public class UserPanel extends JPanel {
 
         this.add(extras, BorderLayout.SOUTH);
 
-//        JButton recommend = new JButton("REc");
-//        recommend.addActionListener(new RecommendAction());
-//        this.add(recommend);
+
     }
 
 
+    /**
+     * Sets up the menu bar with all possible redirects for this page
+     * @return A JMenuBar object to be added to the panel in the 'NORTH' section of layout
+     */
     public JMenuBar initMenu(){
         JMenuBar menuBar = new JMenuBar();
         JMenu options = new JMenu("Options");
@@ -134,6 +131,10 @@ public class UserPanel extends JPanel {
         return menuBar;
     }
 
+    /**
+     * Reads in recommendations for a user based on the items in their fridge
+     * @return A JPanel containing a scrollable pane of recipes, to be added to the 'extras' panel
+     */
     public JPanel initRecommendations(){
         List<Recipe> recs = controller.cookBook.recommendRecipes(user.getFridge());
         DefaultListModel<String> recNames = new DefaultListModel<>();
@@ -149,6 +150,11 @@ public class UserPanel extends JPanel {
         return recPanel;
     }
 
+    /**
+     * Takes a list of Ingredient names to create the scrollable view of the users fridge
+     * @param items list of strings
+     * @return a JPanel containing a scrollable list of ingredients to be used in main panel
+     */
     public JPanel setupFridge(DefaultListModel items){
         JPanel fPanel = new JPanel();
         JList fridge = new JList(items);
@@ -160,6 +166,10 @@ public class UserPanel extends JPanel {
         return fPanel;
     }
 
+    /**
+     * Reads in users fridge and puts them in a DefaultListModel to be used in a JList
+     * @return DefaultListModel of ingredient names to be used in a JList
+     */
     public DefaultListModel<String> readInItems(){
         DefaultListModel<String> items = new DefaultListModel<>();
         for (Ingredient i : fridgeItems){
@@ -169,6 +179,10 @@ public class UserPanel extends JPanel {
         return items;
     }
 
+    /**
+     * Updates the display for the users fridge for when an item is added or removed
+     * @param newFridge takes the new panel that will replace the current one
+     */
     public void resetFridge(JPanel newFridge){
         this.remove(fridge);
         fridge = newFridge;
@@ -177,6 +191,10 @@ public class UserPanel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Reads in users Favorites and creates the panel to display them -> to be added to 'extras' panel
+     * @return JPanel containing a scrollable pane with a list of recipes.
+     */
     public JPanel initFavorites(){
         List<Recipe> userFaves = user.getFavoriteRecipes();
         //System.out.println(userFaves);
@@ -193,6 +211,9 @@ public class UserPanel extends JPanel {
         return favoritePanel;
     }
 
+    /**
+     * Updates the favorites panel for when a recipe is removed
+     */
     public void refreshFavorites(){
         favePanel.remove(favorites);
         favorites = initFavorites();
@@ -214,7 +235,6 @@ public class UserPanel extends JPanel {
                      j=i;
                  }
              }
-
              try{
                  fridgeItems.remove(j);
                  DefaultListModel<String> update = new DefaultListModel<>();

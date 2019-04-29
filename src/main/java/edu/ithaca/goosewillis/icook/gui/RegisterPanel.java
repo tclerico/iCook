@@ -1,3 +1,6 @@
+/*
+Created by Tim Clerico
+ */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
@@ -37,7 +40,10 @@ public class RegisterPanel extends JPanel {
 
     }
 
-
+    /*
+    Registers a user, creating a new user and fridge for the user
+    redirects to the user panel
+     */
     private class RegistrationListener implements ActionListener{
 
         @Override

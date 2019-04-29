@@ -1,3 +1,6 @@
+/*
+Created by Tim Clerico
+ */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
@@ -20,9 +23,9 @@ public class SearchPanel extends JPanel{
     JComboBox dropDown;
     JTextArea input;
     JPanel results;
+    JPanel resWrapper;
     JList resList;
 
-    //TODO Add 'add to favorites'
 
     public SearchPanel(User user, AppStateController controller){
         this.user = user;
@@ -53,16 +56,21 @@ public class SearchPanel extends JPanel{
         this.add(searchWrapper, BorderLayout.WEST);
 
         results = new JPanel();
+        resWrapper = new JPanel();
+        resWrapper.setLayout(new BorderLayout());
+        resWrapper.add(results, BorderLayout.CENTER);
 
-
-        this.add(results, BorderLayout.CENTER);
+        this.add(resWrapper, BorderLayout.CENTER);
         this.add(initMenu(), BorderLayout.NORTH);
 
 
 
     }
 
-
+    /**
+     * takes result from one of the different searches and updates the results display
+     * @param results
+     */
     public void fillSearchResults(Set<Recipe> results){
         DefaultListModel<String> items = new DefaultListModel<>();
         for (Recipe r : results){
@@ -75,6 +83,10 @@ public class SearchPanel extends JPanel{
         refreshSearchResults(searchResults);
     }
 
+    /**
+     * Used to display a recipe found when searching for a specific recipe by name
+     * @param r Recipe to be displayed
+     */
     public void displayRecipe(Recipe r){
         DefaultListModel<String> items = new DefaultListModel<>();
         for (String s : r.getInstructions()){
@@ -87,18 +99,26 @@ public class SearchPanel extends JPanel{
         refreshSearchResults(pane);
     }
 
+    /**
+     * Updates the results display with new search results
+     * @param searchResults the JScrollPane that has the new resultsw
+     */
     public void refreshSearchResults(JScrollPane searchResults){
         JPanel newResPan = new JPanel();
         newResPan.setLayout(new BorderLayout());
         //newResPan.setSize(50,150);
         newResPan.add(searchResults, BorderLayout.CENTER);
-        this.remove(this.results);
+        resWrapper.remove(this.results);
         this.results = newResPan;
-        this.add(this.results, BorderLayout.CENTER);
-        this.revalidate();
-        this.repaint();
+        resWrapper.add(this.results, BorderLayout.CENTER);
+        resWrapper.revalidate();
+        resWrapper.repaint();
     }
 
+    /**
+     * Sets up the menu bar with all possible redirects for this page
+     * @return A JMenuBar object to be added to the panel in the 'NORTH' section of layout
+     */
     public JMenuBar initMenu(){
         JMenuBar menuBar = new JMenuBar();
         JMenu options = new JMenu("Options");
@@ -130,18 +150,14 @@ public class SearchPanel extends JPanel{
         public void actionPerformed(ActionEvent e){
             //gets options
             String selected = dropDown.getSelectedItem()+"";
-            //results.setText(selected);
-            //updateResultsPanel(new JLabel(selected));
-
-            //gets input to search
 
             if (selected.equals("Time")){
                 //search by time
                 Double time = Double.valueOf(input.getText());
                 Set<Recipe> timeResults = controller.cookBook.getRecipesByTime(time);
                 fillSearchResults(timeResults);
-
-            }else if (selected.equals("Tag")){
+            }
+            else if (selected.equals("Tag")){
                 //search by tag
                 String type = input.getText();
                 for (DietType d : DietType.values()){
@@ -150,17 +166,12 @@ public class SearchPanel extends JPanel{
                         fillSearchResults(res);
                     }
                 }
-
-
             }else{
                 //search by name
                 String name = input.getText();
                 Recipe result = controller.cookBook.getSpecificRecipe(name);
                 displayRecipe(result);
             }
-
-
-
         }
     }
 
