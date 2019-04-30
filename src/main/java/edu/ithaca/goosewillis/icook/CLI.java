@@ -35,7 +35,9 @@ public class CLI {
     public static User login(String username, String password){
         try{
             User user = new UserSerializer().deserialize(FileUtil.readFromJson(username+".json"));
-            return user;
+            if (user.getPassword().equals(password)){
+                return user;
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -45,19 +47,7 @@ public class CLI {
 
     public static void logout(User user){
         System.out.println("being logged out");
-        try {
-            File file = new File(user.getUsername()+".json");
-            if (!file.exists()){
-                file.delete();
-            }
-            file.createNewFile();
-            FileWriter writer = new FileWriter(file);
-            writer.write(FileUtil.gson.toJson(new UserSerializer().serialize(user)));
-            writer.flush();
-            writer.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        user.saveToFile();
     }
 
     public static void main(String[] args) {
@@ -68,7 +58,7 @@ public class CLI {
                 "type 'help' for available commands");
 
         try{
-            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
             //Read in from file to check against log-ins
             User user = null;
 

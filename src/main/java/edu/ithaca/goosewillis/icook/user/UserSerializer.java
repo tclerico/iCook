@@ -29,8 +29,8 @@ public class UserSerializer implements JsonSerializer<User>, JsonDeserializer<Us
         ArrayList<Recipe> fav = new ArrayList<>();
         ArrayList<DietType> restr = new ArrayList<>();
         ArrayList<Recipe> hist = new ArrayList<>();
-        JsonArray disliked = root.get("disliked").getAsJsonArray();
-        JsonArray favorites = root.get("favorites").getAsJsonArray();
+        JsonArray disliked = root.get("dislikedIngredients").getAsJsonArray();
+        JsonArray favorites = root.get("favoriteRecipes").getAsJsonArray();
         JsonArray restrictions = root.get("restrictions").getAsJsonArray();
         JsonArray history = root.get("history").getAsJsonArray();
         for (JsonElement e : disliked) {

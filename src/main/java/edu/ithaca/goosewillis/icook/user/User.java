@@ -4,7 +4,10 @@ import edu.ithaca.goosewillis.icook.fridge.Fridge;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+import edu.ithaca.goosewillis.icook.util.FileUtil;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,5 +179,23 @@ public class User {
     public ArrayList<Recipe> getHistory(){
         return this.history;
     }
+
+    public void saveToFile(){
+        try{
+            File file = new File(getUsername()+".json");
+            if (!file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
+            writer.write(FileUtil.gson.toJson(new UserSerializer().serialize(this)));
+            writer.flush();
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 }
 

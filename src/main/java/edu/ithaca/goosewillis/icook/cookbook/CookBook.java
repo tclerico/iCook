@@ -164,6 +164,9 @@ public class CookBook {
             instructions.add("Cook for 15 minutes");
         }
 
+        instructions.add("Remove from oven and let stand for 2 minutes");
+        instructions.add("ENJOY!");
+
         Recipe generated = new Recipe("OneTray meal", "Generated meal", allIngredients,instructions,cookTime);
         return generated;
 
@@ -176,7 +179,9 @@ public class CookBook {
             if (i==tocat.size()-1){
                 str+=tocat.get(i);
             }
-            str+=tocat.get(i)+", ";
+            else {
+                str+=tocat.get(i)+", ";
+            }
         }
         return str;
     }
@@ -184,6 +189,7 @@ public class CookBook {
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge, ArrayList<DietType> restrictions, ArrayList<Ingredient> dislikedIngredients){
         ArrayList<Recipe> recommendations = new ArrayList<Recipe>();
         try {
+            Reccomend:
             for (Recipe currRecipe : this.recipes.values()) {
                 //canMake is an incrementor that will not add a certain recipe to the recommendations ArrayList (if it is set above 1 for now)
                 int canMake = 0;
@@ -191,7 +197,7 @@ public class CookBook {
                 //if recipe does not contain a restriction in the user's ArrayList, it will not be recommended
                 for(int i = 0; i < restrictions.size(); i++){
                     if(!currRecipe.getTags().contains(restrictions.get(i))){
-                        canMake += 10;
+                        break Reccomend;
                     }
                 }
 
@@ -207,7 +213,7 @@ public class CookBook {
 //                    }
                 }
 
-                if (canMake <= 1) {
+                if (canMake <= 2) {
                     recommendations.add(currRecipe);
                 }
             }
@@ -215,6 +221,33 @@ public class CookBook {
             System.out.println("NullPointerException Caught");
         }
         return recommendations;
+    }
+
+    public List<Recipe> recommendRecipes(Fridge fridge){
+        List<Recipe> recommendations = new ArrayList<>();
+        List<String> userIng = new ArrayList<>();
+        for (Ingredient i : fridge.getIngredients()){
+            userIng.add(i.getName());
+        }
+
+        for (Map.Entry<String, Recipe> entry : this.recipes.entrySet()){
+            Recipe curr = entry.getValue();
+            List<String> currList = new ArrayList<>();
+            for (Ingredient i : curr.getIngredients()){
+                currList.add(i.getName());
+            }
+            List<String> currListCopy = new ArrayList<>(currList);
+            currListCopy.retainAll(userIng);
+            int delta = currList.size()-currListCopy.size();
+            if (delta <= 2){
+                recommendations.add(curr);
+            }
+
+        }
+
+
+        return recommendations;
+
     }
 
     public Set<Recipe> getRecipesByTag(DietType tag){
