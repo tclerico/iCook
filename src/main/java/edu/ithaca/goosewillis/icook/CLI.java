@@ -58,7 +58,7 @@ public class CLI {
                 "type 'help' for available commands");
 
         try{
-            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
             //Read in from file to check against log-ins
             User user = null;
 
