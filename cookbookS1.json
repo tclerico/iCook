@@ -1,0 +1,85 @@
+{
+  "recipes": [
+    {
+      "name": "Apricot Chicken",
+      "description": " ",
+      "cookTime": 60.0,
+      "instructions": [
+        "Heat oven to 400F.",
+        "Place chicken in single layer in shallow pan.",
+        "Bake 20 min., turning after 10 min.  Meanwhile, mix jam, dressing and mustard until well blended.  Reserve 1 Tbsp. jam mixture for mixing with the cooked quinoa.",
+        "Brush chicken with remaining jam mixture; bake 20 min. or until done (165F).  Meanwhile, heat oil in large skillet on medium-high heat.",
+        "Add vegetables; cook 3 to 5 min. or until crisp-tender.",
+        "Add broth and quinoa; stir.  Bring to boil; simmer on medium-low heat 12 to 15 min. or until liquid is absorbed, adding apricots for the last 5 min.",
+        "Remove from heat.  Stir in reserved jam mixture.",
+        "Serve chicken with quinoa mixture."
+      ],
+      "ingredients": [
+        {
+          "name": "apricot jam",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "vinaigrette dressing",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "canola oil",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "chicken drumsticks",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "dijon mustard",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "dried apricots",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "fat-free chicken broth",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "onion",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "quinoa",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "red bell pepper",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ],
+      "tags": [
+        "Gluten Free",
+        "Non Dairy"
+      ]
+    }
+  ]
+}

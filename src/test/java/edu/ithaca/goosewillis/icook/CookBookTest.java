@@ -7,12 +7,16 @@ import edu.ithaca.goosewillis.icook.fridge.FridgeSerializer;
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
+import edu.ithaca.goosewillis.icook.user.User;
+import edu.ithaca.goosewillis.icook.user.UserSerializer;
 import edu.ithaca.goosewillis.icook.util.FileUtil;
 import org.junit.jupiter.api.Test;
 import edu.ithaca.goosewillis.icook.fridge.Fridge;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static edu.ithaca.goosewillis.icook.recipes.ingredients.DietType.Vegan;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,6 +28,7 @@ public class CookBookTest {
         try {
             CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
             Fridge fridge = new FridgeSerializer().deserialize(FileUtil.readFromJson("fridgeTest.json"));
+
             ArrayList<DietType> restrictions = new ArrayList<>();
             restrictions.add(DietType.valueOf("Vegan"));
             ArrayList<Ingredient> dislikedIngredients = new ArrayList<>();
@@ -58,10 +63,23 @@ public class CookBookTest {
         }
     }
 
+
+    @Test
+    void recTest(){
+        try{
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
+            User user = new UserSerializer().deserialize(FileUtil.readFromJson("useme.json"));
+            List<Recipe> recs = cookBook.recommendRecipes(user.getFridge());
+            assertEquals(4, recs.size());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 //    @Test
 //    void getRecipesByTagTest(){
 //        try {
-//            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+//            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
 //
 //            assertTrue(cookBook.getRecipesByTag(DietType.Vegan).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));
 //            assertTrue(cookBook.getRecipesByTag(DietType.Vegetarian).contains(cookBook.getSpecificRecipe("Can Almost Make in User Test")));

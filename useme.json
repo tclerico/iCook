@@ -1,0 +1,246 @@
+{
+  "username": "useme",
+  "password": "test",
+  "fridge": {
+    "ingredients": [
+      {
+        "name": "Chicken Breast",
+        "count": 5.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Broccoli",
+        "count": 3.0,
+        "cooktime": 10.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Apple",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "Strip Steak",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "bacon",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "butter",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "eggs",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "flour",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "salt",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "water",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "light cream",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "white pepper",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "white cheddar cheese",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "dried thyme",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      }
+    ]
+  },
+  "dislikedIngredients": [],
+  "favoriteRecipes": [
+    {
+      "name": "Stuffed Green Bell Pepper",
+      "description": " ",
+      "cookTime": 45.0,
+      "instructions": [
+        "Cut top off peppers and remove seeds.Saut mushrooms in oil together with 1 Tbsp parsley and 1 minced garlic clove.",
+        "Combine ground beef with mortadella, 1 Tbsp parsley, 1 minced garlic clove, grated parmesan cheese, rice and bread crumbs.",
+        "Add egg, salt and 1 tsp oil.",
+        "Mix well. Stuff peppers with this filling.Saut onion in oil.",
+        "Add tomato puree and salt. Cook for 5 minutes.Arrange peppers, cut side up, in the tomato sauce. Cover and cook until peppers are tender and filling is cooked. If necessary, add some boiling water or broth."
+      ],
+      "ingredients": [
+        {
+          "name": "bread crumbs",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "egg",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "garlic cloves",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "green bell peppers",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "ground beef",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "mortadella",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "mushrooms",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "oil",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "onion",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "parmesan cheese",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "parsley",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "rice",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "salt",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "tomato puree",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "name": "Toffee-Almond Popcorn",
+      "description": " ",
+      "cookTime": 45.0,
+      "instructions": [
+        "Line large baking sheet with aluminum foil.",
+        "Place popcorn in very large heat-proof bowl with room for stirring; sprinkle almonds on top.",
+        "Melt butter, brown sugar, and corn syrup in medium saucepan over medium heat, stirring to combine.",
+        "Place candy thermometer in mixture, and let mixture come to a boil. Boil, stirring frequently with heat-proof whisk or spatula to prevent caramel from burning, until caramel darkens and candy thermometer registers 280°F.",
+        "Remove pan from heat, and season with salt, if desired.",
+        "Working quickly, drizzle popcorn and nuts with caramel, tossing rapidly with two heat-proof spatulas to coat popcorn and nuts and prevent clumping.",
+        "Spread on foil-lined sheet pan, and let cool at least 10 minutes."
+      ],
+      "ingredients": [
+        {
+          "name": "almonds",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "butter",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "corn syrup",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "light brown sugar",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "popcorn",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ],
+      "tags": [
+        "Vegetarian",
+        "Gluten Free"
+      ]
+    }
+  ],
+  "restrictions": [],
+  "history": []
+}

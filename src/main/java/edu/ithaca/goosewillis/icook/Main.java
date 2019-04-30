@@ -43,7 +43,7 @@ public class Main {
         cookBook.addRecipe(pizzaRecipe.getName(), pizzaRecipe);
         cookBook.saveToFile();
         try {
-            CookBook fromFile = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbook.json"));
+            CookBook fromFile = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookS1.json"));
             System.out.println(fromFile.getRecipes().size());
             for (Recipe recipe : fromFile.getRecipes().values()) {
                 System.out.println(recipe.toString());

@@ -70,6 +70,6 @@ public class Ingredient {
     }
 
     public String toString(){
-        return "Name: "+name;
+        return name;
     }
 }
