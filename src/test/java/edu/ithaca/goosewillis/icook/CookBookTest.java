@@ -63,7 +63,6 @@ public class CookBookTest {
         }
     }
 
-
     @Test
     void recTest(){
         try{
@@ -71,6 +70,26 @@ public class CookBookTest {
             User user = new UserSerializer().deserialize(FileUtil.readFromJson("useme.json"));
             List<Recipe> recs = cookBook.recommendRecipes(user.getFridge());
             assertEquals(4, recs.size());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void spiceRecommenderTest(){
+        try{
+            CookBook cookBook = new CookbookSerializer().deserialize(FileUtil.readFromJson("cookbookTest.json"));
+
+            Recipe pasta = cookBook.getSpecificRecipe("T&P Pasta");
+            ArrayList<String> pastaSpices = cookBook.spiceRecommender(pasta);
+
+            Recipe chicken = cookBook.getSpecificRecipe("Chicken Chicken");
+            ArrayList<String> chickenSpices = cookBook.spiceRecommender(chicken);
+
+            assertTrue(pastaSpices.contains("Cloves"));
+            assertTrue(chickenSpices.contains("Thyme"));
+            assertTrue(chickenSpices.contains("Cloves"));
+
         }catch (Exception e){
             e.printStackTrace();
         }

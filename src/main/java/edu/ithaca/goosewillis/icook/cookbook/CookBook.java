@@ -292,4 +292,41 @@ public class CookBook {
         }
         return inTime;
     }
+
+    public ArrayList<String> spiceRecommender(Recipe recipe){
+        ArrayList<String> spices = new ArrayList<>();
+        for(int i = 0; i < recipe.getIngredients().size(); i ++){
+            if(recipe.getIngredients().get(i).getName().contains("Beef")){
+                if(!spices.contains("Oregano")){
+                    spices.add("Oregano");
+                }
+            }
+            if(recipe.getIngredients().get(i).getName().contains("Chicken")){
+                if(!spices.contains("Thyme")){
+                    spices.add("Thyme");
+                }
+            }
+            if(recipe.getIngredients().get(i).getName().contains("Pork")){
+                if(!spices.contains("Basil")){
+                    spices.add("Basil");
+                }
+            }
+            if(recipe.getIngredients().get(i).getName().contains("Carrot")){
+                if(!spices.contains("Parsley")){
+                    spices.add("Parsley");
+                }
+            }
+            if(recipe.getIngredients().get(i).getName().contains("Broccoli")){
+                if(!spices.contains("Sage")){
+                    spices.add("Sage");
+                }
+            }
+            if(recipe.getIngredients().get(i).getName().contains("Tomato")){
+                if(!spices.contains("Cloves")){
+                    spices.add("Cloves");
+                }
+            }
+        }
+        return spices;
+    }
 }
