@@ -43,4 +43,12 @@ public class FileUtil {
         return root;
     }
 
+    public static JsonObject readFromJson(File file) throws Exception {
+        if (!fileExists(file.getName())) throw new Exception("File to read from does not exist");
+        Reader reader = new InputStreamReader(new FileInputStream(file));
+        JsonParser parser = new JsonParser();
+        JsonObject root = parser.parse(reader).getAsJsonObject();
+        return root;
+    }
+
 }

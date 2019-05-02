@@ -5,6 +5,7 @@ Controller used by change panels and give access to useful things while operatin
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;
+import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.user.User;
 
 import javax.swing.*;
@@ -33,6 +34,16 @@ public class AppStateController {
 
     public void changePage(JPanel panel){
         gui.changePanel(panel);
+    }
+
+    public void loadRatings() {
+        for (Recipe r : cookBook.getRecipes().values()) {
+            try {
+                r.loadRatings();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

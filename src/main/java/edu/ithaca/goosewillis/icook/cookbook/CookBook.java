@@ -20,7 +20,7 @@ public class CookBook {
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private Map<String, Recipe> recipes;
+    private static Map<String, Recipe> recipes;
     private Map<String, Ingredient> ingredients;
 
     public CookBook() {
@@ -262,22 +262,8 @@ public class CookBook {
         return recipesByTag;
     }
 
-    public Set<Ingredient> getIngredientsByTag(DietType... tag) {
-        Set<Ingredient> ingredientsByTag = new HashSet<>();
-        for (Ingredient ingredient : this.ingredients.values()) {
-            for (DietType type : tag) {
-                if (ingredient.getDietType() == type) {
-                    if (!ingredientsByTag.contains(ingredient)) {
-                        ingredientsByTag.add(ingredient);
-                    }
-                }
-            }
-        }
-        return ingredientsByTag;
-    }
-
-    public Recipe getRecipe(String name) {
-        Recipe recipe = this.recipes.get(name);
+    public static Recipe getRecipe(String name) {
+        Recipe recipe = recipes.get(name);
         if (recipe == null) return null;
         return recipe;
     }
