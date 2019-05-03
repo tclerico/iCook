@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/tclerico/iCook/tree/master.svg?style=svg)](https://circleci.com/gh/tclerico/iCook/tree/master)
 
+
+* [Sprint Retrospective](https://docs.google.com/document/d/1pMyviwwKy2_TZW_EsBCXNhRxiS-vNVIej1u8N0pmh4A/edit)
 ### [Waffle Board](https://waffle.io/tclerico/iCook)
 
 ## Diagrams
