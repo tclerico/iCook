@@ -29,6 +29,7 @@ public class UserPanel extends JPanel {
     JPanel favorites;
     JList favlist;
     JPanel favePanel;
+    JList recList;
     JPanel recommendations;
     JPanel recommendPanel;
 
@@ -108,8 +109,18 @@ public class UserPanel extends JPanel {
         recommendPanel.add(recommendations);
         extras.add(recommendPanel, BorderLayout.CENTER);
 
-        this.add(extras, BorderLayout.SOUTH);
+        JButton recDisplayButton = new JButton("Display Recommended Recipe");
+        JButton favDisplayButton = new JButton("Display Favorite Recipe");
+        recDisplayButton.addActionListener(new RecommendedDisplayAction());
+        favDisplayButton.addActionListener(new FavoriteDisplayAction());
 
+        JPanel extrasButtons = new JPanel();
+        extrasButtons.add(recDisplayButton);
+        extrasButtons.add(favDisplayButton);
+        extras.add(extrasButtons, BorderLayout.SOUTH);
+
+
+        this.add(extras, BorderLayout.SOUTH);
 
     }
 
@@ -144,16 +155,18 @@ public class UserPanel extends JPanel {
         for (Recipe r : recs){
             recNames.addElement(r.getName());
         }
-        JList list = new JList(recNames);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setVisibleRowCount(10);
-        JScrollPane scrollPane = new JScrollPane(list);
+        recList = new JList(recNames);
+        recList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        recList.setVisibleRowCount(10);
+        JScrollPane scrollPane = new JScrollPane(recList);
         JPanel recPanel = new JPanel();
         recPanel.add(scrollPane);
         return recPanel;
     }
 
-
+    /**
+     * Used to update the recommendations based on items in the fridge
+     */
     public void refreshRecommendations(){
         recommendPanel.remove(recommendations);
         recommendations = initRecommendations();
@@ -161,7 +174,6 @@ public class UserPanel extends JPanel {
         recommendPanel.revalidate();
         recommendPanel.repaint();
     }
-
 
     /**
      * Takes a list of Ingredient names to create the scrollable view of the users fridge
@@ -235,6 +247,15 @@ public class UserPanel extends JPanel {
         favePanel.repaint();
     }
 
+    /**
+     * Used create a recipe display frame to display the recipe
+     * @param r
+     */
+    public void betterDisplay(Recipe r){
+        RecipeDisplay goodIsh = new RecipeDisplay(r);
+        goodIsh.setSize(800,500);
+        goodIsh.setVisible(true);
+    }
 
     // ACTION LISTENERS
 
@@ -295,13 +316,25 @@ public class UserPanel extends JPanel {
         }
     }
 
-    private class RecommendAction implements ActionListener{
+    private class RecommendedDisplayAction implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e){
-            Fridge uf = user.getFridge();
-            System.out.println("Fridge size: "+uf.getIngredients().size());
-            List<Recipe> rec = controller.cookBook.recommendRecipes(uf);
-            System.out.println("Num Recommend: "+rec.size());
+            if (recList.getSelectedValue() != null){
+                String rec = recList.getSelectedValue().toString();
+                Recipe recipe = controller.cookBook.getSpecificRecipe(rec);
+                betterDisplay(recipe);
+            }
+        }
+    }
+
+    private class FavoriteDisplayAction implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if (favlist.getSelectedValue() != null){
+                String selected = favlist.getSelectedValue().toString();
+                Recipe recipe = controller.cookBook.getSpecificRecipe(selected);
+                betterDisplay(recipe);
+            }
         }
     }
 
