@@ -30,6 +30,7 @@ public class UserPanel extends JPanel {
     JList favlist;
     JPanel favePanel;
     JPanel recommendations;
+    JPanel recommendPanel;
 
     public UserPanel(User user, AppStateController controller){
         //Initialize data members
@@ -103,7 +104,9 @@ public class UserPanel extends JPanel {
 
 
         recommendations = initRecommendations();
-        extras.add(recommendations, BorderLayout.CENTER);
+        recommendPanel = new JPanel();
+        recommendPanel.add(recommendations);
+        extras.add(recommendPanel, BorderLayout.CENTER);
 
         this.add(extras, BorderLayout.SOUTH);
 
@@ -149,6 +152,16 @@ public class UserPanel extends JPanel {
         recPanel.add(scrollPane);
         return recPanel;
     }
+
+
+    public void refreshRecommendations(){
+        recommendPanel.remove(recommendations);
+        recommendations = initRecommendations();
+        recommendPanel.add(recommendations);
+        recommendPanel.revalidate();
+        recommendPanel.repaint();
+    }
+
 
     /**
      * Takes a list of Ingredient names to create the scrollable view of the users fridge
@@ -243,6 +256,7 @@ public class UserPanel extends JPanel {
                  }
                  JPanel updatedF = setupFridge(update);
                  resetFridge(updatedF);
+                 refreshRecommendations();
              }catch (Exception ex){
                  ex.printStackTrace();
              }
@@ -260,7 +274,7 @@ public class UserPanel extends JPanel {
             fridgeItems.add(new Ingredient(ingName,1,1));
             JPanel nfridge = setupFridge(items);
             resetFridge(nfridge);
-
+            refreshRecommendations();
         }
     }
 
