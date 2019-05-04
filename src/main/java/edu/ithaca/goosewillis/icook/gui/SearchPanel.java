@@ -36,7 +36,7 @@ public class SearchPanel extends JPanel{
         dropDown = new JComboBox(options);
 
         //add listener to button
-        JButton search = new JButton("Search");
+        JButton search = new JButton("Search Recipes");
         search.addActionListener(new SearchAction());
 
         JLabel inputLabel = new JLabel("Search:");
@@ -63,6 +63,12 @@ public class SearchPanel extends JPanel{
         this.add(resWrapper, BorderLayout.CENTER);
         this.add(initMenu(), BorderLayout.NORTH);
 
+
+        JButton displayButton = new JButton("Display Recipe");
+        displayButton.addActionListener(new DisplayAction());
+        JPanel disButtonPan = new JPanel();
+        disButtonPan.add(displayButton);
+        this.add(disButtonPan, BorderLayout.SOUTH);
 
 
     }
@@ -97,6 +103,16 @@ public class SearchPanel extends JPanel{
         instructs.setVisibleRowCount(10);
         JScrollPane pane = new JScrollPane(instructs);
         refreshSearchResults(pane);
+    }
+
+    /**
+     * Used create a recipe display frame to display the recipe
+     * @param r
+     */
+    public void betterDisplay(Recipe r){
+        RecipeDisplay goodIsh = new RecipeDisplay(r);
+        goodIsh.setSize(800,500);
+        goodIsh.setVisible(true);
     }
 
     /**
@@ -141,6 +157,15 @@ public class SearchPanel extends JPanel{
             String selected = resList.getSelectedValue().toString();
             Recipe favoriteRecipe = controller.cookBook.getSpecificRecipe(selected);
             user.favoriteRecipe(favoriteRecipe);
+        }
+    }
+
+    private class DisplayAction implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e){
+            String selected = resList.getSelectedValue().toString();
+            Recipe recipe = controller.cookBook.getSpecificRecipe(selected);
+            betterDisplay(recipe);
         }
     }
 
