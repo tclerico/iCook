@@ -53,6 +53,18 @@ public class CookBook {
         }
     }
 
+    public void removeRecipes(){
+        System.out.println("Original Size: " + recipes.size());
+        for(Iterator<Map.Entry<String, Recipe>> itr = recipes.entrySet().iterator(); itr.hasNext();){
+            Map.Entry<String, Recipe> current = itr.next();
+            if (current.getValue().getInstructions().size() <= 3){
+                itr.remove();
+            }
+        }
+        System.out.println("Final Size: "+ recipes.size());
+        saveToFile();
+    }
+
     public void addRecipe(String name, Recipe recipe) {
         if(!recipes.containsKey(name)){
             recipes.put(name, recipe);
@@ -172,7 +184,6 @@ public class CookBook {
 
     }
 
-
     public String concatList(List<String> tocat){
         String str = "";
         for (int i=0; i<tocat.size(); i++){
@@ -227,19 +238,19 @@ public class CookBook {
         List<Recipe> recommendations = new ArrayList<>();
         List<String> userIng = new ArrayList<>();
         for (Ingredient i : fridge.getIngredients()){
-            userIng.add(i.getName());
+            userIng.add(i.getName().toLowerCase());
         }
 
         for (Map.Entry<String, Recipe> entry : this.recipes.entrySet()){
             Recipe curr = entry.getValue();
             List<String> currList = new ArrayList<>();
             for (Ingredient i : curr.getIngredients()){
-                currList.add(i.getName());
+                currList.add(i.getName().toLowerCase());
             }
             List<String> currListCopy = new ArrayList<>(currList);
             currListCopy.retainAll(userIng);
             int delta = currList.size()-currListCopy.size();
-            if (delta <= 2){
+            if (delta <= 3){
                 recommendations.add(curr);
             }
 
@@ -281,7 +292,6 @@ public class CookBook {
         if (recipe == null) return null;
         return recipe;
     }
-
 
     public Set<Recipe> getRecipesByTime(double minutes) {
         Set<Recipe> inTime = new HashSet<>();

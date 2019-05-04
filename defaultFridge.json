@@ -1,1 +1,11 @@
-{"ingredients":[{"name":"Chicken Breast","count":5.0,"cooktime":1.0,"dietType":"None"},{"name":"Tomato","count":4.0,"cooktime":1.0,"dietType":"None"},{"name":"Broccoli","count":3.0,"cooktime":10.0,"dietType":"None"},{"name":"Carrot","count":2.0,"cooktime":6.0,"dietType":"None"}]}
+{"ingredients":[{"name":"chicken breast","count":5.0,"cooktime":1.0,"dietType":"None"},
+  {"name":"tomato","count":4.0,"cooktime":1.0,"dietType":"None"},
+  {"name":"broccoli","count":3.0,"cooktime":10.0,"dietType":"None"},
+  {"name":"carrot","count":2.0,"cooktime":6.0,"dietType":"None"},
+  {"name":"water", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"flour", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"sugar", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"oil", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"vegetable oil", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"salt", "count": 1.0, "cooktime": 1.0, "dietType": "None"},
+  {"name":"pepper", "count": 1.0, "cooktime": 1.0, "dietType": "None"}]}

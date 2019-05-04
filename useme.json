@@ -86,6 +86,24 @@
         "count": 1.0,
         "cooktime": 1.0,
         "dietType": "None"
+      },
+      {
+        "name": "chives",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "sour cream",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
+      },
+      {
+        "name": "cheddar cheese",
+        "count": 1.0,
+        "cooktime": 1.0,
+        "dietType": "None"
       }
     ]
   },
@@ -237,6 +255,175 @@
       ],
       "tags": [
         "Vegetarian",
+        "Gluten Free"
+      ]
+    },
+    {
+      "name": "Mint Raita",
+      "description": " ",
+      "cookTime": 15.0,
+      "instructions": [
+        "Take mint leaves and green chilies in blender. For smooth grinding add little yogurt instead of water. And grind it into smooth paste.Take yogurt in a bowl.",
+        "Whisk well.",
+        "Add ground paste.",
+        "Mix well.",
+        "Add all spices (black salt, salt, black pepper, roasted cumin powder, sugar).",
+        "Mix well.",
+        "Add chopped onions.",
+        "Mix well. Keep in refrigerator to chill until you serve."
+      ],
+      "ingredients": [
+        {
+          "name": "chilies",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "cumin powder",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "mint leaves",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "onion",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "plain yogurt",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "red pepper powder",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "salt",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "salt",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "sugar",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ],
+      "tags": [
+        "Vegetarian",
+        "Gluten Free"
+      ]
+    },
+    {
+      "name": "Fenugreek Raisin Apple Curry",
+      "description": " ",
+      "cookTime": 45.0,
+      "instructions": [
+        "Soak the fenugreek seeds overnight in some boiling water with a pinch of turmeric powder and a pinch of salt. Cover the lid.",
+        "Remove the water from the soaked fenugreek seeds, chilli and raisins the next day.",
+        "Cut the chilli into small pieces.",
+        "Heat up the oil in a non stick pan and add the fennel, nigella seeds and hing.",
+        "Add the apple, fenugreek seeds and raisins. Cook for a couple of minutes.",
+        "Add the rest of the spices and mix lightly and cook for another couple of minutes or until the apples are slightly soft.",
+        "Add the sugar and mix. Cook for a half a minute and remove from the heat.",
+        "Serve hot."
+      ],
+      "ingredients": [
+        {
+          "name": "apple",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "asafoetida",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "coriander powder",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "fennel seeds",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "fenugreek seeds",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "mango powder",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "raisins",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "salt",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "sugar",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "sunflower oil",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "turmeric powder",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        },
+        {
+          "name": "chill",
+          "count": 1.0,
+          "cooktime": 1.0,
+          "dietType": "None"
+        }
+      ],
+      "tags": [
+        "Vegetarian",
+        "Vegan",
         "Gluten Free"
       ]
     }

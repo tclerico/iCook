@@ -36,7 +36,7 @@ public class SearchPanel extends JPanel{
         dropDown = new JComboBox(options);
 
         //add listener to button
-        JButton search = new JButton("Search");
+        JButton search = new JButton("Search Recipes");
         search.addActionListener(new SearchAction());
 
         JLabel inputLabel = new JLabel("Search:");
