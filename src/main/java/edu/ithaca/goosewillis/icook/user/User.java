@@ -43,7 +43,7 @@ public class User {
 
     /**
      * adds Ingredient to User's Fridge
-     * @param ingredient
+     * @param ingredient Ingredient object
      */
     public void addToFridge(Ingredient ingredient){
         if(ingredient.isIngredientValid(ingredient)){
@@ -54,8 +54,8 @@ public class User {
     }
 
     /**
-     * removes Ingredients from User's Fridge
-     * @param ingredient
+     * removes Ingredient from User's Fridge
+     * @param ingredient Ingredient object
      */
     public void removeFromFridge(Ingredient ingredient){
         if(ingredient.isIngredientValid(ingredient) && (fridge.searchIngredient(ingredient.getName()) == ingredient)){
@@ -66,9 +66,9 @@ public class User {
     }
 
     /**
-     * decrements ingredient count in a User's Fridge when they cook a recipe
-     * @param ingredientName
-     * @param ingredientCount
+     * decrements Ingredient count in a User's Fridge when they cook a recipe
+     * @param ingredientName name of Ingredient object
+     * @param ingredientCount count of Ingredient object
      */
     public void useIngredient(String ingredientName, int ingredientCount){
         if((fridge.searchIngredient(ingredientName).getName().equals(ingredientName)

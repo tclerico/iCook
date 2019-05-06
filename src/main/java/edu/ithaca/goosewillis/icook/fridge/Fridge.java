@@ -37,7 +37,7 @@ public class Fridge {
 
     /**
      * returns input ingredient if it exists in the user's fridge, else null
-     * @param name
+     * @param name of ingredient
      * @return Ingredient
      */
     public Ingredient searchIngredient(String name) {
@@ -53,7 +53,7 @@ public class Fridge {
 
     /**
      * returns ingredients of the same cook time
-     * @param cookTime
+     * @param cookTime in minutes
      * @return ArrayList of Ingredients
      */
     public ArrayList<Ingredient> getIngredientsByCookTime(int cookTime){

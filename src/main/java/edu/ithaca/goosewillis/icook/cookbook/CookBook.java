@@ -28,7 +28,6 @@ public class CookBook {
         this.ingredients = new HashMap<>();
     }
 
-
     public CookBook(JsonObject root) {
         CookBook deserialized = new CookbookSerializer().deserialize(root);
         this.recipes = deserialized.recipes;
@@ -36,6 +35,9 @@ public class CookBook {
         logger.log(Level.INFO, "Recipes & Ingredients loaded into cookbook!");
     }
 
+    /**
+     * saves cookbook to a json file
+     */
     public void saveToFile() {
         try {
             File file = new File("cookbook.json");
@@ -54,7 +56,7 @@ public class CookBook {
     }
 
     /**
-     * removes recipes from the cookbook
+     * removes unnecessary recipes with less than 4 steps
      */
     public void removeRecipes(){
         System.out.println("Original Size: " + recipes.size());
@@ -70,8 +72,8 @@ public class CookBook {
 
     /**
      * adds recipe to the cookbook if it does not already contain one of the same name
-     * @param name
-     * @param recipe
+     * @param name name of recipe
+     * @param recipe object with the input name
      */
     public void addRecipe(String name, Recipe recipe) {
         if(!recipes.containsKey(name)){
@@ -81,7 +83,7 @@ public class CookBook {
     }
 
     /**
-     *returns map of every recipe
+     * returns map of every recipe
      * @return Map<String, Ingredient>
      */
     public Map<String, Recipe> getRecipes() {
@@ -98,7 +100,7 @@ public class CookBook {
 
     /**
      * returns a recipe of given name if it exists in the cookbook, else null
-     * @param name
+     * @param name name of recipe
      * @return Recipe
      */
     public Recipe getSpecificRecipe(String name){
@@ -111,7 +113,7 @@ public class CookBook {
 
     /**
      * generates one tray meal by assigning an oven time to food type beef, chicken, pork, or vegetable
-     * @param toUse
+     * @param toUse map of ingredient names and food type
      * @return Recipe
      */
     public Recipe generateOneTray(HashMap<String, String> toUse){
@@ -225,9 +227,9 @@ public class CookBook {
 
     /**
      * returns recipes if they contain a difference of two ingredients, do not contain any disliked ingredients, and adhere to restrictions
-     * @param fridge
-     * @param restrictions
-     * @param dislikedIngredients
+     * @param fridge user's fridge with list of ingredients
+     * @param restrictions list of whether a user is vegan, vegetarian, none, etc.
+     * @param dislikedIngredients list of ingredients the user does not like, so recipe containing them will not be recommended
      * @return List of recipes
      */
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge, ArrayList<DietType> restrictions, ArrayList<Ingredient> dislikedIngredients){
@@ -267,11 +269,6 @@ public class CookBook {
         return recommendations;
     }
 
-    /**
-     * updated recipe recommender
-     * @param fridge
-     * @return List of recipes
-     */
     public List<Recipe> recommendRecipes(Fridge fridge){
         List<Recipe> recommendations = new ArrayList<>();
         List<String> userIng = new ArrayList<>();
@@ -301,7 +298,7 @@ public class CookBook {
 
     /**
      * returns recipes that have a certain tag (Vegan, Vegetarian, etc.)
-     * @param tag
+     * @param tag DietType enum
      * @return Set of Recipes
      */
     public Set<Recipe> getRecipesByTag(DietType tag){
@@ -318,7 +315,7 @@ public class CookBook {
 
     /**
      * returns ingredients that have a certain tag
-     * @param tag
+     * @param tag DietType enum
      * @return Set of Ingredients
      */
     public Set<Ingredient> getIngredientsByTag(DietType... tag) {
@@ -337,7 +334,7 @@ public class CookBook {
 
     /**
      * returns a recipe from the cookbook if the input name exists, else null
-     * @param name
+     * @param name of recipe
      * @return Recipe
      */
     public Recipe getRecipe(String name) {
@@ -347,8 +344,8 @@ public class CookBook {
     }
 
     /**
-     * returns Set of recipes that have a total cooktime of input minutes or less
-     * @param minutes
+     * returns set of recipes that have a total cook time of input minutes or less
+     * @param minutes to cook recipe
      * @return Set of Recipes
      */
     public Set<Recipe> getRecipesByTime(double minutes) {
