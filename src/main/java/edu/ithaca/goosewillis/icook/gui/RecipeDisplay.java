@@ -7,6 +7,7 @@ import edu.ithaca.goosewillis.icook.recipes.Recipe;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.Ingredient;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,12 @@ public class RecipeDisplay extends JFrame {
         }
 
         JPanel displayPanel = new JPanel();
+        displayPanel.setLayout(new BorderLayout());
         JPanel instructionPanel = initListThing(instructions);
         JPanel itemsNeeded =  initListThing(realIngredients);
 
-        displayPanel.add(instructionPanel);
-        displayPanel.add(itemsNeeded);
+        displayPanel.add(instructionPanel, BorderLayout.WEST);
+        displayPanel.add(itemsNeeded, BorderLayout.EAST);
         this.add(displayPanel);
     }
 
@@ -45,7 +47,8 @@ public class RecipeDisplay extends JFrame {
         scrollmeup.setSize(50,100);
 
         JPanel theSteps = new JPanel();
-        theSteps.add(scrollmeup);
+        theSteps.setLayout(new BorderLayout());
+        theSteps.add(scrollmeup, BorderLayout.CENTER);
         return theSteps;
     }
 
