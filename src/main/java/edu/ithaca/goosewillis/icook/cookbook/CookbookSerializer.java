@@ -12,6 +12,11 @@ import java.util.Map;
 
 public class CookbookSerializer implements JsonSerializer<CookBook>, JsonDeserializer<CookBook> {
 
+    /**
+     * deserializes cookbook
+     * @param root
+     * @return CookBook
+     */
     @Override
     public CookBook deserialize(JsonObject root) {
         CookBook cookBook = new CookBook();
@@ -25,6 +30,11 @@ public class CookbookSerializer implements JsonSerializer<CookBook>, JsonDeseria
         return cookBook;
     }
 
+    /**
+     * serializes cookbook
+     * @param toSerialize
+     * @return JsonObject
+     */
     @Override
     public JsonObject serialize(CookBook toSerialize) {
         JsonObject root = new JsonObject();
