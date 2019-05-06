@@ -1,15 +1,12 @@
 package edu.ithaca.goosewillis.icook.recipes.ingredients;
 import edu.ithaca.goosewillis.icook.recipes.ingredients.DietType;
 
-
 public class Ingredient {
 
     private String name;
     private double count;
     private DietType dietType;
     public double cookTime;
-    // will add appropriate tags (Vegan, Vegetarian, etc.) after API stuff
-    // need to discuss with client about ovenTime
 
     public Ingredient(String name, double count, double cookTime) {
         this(name,count,cookTime, DietType.None);
@@ -31,6 +28,7 @@ public class Ingredient {
         }
     }
 
+    //not using counts currently, but a future valid ingredient has a positive amount
     public boolean isIngredientValid(Ingredient ingredient){
         if(ingredient != null && ingredient.getCount() >=1 && ingredient.getCookTime() >= 0){
             return true;

@@ -14,6 +14,11 @@ import java.util.List;
 
 public class FridgeSerializer implements JsonSerializer<Fridge>, JsonDeserializer<Fridge> {
 
+    /**
+     * deserializes fridge
+     * @param root
+     * @return Fridge
+     */
     @Override
     public Fridge deserialize(JsonObject root) {
         Fridge fridge = new Fridge();
@@ -27,6 +32,11 @@ public class FridgeSerializer implements JsonSerializer<Fridge>, JsonDeserialize
         return fridge;
     }
 
+    /**
+     * serializes fridge
+     * @param toSerialize
+     * @return JsonObject
+     */
     @Override
     public JsonObject serialize(Fridge toSerialize) {
         JsonObject root = new JsonObject();

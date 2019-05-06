@@ -35,7 +35,11 @@ public class Fridge {
 
     public void removeIngredient(Ingredient ingredient){ ingredients.remove(ingredient); }
 
-    // null otherwise
+    /**
+     * returns input ingredient if it exists in the user's fridge, else null
+     * @param name of ingredient
+     * @return Ingredient
+     */
     public Ingredient searchIngredient(String name) {
         Iterator<Ingredient> myIterator = this.getIngredients().iterator();
         while (myIterator.hasNext()) {
@@ -47,6 +51,11 @@ public class Fridge {
         return null;
     }
 
+    /**
+     * returns ingredients of the same cook time
+     * @param cookTime in minutes
+     * @return ArrayList of Ingredients
+     */
     public ArrayList<Ingredient> getIngredientsByCookTime(int cookTime){
         ArrayList<Ingredient> ingredientsWithSameCookTime = new ArrayList<>();
         Iterator<Ingredient> itr = this.getIngredients().iterator();
@@ -59,6 +68,9 @@ public class Fridge {
         return ingredientsWithSameCookTime;
     }
 
+    /**
+     * saves fridge and what it contains to a json file
+     */
     public void saveFridgeToFile(){
         try{
             File file = new File("fridge.json");

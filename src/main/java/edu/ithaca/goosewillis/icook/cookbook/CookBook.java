@@ -28,7 +28,6 @@ public class CookBook {
         this.ingredients = new HashMap<>();
     }
 
-
     public CookBook(JsonObject root) {
         CookBook deserialized = new CookbookSerializer().deserialize(root);
         this.recipes = deserialized.recipes;
@@ -36,6 +35,9 @@ public class CookBook {
         logger.log(Level.INFO, "Recipes & Ingredients loaded into cookbook!");
     }
 
+    /**
+     * saves cookbook to a json file
+     */
     public void saveToFile() {
         try {
             File file = new File("cookbook.json");
@@ -53,6 +55,9 @@ public class CookBook {
         }
     }
 
+    /**
+     * removes unnecessary recipes with less than 4 steps
+     */
     public void removeRecipes(){
         System.out.println("Original Size: " + recipes.size());
         for(Iterator<Map.Entry<String, Recipe>> itr = recipes.entrySet().iterator(); itr.hasNext();){
@@ -65,6 +70,11 @@ public class CookBook {
         saveToFile();
     }
 
+    /**
+     * adds recipe to the cookbook if it does not already contain one of the same name
+     * @param name name of recipe
+     * @param recipe object with the input name
+     */
     public void addRecipe(String name, Recipe recipe) {
         if(!recipes.containsKey(name)){
             recipes.put(name, recipe);
@@ -72,14 +82,27 @@ public class CookBook {
         }
     }
 
+    /**
+     * returns map of every recipe
+     * @return Map<String, Ingredient>
+     */
     public Map<String, Recipe> getRecipes() {
         return recipes;
     }
 
+    /**
+     * returns map of every ingredient
+     * @return Map<String, Ingredient>
+     */
     public Map<String, Ingredient> getIngredients() {
         return ingredients;
     }
 
+    /**
+     * returns a recipe of given name if it exists in the cookbook, else null
+     * @param name name of recipe
+     * @return Recipe
+     */
     public Recipe getSpecificRecipe(String name){
         if(recipes.containsKey(name)){
             return recipes.get(name);
@@ -88,6 +111,11 @@ public class CookBook {
         }
     }
 
+    /**
+     * generates one tray meal by assigning an oven time to food type beef, chicken, pork, or vegetable
+     * @param toUse map of ingredient names and food type
+     * @return Recipe
+     */
     public Recipe generateOneTray(HashMap<String, String> toUse){
         // toUse is a map of ingredient names to food type, e.g.  Broccoli: Vegetable
         // cook time is given in gui when food type is selected
@@ -197,12 +225,19 @@ public class CookBook {
         return str;
     }
 
+    /**
+     * returns recipes if they contain a difference of two ingredients, do not contain any disliked ingredients, and adhere to restrictions
+     * @param fridge user's fridge with list of ingredients
+     * @param restrictions list of whether a user is vegan, vegetarian, none, etc.
+     * @param dislikedIngredients list of ingredients the user does not like, so recipe containing them will not be recommended
+     * @return List of recipes
+     */
     public ArrayList<Recipe> getRecipeRecommendations(Fridge fridge, ArrayList<DietType> restrictions, ArrayList<Ingredient> dislikedIngredients){
         ArrayList<Recipe> recommendations = new ArrayList<Recipe>();
         try {
             Reccomend:
             for (Recipe currRecipe : this.recipes.values()) {
-                //canMake is an incrementor that will not add a certain recipe to the recommendations ArrayList (if it is set above 1 for now)
+                //canMake is an incrementor that will not add a certain recipe to the recommendations ArrayList (if it is set above 2 for now)
                 int canMake = 0;
 
                 //if recipe does not contain a restriction in the user's ArrayList, it will not be recommended
@@ -261,6 +296,11 @@ public class CookBook {
 
     }
 
+    /**
+     * returns recipes that have a certain tag (Vegan, Vegetarian, etc.)
+     * @param tag DietType enum
+     * @return Set of Recipes
+     */
     public Set<Recipe> getRecipesByTag(DietType tag){
         Set<Recipe> recipesByTag = new HashSet<>();
         for (Recipe recipe : this.recipes.values()) {
@@ -273,6 +313,11 @@ public class CookBook {
         return recipesByTag;
     }
 
+    /**
+     * returns ingredients that have a certain tag
+     * @param tag DietType enum
+     * @return Set of Ingredients
+     */
     public Set<Ingredient> getIngredientsByTag(DietType... tag) {
         Set<Ingredient> ingredientsByTag = new HashSet<>();
         for (Ingredient ingredient : this.ingredients.values()) {
@@ -287,12 +332,22 @@ public class CookBook {
         return ingredientsByTag;
     }
 
+    /**
+     * returns a recipe from the cookbook if the input name exists, else null
+     * @param name of recipe
+     * @return Recipe
+     */
     public Recipe getRecipe(String name) {
         Recipe recipe = this.recipes.get(name);
         if (recipe == null) return null;
         return recipe;
     }
 
+    /**
+     * returns set of recipes that have a total cook time of input minutes or less
+     * @param minutes to cook recipe
+     * @return Set of Recipes
+     */
     public Set<Recipe> getRecipesByTime(double minutes) {
         Set<Recipe> inTime = new HashSet<>();
         for (Recipe recipe : this.recipes.values()) {

@@ -94,6 +94,10 @@ public class Recipe {
         return tags;
     }
 
+    /**
+     * displays the recipe as a String listing ingredients, steps, and tags
+     * @return String of Recipe
+     */
     public String display(){
         String toReturn = name+"\n"+description+"\n"+"Ingredients Needed:\n";
         for (int i=0; i<ingredients.size(); i++){

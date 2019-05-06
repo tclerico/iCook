@@ -41,6 +41,10 @@ public class User {
     public Fridge getFridge(){ return this.fridge; }
 
 
+    /**
+     * adds Ingredient to User's Fridge
+     * @param ingredient Ingredient object
+     */
     public void addToFridge(Ingredient ingredient){
         if(ingredient.isIngredientValid(ingredient)){
             fridge.addIngredient(ingredient);
@@ -49,6 +53,10 @@ public class User {
         }
     }
 
+    /**
+     * removes Ingredient from User's Fridge
+     * @param ingredient Ingredient object
+     */
     public void removeFromFridge(Ingredient ingredient){
         if(ingredient.isIngredientValid(ingredient) && (fridge.searchIngredient(ingredient.getName()) == ingredient)){
             fridge.removeIngredient(ingredient);
@@ -57,6 +65,11 @@ public class User {
         }
     }
 
+    /**
+     * decrements Ingredient count in a User's Fridge when they cook a recipe
+     * @param ingredientName name of Ingredient object
+     * @param ingredientCount count of Ingredient object
+     */
     public void useIngredient(String ingredientName, int ingredientCount){
         if((fridge.searchIngredient(ingredientName).getName().equals(ingredientName)
                 && fridge.searchIngredient(ingredientName).getCount() >= ingredientCount)){
@@ -180,6 +193,9 @@ public class User {
         return this.history;
     }
 
+    /**
+     * Saves User to a json file
+     */
     public void saveToFile(){
         try{
             File file = new File(getUsername()+".json");

@@ -11,6 +11,7 @@
 * [Use Case Diagram](https://drive.google.com/file/d/1LZBEcqS1bdyG6T2xV3ET5O-zk6aS5TkT/view?usp=sharing)
 * [Class Diagram](https://drive.google.com/file/d/1xZrD_i0tI43p2xnsMDsNeT6hNzWfNDYk/view?usp=sharing)
 * [Sequence Diagram](https://drive.google.com/open?id=1xxWUaln-3PHPR8UdziEnuUuOg_W2Z2Jf)
+* [State Diagram](https://www.draw.io/?libs=general;uml#G1Z9rgbd43SIhhPt0efel6gxD0XrCqQXww)
 
 ## Product Goal
 To generate one-tray-meals and recommend recipes based off the food available to a user
