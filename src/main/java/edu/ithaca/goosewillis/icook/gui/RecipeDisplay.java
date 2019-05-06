@@ -34,7 +34,11 @@ public class RecipeDisplay extends JFrame {
         this.add(displayPanel);
     }
 
-
+    /**
+     * Creates a panel containing a jscrollpane of the list passed in
+     * @param instructs List of strings to be put in the scroll pane
+     * @return a jpanel
+     */
     public JPanel initListThing(List<String> instructs){
         DefaultListModel<String> dlist = new DefaultListModel<>();
         for (String i : instructs){

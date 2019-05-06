@@ -56,6 +56,10 @@ public class IngredientQueries {
         return clean;
     }
 
+    /**
+     * Read in a list of a bunch of different ingredients to use as search keys for recipes
+     * @return a list of the ingredient names
+     */
     public static List<String> readInIngredients(){
         List<String> ingredientList = new ArrayList<>();
 
@@ -78,6 +82,13 @@ public class IngredientQueries {
         return ingredientList;
     }
 
+    /**
+     * Uses the list of ingredients to search for recipes on the Spoonacular API to save
+     * @param key the api key needed to search
+     * @param host the api target
+     * @param ingredientList the list of ingredient names to search off of
+     * @return a list of recipe names
+     */
     public static List<String> loadRecipeNames(String key, String host, List<String> ingredientList){
         List<String> recipeNames = new ArrayList<>();
         // Get a list of recipes for each ingredient and name to list
@@ -114,6 +125,13 @@ public class IngredientQueries {
         return recipeNames;
     }
 
+    /**
+     * Gets the ids of each recipe based off name to be used in last search for extended info
+     * @param key api key needed for search
+     * @param host api target
+     * @param recipeNames list of names
+     * @return a list of id's from Spoonacular
+     */
     public static List<Integer> loadRecipeIDs(String key, String host, List<String> recipeNames){
         // get recipe ID's to be used later
         List<Integer> recipeID = new ArrayList<>();
@@ -142,6 +160,15 @@ public class IngredientQueries {
         return recipeID;
     }
 
+    /**
+     * Constructs a recipe object and adds it into the cookbook to stored / saved
+     * @param cb a cookbook object to store and save all information
+     * @param name name of recipe
+     * @param cooktime cooktime of the recipe
+     * @param ingredients list of ingredients needed for the recipe
+     * @param instructions list of steps
+     * @param tags any relevant DietType tags
+     */
     public static void constructRecipe(CookBook cb, String name, Integer cooktime, List<String> ingredients, List<String> instructions, Set<DietType> tags){
         try{
             //TODO SEARCH TO SEE IF INGREDIENT ALREADY EXISTS IN DB OR WHATEVER IS STORING IT -> create if doesnt exist -> get if does
@@ -162,6 +189,14 @@ public class IngredientQueries {
 
     }
 
+    /**
+     * Takes the list of Spoonacular recipe ids and gets extended information about the recipes,
+     * calls function to save recipe to cookbook
+     * creates all recipes and saves them
+     * @param key Api Key
+     * @param host Api target
+     * @param recipeID list of recipe ids
+     */
     public static void createRecipes(String key, String host, List<Integer> recipeID){
         List<Recipe> recipes = new ArrayList<>();
         try {
