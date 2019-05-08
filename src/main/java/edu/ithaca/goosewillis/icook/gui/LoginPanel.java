@@ -1,7 +1,3 @@
-/*
-Created by Tim Clerico
-Panel to handel user login
- */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.user.User;

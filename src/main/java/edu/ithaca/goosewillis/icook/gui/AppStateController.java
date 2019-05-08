@@ -1,7 +1,3 @@
-/*
-Created by Tim Clerico
-Controller used by change panels and give access to useful things while operating
- */
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.cookbook.CookBook;

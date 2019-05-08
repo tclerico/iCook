@@ -1,8 +1,3 @@
-/*
-Create by Tim Clerico
-This is the main class that runs the GUI
- */
-
 package edu.ithaca.goosewillis.icook.gui;
 
 import java.awt.*;

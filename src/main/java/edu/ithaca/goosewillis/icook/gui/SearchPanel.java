@@ -1,6 +1,4 @@
-/*
-Created by Tim Clerico
- */
+
 package edu.ithaca.goosewillis.icook.gui;
 
 import edu.ithaca.goosewillis.icook.recipes.Recipe;
